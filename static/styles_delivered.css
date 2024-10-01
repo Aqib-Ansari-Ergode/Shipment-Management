@@ -1,0 +1,189 @@
+/*
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;  
+    height: 100vh;
+    background-color: #f3f3f3;
+    margin-top: 20px;  
+}
+
+.container {
+    width: 96%;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    border: 2px solid #dcdcdc;
+}
+
+.header {
+    background-color: #5da5e5;
+    color: white;
+    padding: 15px; 
+    text-align: center;
+    position: relative;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    box-shadow: inset 0 -4px 0 #4a90e2;
+}
+
+.logo {
+    font-size: 24px;
+    font-family: 'Comic Sans MS', sans-serif;
+    color: #ff5e9c;
+    display: inline-block;
+}
+
+.icon {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    background-color: #666;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.table-section {
+    padding: 15px; 
+    background-color: #d4edfb;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.add-tag-btn, .download-btn {
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.add-tag-btn:hover, .download-btn:hover {
+    background-color: #ddd;
+}
+
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.styled-table th {
+    background-color: #ff4d4d;
+    padding: 10px;  
+    border: 1px solid #ccc;
+}
+
+.styled-table td {
+    background-color: #a8e6a1;
+    padding: 15px;  
+    border: 1px solid #ccc;
+}
+
+*/
+
+/* Body Styles */
+body {
+    background-color: #f4f6f9;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0%;
+}
+
+/* Header Styles */
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #007bff;
+}
+
+/* Action Button Styles */
+.add-tag-btn, .download-btn {
+    padding: 0.6rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 30px;
+    transition: background-color 0.3s ease;
+}
+
+.add-tag-btn:hover {
+    background-color: #0056b3;
+    color: #fff;
+}
+
+.download-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+.download-btn:hover {
+    background-color: #218838;
+}
+
+/* Table Styles */
+.styled-table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 25px 0;
+    font-size: 0.9rem;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+    background-color: #343a40;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .logo {
+        font-size: 1.5rem;
+    }
+
+    .add-tag-btn, .download-btn {
+        font-size: 0.85rem;
+        padding: 0.4rem 1.2rem;
+    }
+
+    .styled-table {
+        font-size: 0.8rem;
+    }
+}

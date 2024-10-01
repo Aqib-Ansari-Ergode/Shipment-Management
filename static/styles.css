@@ -1,0 +1,204 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F0F4F9;
+    padding: 0%;
+    margin: 0%;
+}
+
+.container {
+    max-width:1300;
+    margin: 20px 40px;
+    padding: 0px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #cbdcf1;
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    height: min-content;
+}
+
+.logo img {
+    height: 50px;
+}
+
+.welcome h1 {
+    font-size: 14px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    color: #333;
+    float: right;
+    margin-left: 60%;
+    margin-right: 0%;
+    padding: 0px;
+    flex-direction: column;
+}
+
+.date {
+    display: flex;
+    text-align: center;
+    width: max-content;
+    margin-left: 30%;
+}
+
+.ship{
+    font-size: 24px;
+    display: flex;
+    color: #333;
+    float: right;
+}
+.logout {
+    display: inline;
+    padding: 0px;
+
+}
+
+.logout-btn {
+    padding: 10px 20px;
+    background-color: #FF6B6B;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.5s;
+}
+
+.logout-btn:hover {
+    background-color: #ff2d2d;
+}
+
+.filters {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    height: auto;
+    padding: 0%;
+}
+
+.filter-dropdown {
+    width: 18%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #CCC;
+    background-color: #FFF;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.filter-input {
+    width: 35px;
+    height: auto;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #CCC;
+    background-color: #FFF;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Adjusting styles for input[type="date"] */
+
+
+.date_label {
+    font-size: small;
+}
+
+.apply-filters-btn {
+    padding: 5px 20px;
+    background-color: #00a1c9; /* Green background */
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.apply-filters-btn:hover {
+    background-color: #2cbcff; /* Darker green on hover */
+}
+
+.content {
+    margin-top: 10px;
+}
+
+.cases-section {
+    margin-bottom: 0px;
+}
+
+.cases-section h2 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cases-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 40px;
+}
+
+.case-card {
+    background-color: #d0e6f7; /* Softer light blue for a refined look */
+    padding: 20px;
+    margin: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Softer shadow for depth */
+    display: flex;
+    justify-content: flex-start; /* Ensure the title stays at the top */
+    align-items: center;
+    flex-direction: column;
+    height: 140px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.case-card:hover {
+    transform: translateY(-5px); /* Slight lift effect on hover */
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+}
+
+.delivered-title {
+    margin: 0;
+    font-size: 1.5em;
+    color: #333; /* Darker text for contrast */
+    margin-bottom: 10px; /* Space below the title */
+}
+
+.delivered-number {
+    font-size: 1.5em;
+    text-decoration: none;
+    color: #1b1b1b; /* Slightly muted blue link color */
+    padding: 10px 0;
+    transition: color 0.3s ease; /* Smooth transition for color change */
+}
+
+.delivered-number:hover {
+    color: #424242; /* Darker blue on hover */
+}
+
+.start-date-label {
+    font-size: small;
+}
+

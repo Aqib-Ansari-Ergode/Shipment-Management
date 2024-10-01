@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ergode Dashboard</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+
+    <script>
+        // JavaScript to handle date change events
+        function updateDateLabels() {
+            const startDateInput = document.getElementById('start-date');
+            const endDateInput = document.getElementById('end-date');
+            const startDateLabel = document.getElementById('start-date-label');
+            const endDateLabel = document.getElementById('end-date-label');
+
+            // Update label when a date is selected
+            startDateInput.addEventListener('change', function() {
+                if (startDateInput.value) {
+                    startDateLabel.innerHTML = `${startDateInput.value}`;
+                } else {
+                    startDateLabel.innerHTML = 'Start Date';
+                }
+            });
+
+            endDateInput.addEventListener('change', function() {
+                if (endDateInput.value) {
+                    endDateLabel.innerHTML = `to ${endDateInput.value}`;
+                } else {
+                    endDateLabel.innerHTML = 'End Date';
+                }
+            });
+        }
+
+        // Initialize when the DOM is fully loaded
+        window.onload = function() {
+            updateDateLabels();
+        };
+    </script>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <img src="static/ergodeinc.png" alt="Epicode Logo" style="width: 30%; height: 30%;">
+            </div>
+            <div class="ship"><h3>Shipment Management System</h3></div>
+            <div class="welcome" style="padding: 5px;">
+                <b>Welcome! Ergode INC</b>
+                <p class="date" style="font-size: smaller;">{{ current_date }}</p>
+            </div>
+
+            <div class="logout">
+                <button class="logout-btn">Logout</button>
+            </div>
+        </header>
+ 
+        <form method="POST" action="/get_delivered">
+            <div class="filters">
+                <div class="date-range">
+                    <!-- Start Date Input -->
+                    <label for="start-date" id="start-date-label" class="date_label">{% if start_date %}
+                        {{ start_date }}
+                    {% else %}
+                    <b>&nbsp;&nbsp;Start Date</b>
+                    {% endif %}</label>
+                    <input type="date" class="filter-input" name="start_date" id="start-date" placeholder="Start Date" value="{% if start_date %}{{start_date}}{% endif %}">
+        
+                    <!-- End Date Input -->
+                    <label for="end-date" id="end-date-label" class="date_label">{% if end_date %}
+                        {{ end_date }}
+                    {% else %}
+                    <b>&nbsp;&nbsp;End Date</b>
+                    {% endif %}</label>
+                    <input type="date" class="filter-input" name="end_date" id="end-date" placeholder="End Date" value="{% if end_date %}{{end_date}}{% endif %}">
+                </div>
+        
+                <!-- Venue Dropdown -->
+                <select class="filter-dropdown" name="venue">
+                    <option selected>Filter by Venue</option>
+                    {% for venue in venues %}
+                        <option value="{{ venue }}" {% if venue_sel == venue %} selected {% endif %}>
+                            {{ venue }}
+                        </option>
+                    {% endfor %}
+                </select>
+        
+                <!-- Carrier Dropdown -->
+                <select class="filter-dropdown" name="carrier">
+                    <option  selected>Filter by Carrier</option>
+                    {% for carrier in carriers %}
+                        <option value="{{ carrier }}" {% if carrier_sel == carrier %} selected {% endif %}>
+                            {{ carrier }}
+                        </option>
+                    {% endfor %}
+                </select>
+        
+                <!-- Download Button -->
+                 <div style="display: flex; align-items: center; width: 100px;">
+                <a href="{{ url_for('/add_tag_manual') }}" class="btn btn-success download-btn" style="text-decoration: none;display: flex;">Add Tags
+                </a>
+            </div>
+        
+                <!-- Apply Filters Button -->
+                <button type="submit" class="apply-filters-btn">Apply Filters</button>
+            </div>
+        </form>
+        
+        <main class="content">
+            <section class="cases-section">
+                <h2>Process Aux Hold Cases</h2>
+                <div class="cases-grid">
+                    
+                    <div class="case-card">
+                        <p class="delivered-title" style="display: flex;"><u>Delivered</u></p>
+                        <a href="/get_delivered_details" class="delivered-number">{{ aux_hold_cases[0].delivered }}</a>
+                        <img src="static/delivered_icon.png" alt="delivered image" style="width: 30px; height: 30px; padding: 3px;">
+                    </div>
+                    
+                        <div class="case-card">
+                            
+                            <p><b>Delivered:</b> {{ aux_hold_cases.delivered }}</p>
+                        </div>
+                        <div class="case-card">
+                            
+                            <p><b>Delivered:</b> {{ aux_hold_cases.delivered }}</p>
+                        </div>
+                        <div class="case-card">
+                            
+                            <p><b>Delivered:</b> {{ aux_hold_cases.delivered }}</p>
+                        </div>
+                        <div class="case-card">
+                            
+                            <p><b>Delivered:</b> {{ aux_hold_cases.delivered }}</p>
+                        </div>
+                </div>
+            </section>
+
+            <section class="cases-section">
+                <h2>Ship from Warehouse Cases</h2>
+                <div class="cases-grid">
+                    {% for case in warehouse_cases %}
+                        <div class="case-card">
+                            
+                            <p><b>Quantity:</b> {{ case.quantity }}</p>
+                            <p><b>Status:</b> {{ case.status }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
