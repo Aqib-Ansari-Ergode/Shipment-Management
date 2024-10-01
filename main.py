@@ -5,9 +5,9 @@ import pandas as pd
 import os
 import csv
 
-application = Flask(__name__)
+app = Flask(__name__)
 
-application.secret_key = 'your_secret_key'
+app.secret_key = 'your_secret_key'
 
 def clear_session():
     session.clear()
@@ -31,7 +31,7 @@ def sanitize_session_values():
     if not session.get('page_no'):
         session['page_no'] = 1
 
-@application.route('/')
+@app.route('/')
 def index():
     clear_session()
     current_date = datetime.now().strftime("%Y-%m-%d")
@@ -50,7 +50,7 @@ def index():
     return render_template('index.html', current_date=current_date, aux_hold_cases=aux_hold_cases,
                            warehouse_cases=warehouse_cases, venues=venues, carriers=carriers)
 
-@application.route('/get_delivered', methods=['POST'])
+@app.route('/get_delivered', methods=['POST'])
 def handle_get_delivered():
     current_date = datetime.now().strftime("%Y-%m-%d")
     venues = sqlf.get_venues()
@@ -97,7 +97,7 @@ def handle_get_delivered():
                                start_date=session['start_date'], end_date=session['end_date'],
                                venue_sel=session['venue'], carriers=carriers, carrier_sel=session['carrier'])
 
-@application.route('/get_delivered_details')
+@app.route('/get_delivered_details')
 def get_delivered_details():
     sanitize_session_values()
     if session['post_done']:
@@ -124,7 +124,7 @@ def get_delivered_details():
 
 FILE_DIRECTORY = './files/'
 
-@application.route('/download')
+@app.route('/download')
 def download_file():
     try:
         # Ensure session has file_name
@@ -142,7 +142,7 @@ def download_file():
     except Exception as e:
         return f"Error occurred: {str(e)}", 500
 
-@application.route('/add_tag', methods=['POST'])
+@app.route('/add_tag', methods=['POST'])
 def add_tag():
     csv_file = 'tags_with_order_ids.csv'
 
@@ -160,4 +160,4 @@ def add_tag():
         return f"Error occurred while adding tag: {str(e)}"
 
 if __name__ == '__main__':
-    application.run(host='0.0.0.0', port=8080)
+    app.run(host='0.0.0.0', port=8080)
