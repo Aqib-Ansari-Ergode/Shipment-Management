@@ -50,7 +50,7 @@ def fetch_query_results( query):
         return None
 
 # Connect to MySQL database
-connection = create_connection("54.187.97.21", "aqib_ro", "mka@efew8743ICNMmcskCS", "ergodeap_media")
+connection = create_connection("media-master.ergodeapps.com", "aqib_ro", "mka@efew8743ICNMmcskCS", "ergodeap_media")
 
 
 # # Example of creating a table
