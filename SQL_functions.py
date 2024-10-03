@@ -1,33 +1,50 @@
 import mysql.connector
 from mysql.connector import Error
 import pandas as pd
+
+# Connection global variable to allow reuse
+connection = None
+
 def create_connection(host_name, user_name, user_password, db_name):
     """
     Creates a connection to the MySQL database and returns the connection object.
     """
-    connection = None
+    global connection
     try:
-        connection = mysql.connector.connect(
-            host=host_name,
-            user=user_name,
-            password=user_password,
-            database=db_name,
-            pool_name='mypool',
-            pool_size=5,
-            autocommit=True,
-            
-        )
-        if connection.is_connected():
-            print("Connection to MySQL DB successful")
+        if connection is None or not connection.is_connected():
+            connection = mysql.connector.connect(
+                host=host_name,
+                user=user_name,
+                password=user_password,
+                database=db_name,
+                pool_name='mypool',
+                pool_size=5,
+                autocommit=True,
+            )
+            if connection.is_connected():
+                print("Connection to MySQL DB successful")
+        else:
+            print("Using existing database connection")
     except Error as e:
         print(f"The error '{e}' occurred")
     return connection
 
-def execute_query( query):
+def reconnect_if_needed():
+    """
+    Reconnects to the MySQL database if the connection is lost.
+    """
+    global connection
+    if connection is None or not connection.is_connected():
+        print("Reconnecting to MySQL DB...")
+        connection = create_connection("54.187.97.21", "aqib_ro", "mka@efew8743ICNMmcskCS", "ergodeap_media")
+
+def execute_query(query):
     """
     Executes a single SQL query using the provided connection.
     """
-    
+    global connection
+    reconnect_if_needed()  # Ensure the connection is alive
+
     cursor = connection.cursor()
     try:
         cursor.execute(query)
@@ -36,10 +53,13 @@ def execute_query( query):
     except Error as e:
         print(f"The error '{e}' occurred")
 
-def fetch_query_results( query):
+def fetch_query_results(query):
     """
     Fetches the results of a query.
     """
+    global connection
+    reconnect_if_needed()  # Ensure the connection is alive
+
     cursor = connection.cursor()
     try:
         cursor.execute(query)
@@ -51,7 +71,6 @@ def fetch_query_results( query):
 
 # Connect to MySQL database
 connection = create_connection("54.187.97.21", "aqib_ro", "mka@efew8743ICNMmcskCS", "ergodeap_media")
-
 
 # # Example of creating a table
 # create_table_query = """
@@ -129,6 +148,7 @@ def get_venues():
     return venues_list
 
 def get_carriers():
+    
     carriers = fetch_query_results(query='select distinct carrier_name from order_tracking_details;')
 
     carrier_list = []
