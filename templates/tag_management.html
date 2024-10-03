@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tag Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='add_tag.css') }}">
+
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Ergode Tag Management</h1>
+
+        <div class="table-container">
+            <form action="{{ url_for('add_tag_manual') }}" method="post" class="form-inline">
+                <input type="text" class="form-control input-cell" name="tag" placeholder="Enter Tag">
+                <input type="text" class="form-control input-cell" name="tag" placeholder="Enter Tag">
+                <input type="text" class="form-control input-cell" name="tag" placeholder="Enter Tag">
+                <input type="text" class="form-control input-cell" name="tag" placeholder="Enter Tag">
+                <button type="submit" class="btn btn-success">Add Tag</button>
+                <button type="button" class="btn btn-primary update-btn">Update Tag</button>
+            </form>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th colspan="4" class="input-cell"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in range(5) %}
+                    <tr>
+                        <td >a</td>
+                        <td >b</td>
+                        <td >c</td>
+                        <td >d</td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    ▼
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#">Option 1</a>
+                                    <a class="dropdown-item" href="#">Option 2</a>
+                                    <a class="dropdown-item" href="#">Option 3</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
