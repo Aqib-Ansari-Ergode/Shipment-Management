@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ergode Form and Table</title>
     <link rel="stylesheet" href="static/add_tag.css">
+     
 </head>
 <body>
     <script>
@@ -74,112 +75,187 @@
     
     <!-- Header Section -->
     
-        <div style="background-color: rgb(193, 193, 255);height: 4em;">
-            <img src="static/ergodeinc.png" alt="Epicode Logo" style="width: 100px; height: 30px; float: left;margin-top: 15px;margin-left: 15px;">
+        <div style="background-color: rgb(193, 193, 255);height: 4em; align-items: center;display: flex;">
+            <img src="static/ergodeinc.png" alt="Epicode Logo" style="width: 100px; height: 30px; float: left;margin-left: 15px;">
+            <h1 style="display: flex; align-items: center;text-align: center; float:inline-start;margin-left: auto;margin-right: auto;">Manage Tags</h1>
         </div>
    
 
     <!-- Form Section -->
-    <div class="form-container">
-        <form id="dropdown-form" action="\get_details_all_data">
+        <div class="form-container">
+            <form id="dropdown-form" action="/add_tag_manual" method="post">
 
-            <div class="date-range">
-                <!-- Start Date Input -->
-                <label for="start-date" id="start-date-label" class="date_label">
-                    <!-- {% if start_date %}
-                    {{ start_date }}
-                {% else %} -->
-                <b>&nbsp;&nbsp;Start Date</b>
-                <!-- {% endif %} -->
-            </label>
-                <input type="date" class="filter-input" name="start_date" id="start-date" placeholder="Start Date" value="{% if start_date %}{{start_date}}{% endif %}">
-                    <label for=""></label>
-                <!-- End Date Input -->
-                <label for="end-date" id="end-date-label" class="date_label">
-                    <!-- {% if end_date %}
-                    {{ end_date }}
-                {% else %} -->
-                <b>&nbsp;&nbsp;End Date</b>
-                <!-- {% endif %} -->
-            </label>
-                <input type="date" class="filter-input" name="end_date" id="end-date" placeholder="End Date" value="{% if end_date %}{{end_date}}{% endif %}">
-            </div>
+                <div class="date-range">
+                    <!-- Start Date Input -->
+                    <label for="start-date" id="start-date-label" class="date_label">
+                        {% if start_date_sel %}
+                        {{ start_date_sel }}
+                    {% else %}
+                    <b>&nbsp;&nbsp;Start Date</b>
+                    {% endif %}
+                </label>
+                    <input type="date" class="filter-input" name="start_date" id="start-date" placeholder="Start Date" value="{% if start_date_sel %}{{start_date_sel}}{% endif %}">
+                        <label for=""></label>
+                    <!-- End Date Input -->
+                    <label for="end-date" id="end-date-label" class="date_label">
+                        {% if end_date_sel %}
+                        {{ end_date_sel }}
+                    {% else %}
+                    <b>&nbsp;&nbsp;End Date</b>
+                    {% endif %}
+                </label>
+                    <input type="date" class="filter-input" name="end_date" id="end-date" placeholder="End Date" value="{% if end_date_sel %}{{end_date_sel}}{% endif %}">
+                </div>
 
+            
+                <select id="dropdown1" name="status">
+                    <option  {% if status_sel == 'False' %} selected {% endif %}>Status</option>
+                    <option value="PA" {% if status_sel == 'PA' %} selected {% endif %}>Process Aux Hold (PA)</option>
+                    <option value="SHPWH" {% if status_sel == 'SHPWH' %} selected {% endif %}>Ship from Warehouse (SHPWH)</option>
+                </select>
+                
+                <div class="custom-select-wrapper">
+                    <div class="custom-select">
+                        <div class="custom-select-trigger">
+                            {% if tag_sel %} 
+                            {% for tags in tag_sel %}
+                                {{ tags }}
+                                {% endfor %}
+                            {% else %} 
+                                Select options
+                            {% endif %}
+                        </div>
+                        <div class="custom-options">
+                            <label>
+                                <input type="checkbox" name="tag" value="PA - Not Delivered" {% if 'PA - Not Delivered' in tag_sel %} checked {% endif %}> PA - Not Delivered
+                                 </label>
+                            <label>
+                                <input type="checkbox" name="tag" value="PA - In Process" {% if 'PA - In Process' in tag_sel %} checked {% endif %}> PA - In Process
+                                 </label>
+                            <label>
+                                <input type="checkbox" name="tag" value="PA - Not Found" {% if 'PA - Not Found' in tag_sel %} checked {% endif %}> PA - Not Found
+                                 </label>
+                            <label>
+                                <input type="checkbox" name="tag" value="PA - Query" {% if 'PA - Query' in tag_sel %} checked {% endif %}> PA - Query
+                                 </label>
+                            <label>
+                                <input type="checkbox" name="tag" value="SHPWH - In Transit" {% if 'SHPWH - In Transit' in tag_sel %} checked {% endif %}> SHPWH - In Transit
+                                 </label>
+                            <label>
+                                <input type="checkbox" name="tag" value="SHPWH - Delivered" {% if  'SHPWH - Delivered' in tag_sel %} checked {% endif %}> SHPWH - Delivered
+                                 </label>
+                            <label>
+                                <input type="checkbox" name="tag" value="SHPWH - Stuck in Transit" {% if  'SHPWH - Stuck in Transit' in tag_sel %} checked {% endif %}> SHPWH - Stuck in Transit     
+                            </label>
+                            <label>
+                                <input type="checkbox" name="tag" value="SHPWH - Loss" {% if 'SHPWH - Loss' in tag_sel %} checked {% endif %}> SHPWH - Loss
+                                 </label>
+                            <label>
+                                <input type="checkbox" name="tag" value="SHPWH - Returning" {% if  'SHPWH - Returning' in tag_sel %} checked {% endif %}> SHPWH - Returning
+                                 </label>
+                            <label>
+                                <input type="checkbox" name="tag" value="SHPWH - Returned" {% if 'SHPWH - Returned' in tag_sel %} checked {% endif %}> SHPWH - Returned
+                                 </label>
+                        </div>
+                    </div>
+                </div>
+                
+
+                
+                <select class="filter-dropdown" name="venue">
+                    <option selected>Venues</option>
+                    {% for venue in venues %}
+                        <option value="{{venue}}" {% if venue_sel == venue %} selected {% endif %}>
+                            {{ venue }}
+                        </option>
+                    {% endfor %}
+                </select>
         
-            <select id="dropdown1" name="dropdown1">
-                <option value="False" selected>Select...</option>
-                <option value="option1">Process Aux Hold (PA)</option>
-                <option value="option2">Ship from Warehouse (SHPWH)</option>
-            </select>
-            
-            <select id="dropdown2" name="dropdown2">
-                <option value="False" selected>Select...</option>
-                <option value="option1PA">PA - Not Delivered (PA)</option>
-                <option value="option2PA">Option 2(PA)</option>
-                <option value="option1SHPWH">Option 1(SHPWH)</option>
-                <option value="option2SHPWH">Option 2(SHPWH)</option>
-            </select>
-
-            
-            <select id="dropdown3" name="dropdown3">
-                <option value="False" selected>Select...</option>
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-            </select>
-
-    
-            <select id="dropdown4" name="dropdown3">
-                <option value="False" selected>Select...</option>
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-            </select>
-
-            <button type="submit" > <b>Submit</b></button>
-        </form>
+                
+        
+                <select class="filter-dropdown" name="carrier">
+                    <option  selected>Carriers</option>
+                    {% for carrier in carriers %}
+                        <option value="{{carrier}}" {% if carrier_sel == carrier %} selected {% endif %}>
+                            {{ carrier }}
+                        </option>
+                    {% endfor %}
+                </select>
+                <button type="submit" > <b>Submit</b></button>
+            </form>
     </div>
 
     <!-- Table Section -->
+
+    {% if data %}
     <div class="table-container">
-        <form action="update_tag" id="dropdown-form">
+        
+        
+        </div>
+        <form action="/update_tag" id="dropdown-form" method="post">
             <table>
-            <thead>
+            <thead style="font-size: 14px;">
                 <tr>
-                    <th>Column 1</th>
-                    <th>Column 2</th>
-                    <th>Column 3</th>
-                    <th>Column 4</th>
-                    <th>Column 5</th>
+                    {% for i in columns %}
+                    <th>{{ i }}</th>
+                    {% endfor %}
                     <th>Status</th>
                 </tr>
             </thead>
             <tbody>
-                {% for i in range(5) %}
+                {% for row in data %}
                 <tr>
-                    <td>{{i+1}}</td>
-                    <td>{{i+2}}</td>
-                    <td>{{i+3}}</td>
-                    <td>{{i+4}}</td>
-                    <td>{{i+5}}</td>
-                    <td style="display:flex;">
-                        
-                        <select name="status1" >
-                            <option value="completed">Completed</option>
-                            <option value="inprogress">In Progress</option>
-                            <option value="incomplete">Incomplete</option>
-                            <option value="notstarted">Not Started</option>
+                    <td>{{ row[0] }}</td> <!-- Shipment Number -->
+                    <td>{{ row[1] }}</td> <!-- Internal Order ID -->
+                    <td>{{ row[2] }}</td> <!-- SKU -->
+                    <td>{{ row[3] }}</td> <!-- Venue -->
+                    <td>{{ row[4] }}</td> <!-- Order ID -->
+                    <td>{{ row[5] }}</td> <!-- Purchase Date -->
+                    <td>{{ row[6] }}</td> <!-- Current Status -->
+                    <td>{{ row[7] }}</td> <!-- Status Update Date -->
+                    <td>{{ row[8] }}</td> <!-- Scheduled Delivery Date -->
+                    <td>
+                        <select name="{{ row[0] }}" class="form-select" style="width: 100px;">
+                            <option value="Priority" {% if shipment_data.get(row[0]) == "Completed" %}selected{% endif %}>Completed</option>
+                            <option value="In-Progress" {% if shipment_data.get(row[0]) == "In-Progress" %}selected{% endif %}>In-Progress</option>
+                            <option value="Completed" {% if shipment_data.get(row[0]) == "Completed" %}selected{% endif %}>Completed</option>
+                            <option value="Delayed" {% if shipment_data.get(row[0]) == "Delayed" %}selected{% endif %}>Delayed</option>
                         </select>
-                        
-                    
                     </td>
                 </tr>
                 {% endfor %}
-                
             </tbody>
+            
         </table>
         <button type="submit" style="height: 40px;width: 80px; border-radius: 20px; margin: 2%; float: right; background: #3758c5;border: 0px; color: aliceblue;">Update</button>
 
     </form>
-    </div>
-
+    
+    {% endif %}
+    <script>
+        document.querySelector('.custom-select-trigger').addEventListener('click', function() {
+         document.querySelector('.custom-select').classList.toggle('open');
+     });
+     
+     document.querySelectorAll('.custom-options label').forEach(function(option) {
+         option.addEventListener('click', function(event) {
+             event.stopPropagation(); // Prevent dropdown from closing
+             let selectedOptions = [];
+             document.querySelectorAll('.custom-options input:checked').forEach(function(checkbox) {
+                 selectedOptions.push(checkbox.value);
+             });
+             
+             // Join selected options, show them as a string, but restrict height
+             let displayText = selectedOptions.join(', ');
+             
+             if (selectedOptions.length === 0) {
+                 document.querySelector('.custom-select-trigger').textContent = 'Select options';
+             } else {
+                 document.querySelector('.custom-select-trigger').textContent = displayText;
+             }
+         });
+     });
+     
+     </script>
 </body>
 </html>

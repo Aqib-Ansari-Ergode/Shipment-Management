@@ -26,7 +26,8 @@ header h1 {
     margin: 2rem auto;
     width: 97%;
     padding: 1rem;
-    background-color: #f8f9fa;
+    margin: 1.5%;
+    background-color: #bbddff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -50,11 +51,11 @@ header h1 {
     border: 1px solid #ced4da;
     border-radius: 5px;
     font-size: 1rem;
-    max-width: 300px; /* Optional: limit dropdown width */
+    max-width: 200px; /* Optional: limit dropdown width */
 }
 
 .form-container button {
-    background-color: #98c4fd;
+    background-color: #70aeff;
     color: rgb(59, 59, 59);
     cursor: pointer;
     font:bolder;
@@ -77,7 +78,7 @@ header h1 {
 table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 1rem;
+    font-size: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     
 }
@@ -91,7 +92,7 @@ table th, table td {
 table th {
     background-color: #75b1ff;
     color: rgb(63, 63, 63);
-    text-transform: uppercase;
+    
 }
 
 table td {
@@ -129,4 +130,55 @@ table tr:hover {
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     font-size: 16px;
+}
+
+.custom-select-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 200px;
+}
+
+.custom-select {
+    position: relative;
+    background-color: #dadada;
+    border: 1px solid #dadada;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.custom-select-trigger {
+    padding: 10px;
+    background-color: #ffffff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 35px; /* Fixed height */
+    line-height: 20px; /* Ensure text stays centered */
+    display: flex;
+    align-items: center;
+    border-radius: 5px; /* Center text vertically */
+}
+
+.custom-options {
+    padding: 2px;
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 999;
+}
+
+.custom-options label {
+    display: block;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.custom-select.open .custom-options {
+    display: block;
 }

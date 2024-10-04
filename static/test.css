@@ -1,0 +1,40 @@
+.custom-select-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.custom-select {
+    position: relative;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    width: 200px;
+    cursor: pointer;
+}
+
+.custom-select-trigger {
+    padding: 10px;
+    background-color: #fff;
+}
+
+.custom-options {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 999;
+}
+
+.custom-options label {
+    display: block;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.custom-select.open .custom-options {
+    display: block;
+}

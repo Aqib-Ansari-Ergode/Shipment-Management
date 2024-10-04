@@ -13,7 +13,8 @@
     <div class="container" style="padding: 0%; margin: 5%; margin-top: 1%; max-width: 90%; align-items: center;">
         <!-- Header -->
         <div class="d-flex justify-content-between align-items-center py-1 mb-3 border-bottom">
-            <div class="logo h2 text-primary">Ergode</div>
+            <div class="logo h2 text-primary"><img src="static/ergodeinc.png" alt="Ergode" style="width: 120px;height: auto;"></div>
+            <h2>Delivered Items </h2>
         </div>
 
         <form method="POST" action="/add_tag">
@@ -27,6 +28,32 @@
 
             <!-- Table Section -->
             <div class="table-responsive">
+                <div class="pagination" style="float: right; margin: 10px;">
+                    <ul class="pagination-list">
+                        <!-- Previous Page Button -->
+                        <li class="pagination-item">
+                            <a href="{{ url_for('get_delivered_details', page_no=current_page - 1) }}" 
+                               class="{% if current_page == 1 %}disabled{% endif %}">
+                                &laquo;
+                            </a>
+                        </li>
+                
+                        <!-- Page Numbers -->
+                        {% for page in range(1, total_pages_s + 1) %}
+                            <li class="pagination-item {% if page == current_page %}active{% endif %}">
+                                <a href="{{ url_for('get_delivered_details', page_no=page) }}">{{ page }}</a>
+                            </li>
+                        {% endfor %}
+                
+                        <!-- Next Page Button -->
+                        <li class="pagination-item">
+                            <a href="{{ url_for('get_delivered_details', page_no=current_page + 1) }}" 
+                               class="{% if current_page == total_pages %}disabled{% endif %}">
+                                &raquo;
+                            </a>
+                        </li>
+                    </ul>
+                </div>
                 <table class="table table-hover table-bordered styled-table">
                     <thead class="table-dark">
                         <tr>
@@ -73,6 +100,10 @@
                 <button type="submit" class="btn btn-success download-btn" style="margin: 0% 1%; background: #000;">Save Tags</button>
             </div>
         </form>
+        
+        
+        
+
     </div>
 
     <!-- Bootstrap 5 JS -->
