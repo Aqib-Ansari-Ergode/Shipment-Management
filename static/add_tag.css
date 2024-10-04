@@ -70,37 +70,39 @@ header h1 {
 
 /* Table styling */
 .table-container {
-    margin: 2rem auto;
-    width: 97%;
+    margin: 1rem auto; /* Reduce the margin for the container */
+    width: 100%; /* Ensure it takes the full width of the page */
     overflow-x: auto;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    
+    font-size: 12px; /* Reduce font size for better fit */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduce shadow for better fit */
 }
 
 table th, table td {
-    padding: 1rem;
+    /* Reduce padding for better row fit */
     text-align: left;
     border-bottom: 1px solid #ddd;
-}
-
-table th {
-    background-color: #75b1ff;
-    color: rgb(63, 63, 63);
     
 }
 
+table th {
+    padding: 0.5rem;
+    background-color: #75b1ff;
+    color: rgb(63, 63, 63);
+}
+
 table td {
+    padding: 0.2rem;
     background-color: #f8f9fa;
+    border-right: 1px solid #ddd;
 }
 
 table select {
-    padding: 0.3rem;
+    padding: 0.2rem; /* Reduce padding for select inputs */
     border-radius: 5px;
     border: 1px solid #ced4da;
 }
@@ -181,4 +183,55 @@ table tr:hover {
 
 .custom-select.open .custom-options {
     display: block;
+}
+
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination-list {
+    list-style-type: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+.pagination-item {
+    margin: 0 5px;
+}
+
+.pagination-item a {
+    display: inline-block;
+    padding: 8px 12px;
+    color: #000;
+    text-decoration: none;
+    border: 1px solid #ddd;
+}
+
+.pagination-item a:hover {
+    background-color: #ddd;
+}
+
+.pagination-item.active a {
+    background-color: green;
+    color: white;
+    border: 1px solid green;
+}
+
+.pagination-item a.disabled {
+    pointer-events: none;
+    color: #ccc;
+    border: 1px solid #ccc;
+}
+
+.pagination-item a.disabled:hover {
+    background-color: transparent;
+}
+
+.form-select option {
+    background-color: white; /* Menu background color */
+    color: black; /* Menu text color */
 }

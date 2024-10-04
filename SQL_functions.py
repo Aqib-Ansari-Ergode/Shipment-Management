@@ -133,6 +133,58 @@ def get_delivered(start=False, end=False, venue=False, carrier=False, department
     delivered = fetch_query_results(query=select_employees_query+"limit 100")  # Use your own DB query function
     return delivered
 
+def get_data(start=False, end=False, venue=False, carrier=False, department=False):
+    
+    select_employees_query = '''SELECT 
+        od.shipment_no, od.internal_order_id , od.sku, od.venue, 
+        om.order_id, om.purchase_date, 
+        od.status,otd.current_status , otd.status_update_date, otd.scheduled_delivery_date 
+        FROM order_details AS od 
+        JOIN order_mast AS om ON od.order_mast_id = om.order_mast_id 
+        JOIN order_tracking_details AS otd ON od.order_detail_id = otd.order_detail_id 
+        '''
+    
+    where1 = 0
+
+    # Date filtering
+    if start and end :
+        if where1==0:
+            select_employees_query += "where "
+            where1 = 1
+            select_employees_query += f"  om.purchase_date BETWEEN '{start}' AND '{end}' "
+        else:
+            select_employees_query += " and "
+            select_employees_query += f"  om.purchase_date BETWEEN '{start}' AND '{end}' "
+
+    # Venue filtering
+    if venue:
+        if where1 == 0:
+            select_employees_query += " where"
+            select_employees_query += f"  od.venue = '{venue}' "
+            where1 = 1
+        else:
+            select_employees_query+=' and '
+            select_employees_query+=f" od.venue = {venue}"
+
+    # Carrier filtering
+    if carrier:
+        if where1 == 0:
+            select_employees_query += ' where '
+            select_employees_query += f"  otd.carrier_name = '{carrier}' "
+            where1 = 1
+        else:
+            select_employees_query += ' and '
+            select_employees_query += f"  otd.carrier_name = '{carrier}' "
+
+    # Department filtering
+
+
+    # select_employees_query += "LIMIT 5;"
+    
+    data = fetch_query_results(query=select_employees_query+''' and om.ship_country NOT IN ('USA' , 'United States',  'usa','U.S.A.','UNITED STATES','USA','US') order by od.internal_order_id desc limit 100  ''')  # Use your own DB query function
+    return data
+
+
 # delivered = get_delivered(venue="GM-Germany")
 # for i in delivered:
 #     print(i)

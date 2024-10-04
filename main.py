@@ -7,9 +7,7 @@ import csv
 import json
 
 app = Flask(__name__)
-app = Flask(__name__)
 
-app.secret_key = 'your_secret_key'
 app.secret_key = 'your_secret_key'
 
 def clear_session():
@@ -34,7 +32,7 @@ def sanitize_session_values():
     if not session.get('page_no'):
         session['page_no'] = 1
 
-@app.route('/')
+
 @app.route('/')
 def index():
     clear_session()
@@ -54,7 +52,7 @@ def index():
     return render_template('index.html', current_date=current_date, aux_hold_cases=aux_hold_cases,
                            warehouse_cases=warehouse_cases, venues=venues, carriers=carriers)
 
-@app.route('/get_delivered', methods=['POST'])
+
 @app.route('/get_delivered', methods=['POST'])
 def handle_get_delivered():
     current_date = datetime.now().strftime("%Y-%m-%d")
@@ -102,18 +100,21 @@ def handle_get_delivered():
                                start_date=session['start_date'], end_date=session['end_date'],
                                venue_sel=session['venue'], carriers=carriers, carrier_sel=session['carrier'])
 
-@app.route('/get_delivered_details')
+
 @app.route('/get_delivered_details')
 def get_delivered_details():
     sanitize_session_values()
-    
+
+    # Get the page number from the query parameters
+    current_page = int(request.args.get('page_no', 1))  # Default to page 1 if not provided
+
     # Fetch data from the SQL function based on session filters
-    if session['post_done']:
+    if session.get('post_done', False):
         table_data = sqlf.get_delivered(start=session['start_date'], end=session['end_date'],
                                         venue=session['venue'], carrier=session['carrier'], columns=True)
     else:
         table_data = sqlf.get_delivered(start=None, end=None, venue=None, carrier=None, columns=True)
-    
+
     # Save the total number of records for pagination
     session["len_delivered_data"] = len(table_data)
 
@@ -121,7 +122,7 @@ def get_delivered_details():
     data = [list(row) for row in table_data]
     df = pd.DataFrame(data, columns=['Shipment Number', 'Internal Order ID', 'SKU', 'Venue', 'Order ID',
                                      'Purchase Date', 'Current Status', 'Status Update Date', 'Scheduled Delivery Date'])
-    
+
     # Handle the CSV file creation logic
     file_name = f"{session['start_date'] or 'begin-to'}_{session['end_date'] or 'today'}_{session['venue'] or 'all-venues'}_{session['carrier'] or 'all-carriers'}.csv"
     session['file_name'] = file_name
@@ -130,31 +131,31 @@ def get_delivered_details():
     # Pagination logic
     records_per_page = 25
     total_pages = (session['len_delivered_data'] + records_per_page - 1) // records_per_page  # Ceiling division for total pages
-    current_page = int(session.get('page_no', 1))
-    print(current_page)  # Default to page 1 if not set
-    
-    if total_pages>10:
-        total_pages_s =10
+
+    if total_pages > 10:
+        total_pages_s = 10
     else:
         total_pages_s = total_pages
+
+    # Ensure the current page is within the valid range
+    current_page = max(1, min(current_page, total_pages))
+
     # Slice the data for the current page
     start_index = (current_page - 1) * records_per_page
     end_index = start_index + records_per_page
     table_data_paginated = table_data[start_index:end_index]
-    print(start_index)
-    print(end_index)
-    print(table_data_paginated)
 
     # Render the paginated data in the template
-    return render_template('Delivered.html', 
-                           table_data=table_data_paginated, 
-                           file_name=file_name, 
-                           total_pages_s=total_pages_s, 
-                           current_page=current_page)
+    return render_template('Delivered.html',
+                           table_data=table_data_paginated,
+                           file_name=file_name,
+                           total_pages_s=total_pages_s,
+                           current_page=current_page,
+                           total_pages=total_pages)
 
 FILE_DIRECTORY = './files/'
 
-@app.route('/download')
+
 @app.route('/download')
 def download_file():
     try:
@@ -173,7 +174,7 @@ def download_file():
     except Exception as e:
         return f"Error occurred: {str(e)}", 500
 
-@app.route('/add_tag', methods=['POST'])
+
 @app.route('/add_tag', methods=['POST'])
 def add_tag():
     csv_file = 'tags_with_order_ids.csv'
@@ -201,47 +202,83 @@ def add_tag_manual():
     # Load the JSON file containing shipment status data
     with open('shipments.json') as json_file:
         shipment_data = json.load(json_file)
-
+    current_page = int(request.args.get('page', 1))
+    records_per_page = 25
     if request.method == 'POST':
         # You can process the data coming from the form here
-        start_date_sel = request.form.get('start_date')
-        end_date_sel = request.form.get('end_date')
-        status_sel = request.form.get('status')
-        tag_sel = request.form.getlist('tag')
-        venue_sel = request.form.get('venue')
-        carrier_sel = request.form.get('carrier')
+        session['start_date_sel'] = request.form.get('start_date')
+        session['end_date_sel'] = request.form.get('end_date')
+        session['status_sel'] = request.form.get('status')
+        session['tag_sel'] = request.form.getlist('tag')
+        session['venue_sel'] = request.form.get('venue')
+        session['carrier_sel'] = request.form.get('carrier')
         
-        print(f"Start Date: {start_date_sel}")
-        print(f"End Date: {end_date_sel}")
-        print(f"Dropdown 1: {status_sel}")
-        print(f"Dropdown 2: {tag_sel}")
-        print(f"Dropdown 3: {venue_sel}")
-        print(f"Dropdown 4: {carrier_sel}")
-        venue_sele = venue_sel
-        carrier_sele = carrier_sel
-        if venue_sel == 'Venues':
+        print(f"Start Date: {session['start_date_sel']}")
+        print(f"End Date: {session['end_date_sel']}")
+        print(f"Dropdown 1: {session['status_sel']}")
+        print(f"Dropdown 2: {session['tag_sel']}")
+        print(f"Dropdown 3: {session['venue_sel']}")
+        print(f"Dropdown 4: {session['carrier_sel']}")
+        venue_sele = session["venue_sel"]
+        carrier_sele = session['carrier_sel']
+        if session['venue_sel'] == 'Venues':
             venue_sele = False
-        if carrier_sel == 'Carriers':
+        if session['carrier_sel'] == 'Carriers':
             carrier_sele = False
         # Implement logic to handle the tag (like adding it to the database)
-        data = sqlf.get_delivered(start=start_date_sel,
-                                  end=end_date_sel,
+        data = sqlf.get_data(start=session['start_date_sel'],
+                                  end=session['end_date_sel'],
                                   venue=venue_sele,
-                                  carrier=carrier_sele, columns=True)
+                                  carrier=carrier_sele)
 
         columns = ['Shipment Number', 'Internal Order ID', 'SKU', 'Venue', 'Order ID',
-                   'Purchase Date', 'Current Status', 'Status Update Date', 'Scheduled Delivery Date']
-        table_data_paginated = data[25 * (int(session['page_no']) - 1):25 * int(session['page_no'])]
+                   'Purchase Date','status','Our Status' ,'Current Status', 'Status Update Date', 'Scheduled Delivery Date']
+        total_records = len(data)
+        total_pages = (total_records + records_per_page - 1) // records_per_page  # Ceiling division
+        table_data_paginated = data[(current_page - 1) * records_per_page: current_page * records_per_page]
+
 
         return render_template('tag_management.html',
                                data=table_data_paginated, venues=venues,
-                               columns=columns, carriers=carriers, venue_sel=venue_sel,
-                               carrier_sel=carrier_sel, start_date_sel=start_date_sel,
-                               status_sel=status_sel, end_date_sel=end_date_sel, tag_sel=tag_sel,
-                               shipment_data=shipment_data)
+                               columns=columns, carriers=carriers, venue_sel=session['venue_sel'],
+                               carrier_sel=session['carrier_sel'], start_date_sel=session['start_date_sel'],
+                               status_sel=session['status_sel'], end_date_sel=session['end_date_sel'], tag_sel=session['tag_sel'],
+                               shipment_data=shipment_data,current_page=current_page,total_pages=total_pages)
+    print('venue_sel' in session)
+    print('start_date_sel' in session)
+    print('end_date_sel' in session)
+    print('carrier_sel' in session)
+    # print('venue_sel' in session)
+    if 'venue_sel' in session and 'start_date_sel' in session and 'end_date_sel' in session and "carrier_sel" in session:
+        if "venue_sel" in session or 'start_date_sel' in session or 'end_date_sel' in session or 'carrier_sel' in session:
+            
+            if session['venue_sel'] == 'Venues':
+                session['venue_sel'] = False
+            if session['carrier_sel'] == 'Carriers':
+                session['carrier_sel'] = False
+            if session['start_date_sel'] == '':
+                session['start_date_sel'] = False
+            if session['end_date_sel'] == '':
+                session['end_date_sel'] = False
+            # print(session['venue_sel'])
+            print(session['venue_sel'])
+            print(session['start_date_sel'])
+            print(session['end_date_sel'])
+            print(session['carrier_sel'])
+            data = sqlf.get_data(start=session['start_date_sel'],
+                                        end=session['end_date_sel'],
+                                        venue=session['venue_sel'],
+                                        carrier=session['carrier_sel'])
+                # print(data)
+            columns = ['Shipment Number', 'Internal Order ID', 'SKU', 'Venue', 'Order ID',
+                        'Purchase Date',"status", "Our Status",'Current Status', 'Status Update Date', 'Scheduled Delivery Date']
+            total_records = len(data)
+            total_pages = (total_records + records_per_page - 1) // records_per_page  # Ceiling division
+            table_data_paginated = data[(current_page - 1) * records_per_page: current_page * records_per_page]
+            
 
+            return render_template('tag_management.html', venues=venues, carriers=carriers,shipment_data=shipment_data,data=table_data_paginated,columns=columns,current_page=current_page,total_pages=total_pages)
     return render_template('tag_management.html', venues=venues, carriers=carriers,shipment_data=shipment_data)
-
 
 def load_data():
     try:
@@ -274,7 +311,7 @@ def update_tag():
     # Save the updated data back to the JSON file
     save_data(data)
 
-    return jsonify({"message": "Data successfully updated."})
+    return redirect(url_for('add_tag_manual'))
 
 @app.route('/next_page', methods=['GET'])
 def next_page():
@@ -304,5 +341,5 @@ def prev_page():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
+    
     app.run(debug=True, port=8080)

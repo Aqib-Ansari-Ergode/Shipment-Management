@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ergode Form and Table</title>
-    <link rel="stylesheet" href="static/add_tag.css">
+    <link rel="stylesheet" href="static/updated_add_tag.css">
      
 </head>
 <body>
@@ -106,7 +106,7 @@
                 </label>
                     <input type="date" class="filter-input" name="end_date" id="end-date" placeholder="End Date" value="{% if end_date_sel %}{{end_date_sel}}{% endif %}">
                 </div>
-
+                
             
                 <select id="dropdown1" name="status">
                     <option  {% if status_sel == 'False' %} selected {% endif %}>Status</option>
@@ -181,6 +181,12 @@
                         </option>
                     {% endfor %}
                 </select>
+                <br>    
+                <!-- <div>
+                    <label for="shipment-number"><b>&nbsp;&nbsp;Shipment Number</b></label>
+                    <input type="text" class="filter-input" name="shipment_number" id="shipment-number" placeholder="Enter Shipment Number" value="{% if shipment_number %}{{shipment_number}}{% endif %}">
+                </div> -->
+                
                 <button type="submit" > <b>Submit</b></button>
             </form>
     </div>
@@ -188,10 +194,36 @@
     <!-- Table Section -->
 
     {% if data %}
-    <div class="table-container">
+    <div class="table-container" style="width: 97%; border-radius: 5px;">
         
         
+        <div class="pagination" style="float: right; margin: 10px;">
+            <ul class="pagination-list">
+                <!-- Previous Page Button -->
+                <li class="pagination-item {% if current_page == 1 %}disabled{% endif %}">
+                    <a href="{% if current_page > 1 %}{{ url_for('add_tag_manual', page=current_page - 1) }}{% else %}#{% endif %}"
+                       class="{% if current_page == 1 %}disabled{% endif %}">
+                        &laquo;
+                    </a>
+                </li>
+        
+                <!-- Page Numbers -->
+                {% for page in range(1, total_pages + 1) %}
+                    <li class="pagination-item {% if page == current_page %}active{% endif %}">
+                        <a href="{{ url_for('add_tag_manual', page=page) }}">{{ page }}</a>
+                    </li>
+                {% endfor %}
+        
+                <!-- Next Page Button -->
+                <li class="pagination-item {% if current_page == total_pages %}disabled{% endif %}">
+                    <a href="{% if current_page < total_pages %}{{ url_for('add_tag_manual', page=current_page + 1) }}{% else %}#{% endif %}"
+                       class="{% if current_page == total_pages %}disabled{% endif %}">
+                        &raquo;
+                    </a>
+                </li>
+            </ul>
         </div>
+        
         <form action="/update_tag" id="dropdown-form" method="post">
             <table>
             <thead style="font-size: 14px;">
@@ -199,27 +231,45 @@
                     {% for i in columns %}
                     <th>{{ i }}</th>
                     {% endfor %}
-                    <th>Status</th>
+                    <th>Tag</th>
                 </tr>
             </thead>
             <tbody>
                 {% for row in data %}
                 <tr>
-                    <td>{{ row[0] }}</td> <!-- Shipment Number -->
-                    <td>{{ row[1] }}</td> <!-- Internal Order ID -->
-                    <td>{{ row[2] }}</td> <!-- SKU -->
-                    <td>{{ row[3] }}</td> <!-- Venue -->
-                    <td>{{ row[4] }}</td> <!-- Order ID -->
-                    <td>{{ row[5] }}</td> <!-- Purchase Date -->
-                    <td>{{ row[6] }}</td> <!-- Current Status -->
-                    <td>{{ row[7] }}</td> <!-- Status Update Date -->
-                    <td>{{ row[8] }}</td> <!-- Scheduled Delivery Date -->
+                    <td>{{ row[0] if row[0] is not none else '  --'}}</td> <!-- Shipment Number -->
+                    <td>{{ row[1] if row[1] is not none else '  --'}}</td> <!-- Internal Order ID -->
+                    <td>{{ row[2] if row[2] is not none else '  --'}}</td> <!-- SKU -->
+                    <td>{{ row[3] if row[3] is not none else '  --'}}</td> <!-- Venue -->
+                    <td>{{ row[4] if row[4] is not none else '  --'}}</td> <!-- Order ID -->
+                    <td>{{ row[5] if row[5] is not none else '  --'}}</td> <!-- Purchase Date -->
+                    
+                    <td>{{ row[6] if row[6] is not none else '  --'}}</td> <!-- Current Status -->
                     <td>
-                        <select name="{{ row[0] }}" class="form-select" style="width: 100px;">
-                            <option value="Priority" {% if shipment_data.get(row[0]) == "Completed" %}selected{% endif %}>Completed</option>
-                            <option value="In-Progress" {% if shipment_data.get(row[0]) == "In-Progress" %}selected{% endif %}>In-Progress</option>
-                            <option value="Completed" {% if shipment_data.get(row[0]) == "Completed" %}selected{% endif %}>Completed</option>
-                            <option value="Delayed" {% if shipment_data.get(row[0]) == "Delayed" %}selected{% endif %}>Delayed</option>
+                        {% if 'SHPFW' in row[6] %}
+                            SHPWH
+                        {% elif 'PA' in row[6] %}
+                            PA
+                        {% else %}
+                            Not Processed
+                        {% endif %}
+                    </td>
+                    <td>{{ row[7] if row[7] is not none else '  --'}}</td> <!-- Status Update Date -->
+                    <td>{{ row[8] if row[8] is not none else '  --'}}</td> <!-- Scheduled Delivery Date -->
+                    <td>{{ row[9] if row[9] is not none else '  --'}}</td> <!-- Scheduled Delivery Date -->
+                    <td>
+                        <select name="{{ row[0] }}" class="form-select" {% if shipment_data.get(row[0]) == "SHPWH - Loss" %}selected style="background-color: red;color: rgb(255, 255, 255);"{% endif %}>
+                           
+                            <option value="PA - Not Delivered" {% if shipment_data.get(row[0]) == "PA - Not Delivered" %}selected{% endif %}>PA - Not Delivered</option>
+                            <option value="PA - In Process" {% if shipment_data.get(row[0]) == "PA - In Process" %}selected{% endif %}>PA - In Process</option>
+                            <option value="PA - Not Found" {% if shipment_data.get(row[0]) == "PA - Not Found" %}selected{% endif %}>PA - Not Found</option>
+                            <option value="PA - Query" {% if shipment_data.get(row[0]) == "PA - Query" %}selected{% endif %}>PA - Query</option>
+                            <option value="SHPWH - Delivered" {% if shipment_data.get(row[0]) == "SHPWH - Delivered" %}selected{% endif %}>SHPWH - Delivered</option>
+                            <option value="SHPWH - Stuck in Transit" {% if shipment_data.get(row[0]) == "SHPWH - Stuck in Transit" %}selected{% endif %}>SHPWH - Stuck in Transit</option>
+                            <option value="SHPWH - In Transit" {% if shipment_data.get(row[0]) == "SHPWH - In Transit" %}selected{% endif %}>SHPWH - In Transit</option>
+                            <option value="SHPWH - Returning" {% if shipment_data.get(row[0]) == "SHPWH - Returning" %}selected{% endif %}>SHPWH - Returning</option>
+                            <option value="SHPWH - Returned" {% if shipment_data.get(row[0]) == "SHPWH - Returned" %}selected{% endif %}>SHPWH - Returned</option>
+                            <option value="SHPWH - Loss" {% if shipment_data.get(row[0]) == "SHPWH - Loss" %}selected style="background-color: red;color: rgb(255, 255, 255);"{% endif %}>SHPWH - Loss</option>
                         </select>
                     </td>
                 </tr>

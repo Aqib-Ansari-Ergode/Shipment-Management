@@ -160,7 +160,12 @@ body {
 }
 
 .styled-table tbody tr {
-    border-bottom: 1px solid #dddddd;
+    /* border-bottom: 1px solid #dddddd; */
+    max-width: 10px;
+    word-wrap: break-word; /* Break the content if it exceeds the width */
+    overflow: hidden; /* Hide content that exceeds the max width */
+    text-overflow: ellipsis; /* Add ellipsis for overflowing content */
+    white-space: nowrap;
 }
 
 .styled-table tbody tr:nth-of-type(even) {
@@ -217,6 +222,26 @@ body {
     background-color: transparent;
 }
 
+/* Back to Top Button Styles */
+#backToTopBtn {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed position */
+    bottom: 20px; /* Place it at the bottom of the page */
+    left: 10px; /* Place it 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    font-size: 18px; /* Increase font size */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: #555; /* Dark background */
+    color: white; /* White text */
+    cursor: pointer; /* Pointer/hand icon */
+    padding: 5px 10px; /* Some padding */
+    border-radius: 5px; /* Rounded corners */
+}
+
+#backToTopBtn:hover {
+    background-color: #333; /* Darker background on hover */
+}
 
 /* Responsive Design */
 @media (max-width: 768px) {
