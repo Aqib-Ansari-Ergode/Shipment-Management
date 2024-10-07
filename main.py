@@ -36,9 +36,11 @@ def sanitize_session_values():
 @app.route('/')
 def index():
     clear_session()
+    session["user"] = 'Admin'
     current_date = datetime.now().strftime("%Y-%m-%d")
     venues = sqlf.get_venues()
     carriers = sqlf.get_carriers()
+    session['current_date'] = current_date
 
     aux_hold_cases = [{'delivered': list(sqlf.get_delivered()[0])[0]}]
     warehouse_cases = [
@@ -49,7 +51,7 @@ def index():
         {'quantity': 80, 'status': 'Ready to Ship'}
     ]
 
-    return render_template('index.html', current_date=current_date, aux_hold_cases=aux_hold_cases,
+    return render_template('index.html', current_date=session['current_date'], aux_hold_cases=aux_hold_cases,
                            warehouse_cases=warehouse_cases, venues=venues, carriers=carriers)
 
 
@@ -198,6 +200,18 @@ import json
 def add_tag_manual():
     venues = sqlf.get_venues()
     carriers = sqlf.get_carriers()
+    log_file_path = 'log_dates.json'
+
+    # Load existing logs if available
+    if os.path.exists(log_file_path):
+        with open(log_file_path, 'r') as log_file:
+            try:
+                log_dates = json.load(log_file)
+                
+            except json.JSONDecodeError:
+                log_dates = {}
+    else:
+        log_dates = {}
 
     # Load the JSON file containing shipment status data
     with open('shipments.json') as json_file:
@@ -220,7 +234,7 @@ def add_tag_manual():
         print(f"Dropdown 3: {session['venue_sel']}")
         print(f"Dropdown 4: {session['carrier_sel']}")
         venue_sele = session["venue_sel"]
-        carrier_sele = session['carrier_sel']
+        carrier_sele = session['carrier_sel'] 
         if session['venue_sel'] == 'Venues':
             venue_sele = False
         if session['carrier_sel'] == 'Carriers':
@@ -236,14 +250,20 @@ def add_tag_manual():
         total_records = len(data)
         total_pages = (total_records + records_per_page - 1) // records_per_page  # Ceiling division
         table_data_paginated = data[(current_page - 1) * records_per_page: current_page * records_per_page]
+        df_data = [list(row) for row in data]
+        df_data = pd.DataFrame(data, columns = ['Shipment Number', 'Internal Order ID', 'SKU', 'Venue', 'Order ID',
+                   'Purchase Date','status' ,'Current Status', 'Status Update Date', 'Scheduled Delivery Date'])
 
+        file_name = f"{session['start_date_sel'] or 'begin-to'}_{session['end_date_sel'] or session['current_date']}_{session['venue_sel'] or 'all-venues'}_{session['carrier_sel'] or 'all-carriers'}_{session['status_sel'] or "all-status"}_{session['tag_sel'] or 'all-tags'}.csv"
+        session['file_name_tagged'] = file_name
+        df_data.to_csv(f"tags_files/{file_name}", index=False)
 
         return render_template('tag_management.html',
                                data=table_data_paginated, venues=venues,
                                columns=columns, carriers=carriers, venue_sel=session['venue_sel'],
                                carrier_sel=session['carrier_sel'], start_date_sel=session['start_date_sel'],
                                status_sel=session['status_sel'], end_date_sel=session['end_date_sel'], tag_sel=session['tag_sel'],
-                               shipment_data=shipment_data,current_page=current_page,total_pages=total_pages)
+                               shipment_data=shipment_data,current_page=current_page,total_pages=total_pages , downl = True,log_dates=log_dates)
     print('venue_sel' in session)
     print('start_date_sel' in session)
     print('end_date_sel' in session)
@@ -275,10 +295,19 @@ def add_tag_manual():
             total_records = len(data)
             total_pages = (total_records + records_per_page - 1) // records_per_page  # Ceiling division
             table_data_paginated = data[(current_page - 1) * records_per_page: current_page * records_per_page]
-            
+            total_records = len(data)
+            total_pages = (total_records + records_per_page - 1) // records_per_page  # Ceiling division
+            table_data_paginated = data[(current_page - 1) * records_per_page: current_page * records_per_page]
+            df_data = [list(row) for row in data]
+            df_data = pd.DataFrame(data, columns = ['Shipment Number', 'Internal Order ID', 'SKU', 'Venue', 'Order ID',
+                    'Purchase Date','status' ,'Current Status', 'Status Update Date', 'Scheduled Delivery Date'])
 
-            return render_template('tag_management.html', venues=venues, carriers=carriers,shipment_data=shipment_data,data=table_data_paginated,columns=columns,current_page=current_page,total_pages=total_pages)
-    return render_template('tag_management.html', venues=venues, carriers=carriers,shipment_data=shipment_data)
+            file_name = f"{session['start_date_sel'] or 'begin-to'}_{session['end_date_sel'] or session['current_date']}_{session['venue_sel'] or 'all-venues'}_{session['carrier_sel'] or 'all-carriers'}_{session['status_sel'] or "all-status"}_{session['tag_sel'] or 'all-tags'}.csv"
+            session['file_name_tagged'] = file_name
+            df_data.to_csv(f"tags_files/{file_name}", index=False)
+
+            return render_template('tag_management.html', venues=venues, carriers=carriers,shipment_data=shipment_data,data=table_data_paginated,columns=columns,current_page=current_page,total_pages=total_pages,downl=True,log_dates=log_dates)
+    return render_template('tag_management.html', venues=venues, carriers=carriers,shipment_data=shipment_data,downl = False,log_dates=log_dates)
 
 def load_data():
     try:
@@ -292,26 +321,90 @@ def save_data(data):
     with open('shipments.json', 'w') as file:
         json.dump(data, file, indent=4)
 
+# @app.route('/update_tag', methods=['POST'])
+# def update_tag():
+#     # Load the existing data
+#     data = load_data()
+
+#     # Get the form data (assuming each key is something like 'status_<shipment_number>')
+#     form_data = request.form
+
+#     # Iterate over form data and update the data dict based on shipment numbers
+#     for key, value in form_data.items():
+#           # Assume fields with 'status_' prefix
+#             # Extract shipment number from the form field name
+#             shipment_number = key
+#             # Update the data with the new status
+#             data[shipment_number] = value
+
+#     # Save the updated data back to the JSON file
+#     save_data(data)
+
+#     return redirect(url_for('add_tag_manual'))
+
+
+from datetime import datetime
+import json
+import os
+
 @app.route('/update_tag', methods=['POST'])
 def update_tag():
     # Load the existing data
     data = load_data()
 
-    # Get the form data (assuming each key is something like 'status_<shipment_number>')
+    # Path to the log file
+    log_file_path = 'log_dates.json'
+
+    # Get the form data (assuming each key is the shipment number)
     form_data = request.form
 
+    # Get the current user from session
+    current_user = session.get("user", "Unknown User")
+
+    # Load existing logs if available
+    if os.path.exists(log_file_path):
+        with open(log_file_path, 'r') as log_file:
+            try:
+                log_dates = json.load(log_file)
+            except json.JSONDecodeError:
+                log_dates = {}
+    else:
+        log_dates = {}
+
     # Iterate over form data and update the data dict based on shipment numbers
-    for key, value in form_data.items():
-          # Assume fields with 'status_' prefix
-            # Extract shipment number from the form field name
-            shipment_number = key
+    for shipment_number, new_status in form_data.items():
+        # Get the current status from the existing data
+        current_status = data.get(shipment_number)
+
+        # Log the change only if the status is actually different
+        if current_status != new_status:
             # Update the data with the new status
-            data[shipment_number] = value
+            data[shipment_number] = new_status
+
+            # Get or create the shipment entry in log_dates
+            shipment_log = log_dates.get(shipment_number, {
+                "current_status": current_status or "unknown",
+                "log": {}
+            })
+
+            # Update the shipment's log with the new status and current date-time
+            current_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            shipment_log["log"][new_status] = [current_date ,session["user"]]
+            shipment_log["current_status"] = new_status
+
+            # Store the updated log back into log_dates
+            log_dates[shipment_number] = shipment_log
+
+    # Write the updated log_dates to the JSON log file
+    with open(log_file_path, 'w') as log_file:
+        json.dump(log_dates, log_file, indent=4)
 
     # Save the updated data back to the JSON file
     save_data(data)
 
     return redirect(url_for('add_tag_manual'))
+
+
 
 @app.route('/next_page', methods=['GET'])
 def next_page():
@@ -339,6 +432,26 @@ def prev_page():
     # Redirect to the route that displays the delivered details
     return redirect(url_for('get_delivered_details'))
 
+
+@app.route('/download_file_taged')
+def download_file_taged():
+    try:
+        FILE_DIRECTORY = 'tags_files'
+        # Ensure session has file_name
+        if 'file_name_tagged' not in session or not session['file_name_tagged']:
+            return "No file available for download", 400
+
+        file_path = os.path.join(FILE_DIRECTORY, session['file_name_tagged'])
+        print(session["file_name_tagged"])
+        print(file_path)
+        # Check if the file exists
+        if os.path.exists(file_path):
+            return send_file(file_path, as_attachment=True)
+        else:
+            return f"File '{session['file_name_tagged']}' not found", 404
+
+    except Exception as e:
+        return f"Error occurred: {str(e)}", 500   
 
 if __name__ == '__main__':
     

@@ -1,0 +1,524 @@
+{
+    "C1654954": {
+        "current_status": "SHPWH - Returning",
+        "log": {
+            "SHPWH - Delivered": [
+                "2024-10-07 16:35:28",
+                "Admin"
+            ],
+            "SHPWH - Stuck in Transit": [
+                "2024-10-07 16:37:24",
+                "Admin"
+            ],
+            "SHPWH - In Transit": [
+                "2024-10-07 16:37:42",
+                "Admin"
+            ],
+            "SHPWH - Returning": [
+                "2024-10-07 17:17:23",
+                "Admin"
+            ],
+            "PA - In Process": [
+                "2024-10-07 16:40:47",
+                "Admin"
+            ],
+            "SHPWH - Loss": [
+                "2024-10-07 17:12:23",
+                "Admin"
+            ]
+        }
+    },
+    "C1649742": {
+        "current_status": "PA - Query",
+        "log": {
+            "PA - Query": [
+                "2024-10-07 16:35:28",
+                "Admin"
+            ]
+        }
+    },
+    "C1638763": {
+        "current_status": "SHPWH - Loss",
+        "log": {
+            "SHPWH - Loss": [
+                "2024-10-07 16:35:28",
+                "Admin"
+            ]
+        }
+    },
+    "C1643825": {
+        "current_status": "SHPWH - Loss",
+        "log": {
+            "SHPWH - Loss": [
+                "2024-10-07 16:36:36",
+                "Admin"
+            ]
+        }
+    },
+    "C1647384": {
+        "current_status": "SHPWH - Loss",
+        "log": {
+            "SHPWH - Loss": [
+                "2024-10-07 16:36:36",
+                "Admin"
+            ]
+        }
+    },
+    "C1643349": {
+        "current_status": "SHPWH - Loss",
+        "log": {
+            "SHPWH - Loss": [
+                "2024-10-07 16:36:36",
+                "Admin"
+            ]
+        }
+    },
+    "N1467263": {
+        "current_status": "SHPWH - Loss",
+        "log": {
+            "SHPWH - Loss": [
+                "2024-10-07 16:54:51",
+                "Admin"
+            ]
+        }
+    },
+    "N1494634": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 16:54:51",
+                "Admin"
+            ]
+        }
+    },
+    "N1470033": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 16:54:51",
+                "Admin"
+            ]
+        }
+    },
+    "N1505684": {
+        "current_status": "SHPWH - Loss",
+        "log": {
+            "SHPWH - Loss": [
+                "2024-10-07 16:54:51",
+                "Admin"
+            ]
+        }
+    },
+    "N1619583": {
+        "current_status": "SHPWH - Returned",
+        "log": {
+            "SHPWH - Returned": [
+                "2024-10-07 16:54:51",
+                "Admin"
+            ]
+        }
+    },
+    "Z307402": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 16:54:51",
+                "Admin"
+            ]
+        }
+    },
+    "N1611981": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 16:54:51",
+                "Admin"
+            ]
+        }
+    },
+    "N1475778": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 16:54:51",
+                "Admin"
+            ]
+        }
+    },
+    "N1504629": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 16:54:51",
+                "Admin"
+            ]
+        }
+    },
+    "N1481018": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 16:54:51",
+                "Admin"
+            ]
+        }
+    },
+    "N1490713": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 16:54:51",
+                "Admin"
+            ]
+        }
+    },
+    "N1490712": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 16:54:51",
+                "Admin"
+            ]
+        }
+    },
+    "N1490711": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 16:54:51",
+                "Admin"
+            ]
+        }
+    },
+    "N1490702": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 16:54:51",
+                "Admin"
+            ]
+        }
+    },
+    "N1507119": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 16:54:51",
+                "Admin"
+            ]
+        }
+    },
+    "N1505793": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 16:54:51",
+                "Admin"
+            ]
+        }
+    },
+    "N1509501": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 16:54:51",
+                "Admin"
+            ]
+        }
+    },
+    "N1504570": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 16:54:51",
+                "Admin"
+            ]
+        }
+    },
+    "N1504607": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 16:54:51",
+                "Admin"
+            ]
+        }
+    },
+    "N1476061": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 16:54:51",
+                "Admin"
+            ]
+        }
+    },
+    "N1477849": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 16:54:51",
+                "Admin"
+            ]
+        }
+    },
+    "N1504634": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 16:54:51",
+                "Admin"
+            ]
+        }
+    },
+    "N1509599": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 16:54:51",
+                "Admin"
+            ]
+        }
+    },
+    "N1469644": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 16:54:51",
+                "Admin"
+            ]
+        }
+    },
+    "N1623027": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 16:54:51",
+                "Admin"
+            ]
+        }
+    },
+    "C1635342": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 17:10:58",
+                "Admin"
+            ]
+        }
+    },
+    "C1656586": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 17:10:58",
+                "Admin"
+            ]
+        }
+    },
+    "C1689276": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 17:10:58",
+                "Admin"
+            ]
+        }
+    },
+    "C1644366": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 17:10:58",
+                "Admin"
+            ]
+        }
+    },
+    "C1684905": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 17:10:58",
+                "Admin"
+            ]
+        }
+    },
+    "C1647097": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 17:10:58",
+                "Admin"
+            ]
+        }
+    },
+    "C1689854": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 17:10:58",
+                "Admin"
+            ]
+        }
+    },
+    "C1652823": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 17:10:58",
+                "Admin"
+            ]
+        }
+    },
+    "C1686542": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 17:10:58",
+                "Admin"
+            ]
+        }
+    },
+    "C1688371": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 17:10:58",
+                "Admin"
+            ]
+        }
+    },
+    "Z276470": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 17:10:58",
+                "Admin"
+            ]
+        }
+    },
+    "C1644753": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 17:10:58",
+                "Admin"
+            ]
+        }
+    },
+    "C1638211": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 17:10:58",
+                "Admin"
+            ]
+        }
+    },
+    "C1650025": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 17:10:58",
+                "Admin"
+            ]
+        }
+    },
+    "C1634810": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 17:10:58",
+                "Admin"
+            ]
+        }
+    },
+    "C1676638": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 17:10:58",
+                "Admin"
+            ]
+        }
+    },
+    "C1686082": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 17:10:58",
+                "Admin"
+            ]
+        }
+    },
+    "C1688852": {
+        "current_status": "SHPWH - In Transit",
+        "log": {
+            "SHPWH - In Transit": [
+                "2024-10-07 17:10:58",
+                "Admin"
+            ]
+        }
+    },
+    "C1684080": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "PA - Not Delivered": [
+                "2024-10-07 17:10:58",
+                "Admin"
+            ]
+        }
+    },
+    "C1643577": {
+        "current_status": "SHPWH - Returned",
+        "log": {
+            "SHPWH - Loss": [
+                "2024-10-07 17:11:27",
+                "Admin"
+            ],
+            "SHPWH - Returned": [
+                "2024-10-07 17:17:23",
+                "Admin"
+            ]
+        }
+    },
+    "C1687990": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "SHPWH - Loss": [
+                "2024-10-07 17:11:27",
+                "Admin"
+            ],
+            "PA - Not Delivered": [
+                "2024-10-07 17:17:23",
+                "Admin"
+            ]
+        }
+    },
+    "Z285637": {
+        "current_status": "PA - Not Delivered",
+        "log": {
+            "SHPWH - Loss": [
+                "2024-10-07 17:11:27",
+                "Admin"
+            ],
+            "PA - Not Delivered": [
+                "2024-10-07 17:17:23",
+                "Admin"
+            ]
+        }
+    },
+    "C1678706": {
+        "current_status": "SHPWH - Returned",
+        "log": {
+            "SHPWH - Loss": [
+                "2024-10-07 17:11:27",
+                "Admin"
+            ],
+            "SHPWH - Returned": [
+                "2024-10-07 17:17:23",
+                "Admin"
+            ]
+        }
+    }
+}

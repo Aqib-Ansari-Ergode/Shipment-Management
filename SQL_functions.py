@@ -13,14 +13,15 @@ def create_connection(host_name, user_name, user_password, db_name):
     try:
         if connection is None or not connection.is_connected():
             connection = mysql.connector.connect(
-                host=host_name,
-                user=user_name,
-                password=user_password,
-                database=db_name,
-                pool_name='mypool',
-                pool_size=5,
-                autocommit=True,
-            )
+            host=host_name,
+            user=user_name,
+            password=user_password,
+            database=db_name,
+            pool_name='mypool',
+            pool_size=30,  # Adjust this based on your application's concurrency
+            autocommit=True,
+        )
+
             if connection.is_connected():
                 print("Connection to MySQL DB successful")
         else:
@@ -30,28 +31,34 @@ def create_connection(host_name, user_name, user_password, db_name):
     return connection
 
 def reconnect_if_needed():
-    """
-    Reconnects to the MySQL database if the connection is lost.
-    """
     global connection
     if connection is None or not connection.is_connected():
         print("Reconnecting to MySQL DB...")
         connection = create_connection("54.187.97.21", "aqib_ro", "mka@efew8743ICNMmcskCS", "ergodeap_media")
+    else:
+        try:
+            connection.ping(reconnect=True, attempts=3, delay=5)
+        except Error as e:
+            print(f"Reconnection attempt failed: {e}")
+            connection = create_connection("54.187.97.21", "aqib_ro", "mka@efew8743ICNMmcskCS", "ergodeap_media")
 
 def execute_query(query):
-    """
-    Executes a single SQL query using the provided connection.
-    """
     global connection
     reconnect_if_needed()  # Ensure the connection is alive
-
-    cursor = connection.cursor()
     try:
+        cursor = connection.cursor()
         cursor.execute(query)
         connection.commit()
         print("Query executed successfully")
-    except Error as e:
-        print(f"The error '{e}' occurred")
+    except mysql.connector.Error as e:
+        if e.errno in (mysql.connector.errorcode.CR_SERVER_LOST, 
+                       mysql.connector.errorcode.CR_SERVER_GONE_ERROR):
+            print("Lost connection to MySQL server, trying to reconnect...")
+            reconnect_if_needed()
+            return execute_query(query)  # Retry the query
+        else:
+            print(f"The error '{e}' occurred")
+
 
 def fetch_query_results(query):
     """
@@ -164,7 +171,7 @@ def get_data(start=False, end=False, venue=False, carrier=False, department=Fals
             where1 = 1
         else:
             select_employees_query+=' and '
-            select_employees_query+=f" od.venue = {venue}"
+            select_employees_query+=f" od.venue = '{venue}'"
 
     # Carrier filtering
     if carrier:

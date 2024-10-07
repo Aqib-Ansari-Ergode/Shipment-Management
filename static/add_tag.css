@@ -1,4 +1,4 @@
-/* Resetting default browser styles */
+Resetting default browser styles
 * {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -235,3 +235,4 @@ table tr:hover {
     background-color: white; /* Menu background color */
     color: black; /* Menu text color */
 }
+

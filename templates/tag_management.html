@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ergode Form and Table</title>
+    <!-- <link rel="stylesheet" href="static/add_tag.css"> -->
     <link rel="stylesheet" href="static/updated_add_tag.css">
      
 </head>
@@ -82,114 +83,112 @@
    
 
     <!-- Form Section -->
-        <div class="form-container">
+    <div class="form-container">
+        <div class="grid-container">
             <form id="dropdown-form" action="/add_tag_manual" method="post">
-
-                <div class="date-range">
-                    <!-- Start Date Input -->
-                    <label for="start-date" id="start-date-label" class="date_label">
-                        {% if start_date_sel %}
-                        {{ start_date_sel }}
-                    {% else %}
-                    <b>&nbsp;&nbsp;Start Date</b>
-                    {% endif %}
-                </label>
-                    <input type="date" class="filter-input" name="start_date" id="start-date" placeholder="Start Date" value="{% if start_date_sel %}{{start_date_sel}}{% endif %}">
-                        <label for=""></label>
-                    <!-- End Date Input -->
-                    <label for="end-date" id="end-date-label" class="date_label">
-                        {% if end_date_sel %}
-                        {{ end_date_sel }}
-                    {% else %}
-                    <b>&nbsp;&nbsp;End Date</b>
-                    {% endif %}
-                </label>
-                    <input type="date" class="filter-input" name="end_date" id="end-date" placeholder="End Date" value="{% if end_date_sel %}{{end_date_sel}}{% endif %}">
-                </div>
-                
-            
-                <select id="dropdown1" name="status">
-                    <option  {% if status_sel == 'False' %} selected {% endif %}>Status</option>
-                    <option value="PA" {% if status_sel == 'PA' %} selected {% endif %}>Process Aux Hold (PA)</option>
-                    <option value="SHPWH" {% if status_sel == 'SHPWH' %} selected {% endif %}>Ship from Warehouse (SHPWH)</option>
-                </select>
-                
-                <div class="custom-select-wrapper">
-                    <div class="custom-select">
-                        <div class="custom-select-trigger">
-                            {% if tag_sel %} 
-                            {% for tags in tag_sel %}
-                                {{ tags }}
-                                {% endfor %}
-                            {% else %} 
-                                Select options
+                <!-- Date Range (Start and End Date) -->
+                <div class="item1">
+                    <div class="date-range">
+                        <div class="date-both" style="padding: auto;width: 100%;">
+                        <label for="start-date" id="start-date-label" class="date-label" style="width: max-content;">
+                            {% if start_date_sel %}
+                                {{ start_date_sel }}
+                            {% else %}
+                                <b>&nbsp;&nbsp;Start Date</b>
                             {% endif %}
-                        </div>
-                        <div class="custom-options">
-                            <label>
-                                <input type="checkbox" name="tag" value="PA - Not Delivered" {% if 'PA - Not Delivered' in tag_sel %} checked {% endif %}> PA - Not Delivered
-                                 </label>
-                            <label>
-                                <input type="checkbox" name="tag" value="PA - In Process" {% if 'PA - In Process' in tag_sel %} checked {% endif %}> PA - In Process
-                                 </label>
-                            <label>
-                                <input type="checkbox" name="tag" value="PA - Not Found" {% if 'PA - Not Found' in tag_sel %} checked {% endif %}> PA - Not Found
-                                 </label>
-                            <label>
-                                <input type="checkbox" name="tag" value="PA - Query" {% if 'PA - Query' in tag_sel %} checked {% endif %}> PA - Query
-                                 </label>
-                            <label>
-                                <input type="checkbox" name="tag" value="SHPWH - In Transit" {% if 'SHPWH - In Transit' in tag_sel %} checked {% endif %}> SHPWH - In Transit
-                                 </label>
-                            <label>
-                                <input type="checkbox" name="tag" value="SHPWH - Delivered" {% if  'SHPWH - Delivered' in tag_sel %} checked {% endif %}> SHPWH - Delivered
-                                 </label>
-                            <label>
-                                <input type="checkbox" name="tag" value="SHPWH - Stuck in Transit" {% if  'SHPWH - Stuck in Transit' in tag_sel %} checked {% endif %}> SHPWH - Stuck in Transit     
-                            </label>
-                            <label>
-                                <input type="checkbox" name="tag" value="SHPWH - Loss" {% if 'SHPWH - Loss' in tag_sel %} checked {% endif %}> SHPWH - Loss
-                                 </label>
-                            <label>
-                                <input type="checkbox" name="tag" value="SHPWH - Returning" {% if  'SHPWH - Returning' in tag_sel %} checked {% endif %}> SHPWH - Returning
-                                 </label>
-                            <label>
-                                <input type="checkbox" name="tag" value="SHPWH - Returned" {% if 'SHPWH - Returned' in tag_sel %} checked {% endif %}> SHPWH - Returned
-                                 </label>
+                        </label>
+                        
+                        <input type="date"  class="filter-input-date" name="start_date" id="start-date" placeholder="Start Date" value="{% if start_date_sel %}{{start_date_sel}}{% endif %}">
+                        
+                        <label for="end-date" id="end-date-label" class="date_label" style="width: max-content;">
+                            {% if end_date_sel %}
+                                {{ end_date_sel }}
+                            {% else %}
+                                <b>&nbsp;&nbsp;End Date</b>
+                            {% endif %}
+                        </label>
+                        <input type="date"  class="filter-input-date" name="end_date" id="end-date" placeholder="End Date" value="{% if end_date_sel %}{{end_date_sel}}{% endif %}">
+                    </div>
+                    </div>
+                </div>
+    
+                <!-- Status Dropdown -->
+                <div class="item2">
+                    <select id="dropdown1" name="status">
+                        <option {% if status_sel == 'False' %} selected {% endif %}>Status</option>
+                        <option value="PA" {% if status_sel == 'PA' %} selected {% endif %}>Process Aux Hold (PA)</option>
+                        <option value="SHPWH" {% if status_sel == 'SHPWH' %} selected {% endif %}>Ship from Warehouse (SHPWH)</option>
+                    </select>
+                </div>
+    
+                <!-- Custom Select for Tags -->
+                <div class="item3">
+                    <div class="custom-select-wrapper">
+                        <div class="custom-select">
+                            <div class="custom-select-trigger">
+                                {% if tag_sel %}
+                                    {% for tags in tag_sel %}
+                                        {{ tags }}
+                                    {% endfor %}
+                                {% else %}
+                                    Select options
+                                {% endif %}
+                            </div>
+                            <div class="custom-options">
+                                <label><input type="checkbox" name="tag" value="PA - Not Delivered" {% if 'PA - Not Delivered' in tag_sel %} checked {% endif %}> PA - Not Delivered</label>
+                                <label><input type="checkbox" name="tag" value="PA - In Process" {% if 'PA - In Process' in tag_sel %} checked {% endif %}> PA - In Process</label>
+                                <label><input type="checkbox" name="tag" value="PA - Not Found" {% if 'PA - Not Found' in tag_sel %} checked {% endif %}> PA - Not Found</label>
+                                <label><input type="checkbox" name="tag" value="PA - Query" {% if 'PA - Query' in tag_sel %} checked {% endif %}> PA - Query</label>
+                                <label><input type="checkbox" name="tag" value="SHPWH - In Transit" {% if 'SHPWH - In Transit' in tag_sel %} checked {% endif %}> SHPWH - In Transit</label>
+                                <label><input type="checkbox" name="tag" value="SHPWH - Delivered" {% if 'SHPWH - Delivered' in tag_sel %} checked {% endif %}> SHPWH - Delivered</label>
+                                <label><input type="checkbox" name="tag" value="SHPWH - Stuck in Transit" {% if 'SHPWH - Stuck in Transit' in tag_sel %} checked {% endif %}> SHPWH - Stuck in Transit</label>
+                                <label><input type="checkbox" name="tag" value="SHPWH - Loss" {% if 'SHPWH - Loss' in tag_sel %} checked {% endif %}> SHPWH - Loss</label>
+                                <label><input type="checkbox" name="tag" value="SHPWH - Returning" {% if 'SHPWH - Returning' in tag_sel %} checked {% endif %}> SHPWH - Returning</label>
+                                <label><input type="checkbox" name="tag" value="SHPWH - Returned" {% if 'SHPWH - Returned' in tag_sel %} checked {% endif %}> SHPWH - Returned</label>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
-
-                
-                <select class="filter-dropdown" name="venue">
-                    <option selected>Venues</option>
-                    {% for venue in venues %}
-                        <option value="{{venue}}" {% if venue_sel == venue %} selected {% endif %}>
-                            {{ venue }}
-                        </option>
-                    {% endfor %}
-                </select>
-        
-                
-        
-                <select class="filter-dropdown" name="carrier">
-                    <option  selected>Carriers</option>
-                    {% for carrier in carriers %}
-                        <option value="{{carrier}}" {% if carrier_sel == carrier %} selected {% endif %}>
-                            {{ carrier }}
-                        </option>
-                    {% endfor %}
-                </select>
-                <br>    
-                <!-- <div>
-                    <label for="shipment-number"><b>&nbsp;&nbsp;Shipment Number</b></label>
+    
+                <!-- Venues Dropdown -->
+                <div class="item4">
+                    <select class="filter-dropdown" name="venue">
+                        <option selected>Venues</option>
+                        {% for venue in venues %}
+                            <option value="{{venue}}" {% if venue_sel == venue %} selected {% endif %}>{{ venue }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+    
+                <!-- Carriers Dropdown -->
+                <div class="item5">
+                    <select class="filter-dropdown" name="carrier">
+                        <option selected>Carriers</option>
+                        {% for carrier in carriers %}
+                            <option value="{{carrier}}" {% if carrier_sel == carrier %} selected {% endif %}>{{ carrier }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+    
+                <!-- Shipment Number Input -->
+                <div class="item6">
+                    <div style="display: flex;">
+                    <!-- <label for="shipment-number" style="display: flex; padding: 3px;"><b>Shipment Number</b></label> -->
                     <input type="text" class="filter-input" name="shipment_number" id="shipment-number" placeholder="Enter Shipment Number" value="{% if shipment_number %}{{shipment_number}}{% endif %}">
-                </div> -->
-                
-                <button type="submit" > <b>Submit</b></button>
+                </div>
+                </div>
+    
+                <!-- Submit Button -->
+                <div class="item7">
+                    <button type="submit"><b>Submit</b></button>
+                    <a href="{{ url_for('download_file_taged') }}"  class="btn btn-success download-btn" {% if downl %}style="text-decoration: none;text-align: center;height: 40px;"{% else %} style="text-decoration: none;pointer-events: none; cursor: not-allowed; text-align: center;height: 40px;" {% endif %}>Download 
+                        <img src="/static/download.png" alt="Download" width="18px" height="18px">
+                    </a>
+                </div>
             </form>
+        </div>
     </div>
+    
 
     <!-- Table Section -->
 
@@ -258,20 +257,37 @@
                     <td>{{ row[8] if row[8] is not none else '  --'}}</td> <!-- Scheduled Delivery Date -->
                     <td>{{ row[9] if row[9] is not none else '  --'}}</td> <!-- Scheduled Delivery Date -->
                     <td>
-                        <select name="{{ row[0] }}" class="form-select" {% if shipment_data.get(row[0]) == "SHPWH - Loss" %}selected style="background-color: red;color: rgb(255, 255, 255);"{% endif %}>
+                        <select name="{{ row[0] }}" class="form-select" {% if shipment_data.get(row[0]) == "SHPWH - Loss" %}    style="background-color: rgb(255, 42, 42);color: rgb(36, 36, 36);"{% endif %} {% if shipment_data.get(row[0]) == "SHPWH - Delivered" %}    style="background-color: rgb(0, 255, 8);color: rgb(36, 36, 36);"{% endif %}>
                            
                             <option value="PA - Not Delivered" {% if shipment_data.get(row[0]) == "PA - Not Delivered" %}selected{% endif %}>PA - Not Delivered</option>
                             <option value="PA - In Process" {% if shipment_data.get(row[0]) == "PA - In Process" %}selected{% endif %}>PA - In Process</option>
                             <option value="PA - Not Found" {% if shipment_data.get(row[0]) == "PA - Not Found" %}selected{% endif %}>PA - Not Found</option>
                             <option value="PA - Query" {% if shipment_data.get(row[0]) == "PA - Query" %}selected{% endif %}>PA - Query</option>
-                            <option value="SHPWH - Delivered" {% if shipment_data.get(row[0]) == "SHPWH - Delivered" %}selected{% endif %}>SHPWH - Delivered</option>
+                            <option value="SHPWH - Delivered" {% if shipment_data.get(row[0]) == "SHPWH - Delivered" %}selected style="background-color: rgb(0, 255, 8);color: rgb(36, 36, 36);"{% endif %}>SHPWH - Delivered</option>
                             <option value="SHPWH - Stuck in Transit" {% if shipment_data.get(row[0]) == "SHPWH - Stuck in Transit" %}selected{% endif %}>SHPWH - Stuck in Transit</option>
                             <option value="SHPWH - In Transit" {% if shipment_data.get(row[0]) == "SHPWH - In Transit" %}selected{% endif %}>SHPWH - In Transit</option>
                             <option value="SHPWH - Returning" {% if shipment_data.get(row[0]) == "SHPWH - Returning" %}selected{% endif %}>SHPWH - Returning</option>
                             <option value="SHPWH - Returned" {% if shipment_data.get(row[0]) == "SHPWH - Returned" %}selected{% endif %}>SHPWH - Returned</option>
-                            <option value="SHPWH - Loss" {% if shipment_data.get(row[0]) == "SHPWH - Loss" %}selected style="background-color: red;color: rgb(255, 255, 255);"{% endif %}>SHPWH - Loss</option>
+                            <option value="SHPWH - Loss" {% if shipment_data.get(row[0]) == "SHPWH - Loss" %}selected style="background-color: rgb(255, 42, 42);color: rgb(36, 36, 36);"{% endif %}>SHPWH - Loss</option>
                         </select>
-                    </td>
+                        <!-- <a href="#" class="openPopup" shipmentnumber="{{row[0]}}" data-log="<div style='color:grey;'><br><br> <ul>Date : {{ row[5] }}</ul> <br><ul>Current Status: {{row[5] }}</ul> <br> <ul>Scheduled Delivery date{{ row[8]}}</ul>" style="text-decoration: none; color: #3758c5;">Show Logs</a> -->
+                            <!-- <a href="#" class="openPopup" shipmentnumber="{{row[0]}}" data-log="<div style='color:grey;'>{%for i,j in log_dates.items()%} {% if i == row[0] %} <ul><li>current_status : {{ j.current_status }}</li>br  <li>inprocess : {{ j.log.inprocess}}</li>br <li>Delivered : {{j.log.delivered}}</li></ul> {% endif%} {% endfor %}</div>" style="text-decoration: none; color: #3758c5;">Show Logs</a> -->
+                            <a href="#" class="openPopup" shipmentnumber="{{row[0]}}" data-log="<table>
+                            {% for i,j in log_dates.items()%} 
+                            {%if i == row[0] %}  
+                            <tr style='background-color= #abbfff'>
+                                <th>status</th><th>date-time</th><th>user</th>
+                            </tr>
+                            {% for a,b in j.log.items()%} 
+                            <tr>
+                                <td>{{ a }}</td>
+                                <td>{{ b[0] }}</td>
+                                <td>{{ b[1] }}</td>
+                            </tr>
+                                {% endfor %}
+                            {% endif %}{%endfor%}</table> " style="text-decoration: none; color: #3758c5;">Show Logs</a>
+                  
+                        </td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -280,10 +296,22 @@
         <button type="submit" style="height: 40px;width: 80px; border-radius: 20px; margin: 2%; float: right; background: #3758c5;border: 0px; color: aliceblue;">Update</button>
 
     </form>
-    
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <div class="box-pop" style="border: 2px solid black; border-radius: 5px; margin: 2px 2px;">
+                <span class="close" id="closePopup" style="margin: 10px 10px;">&times;</span>
+                <h2 style="margin: 0px 0px; padding: 20px 20px; background-color: rgb(142, 197, 255);" id="popupTitle">
+                    Logs of shipment-number
+                </h2>
+                <ul id="logContent" >
+                    <!-- Logs will be inserted here dynamically -->
+                </ul>
+            </div>
+        </div>
+    </div>
     {% endif %}
     <script>
-        document.querySelector('.custom-select-trigger').addEventListener('click', function() {
+       document.querySelector('.custom-select-trigger').addEventListener('click', function() {
          document.querySelector('.custom-select').classList.toggle('open');
      });
      
@@ -305,7 +333,36 @@
              }
          });
      });
-     
+     </script>
+     <script>
+      document.querySelectorAll('.openPopup').forEach(function(element) {
+    element.addEventListener('click', function(event) {
+        event.preventDefault();
+
+        // Get the log data from the data attribute
+        const logData = this.getAttribute('data-log');
+
+        // Find the log content container and set its content
+        const logContent = document.getElementById('logContent');
+        logContent.innerHTML = `${logData}`;
+
+        // Display the popup
+        document.getElementById('popup').style.display = 'flex';
+    });
+});
+
+document.getElementById('closePopup').addEventListener('click', function() {
+    document.getElementById('popup').style.display = 'none';
+});
+
+// Close the popup when clicking outside the content area
+window.addEventListener('click', function(event) {
+    if (event.target === document.getElementById('popup')) {
+        document.getElementById('popup').style.display = 'none';
+    }
+});
+
+
      </script>
 </body>
 </html>
