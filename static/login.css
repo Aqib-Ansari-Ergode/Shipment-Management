@@ -1,0 +1,83 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+}
+
+.login-form {
+    display: grid;
+    grid-template-columns: 1fr ;
+    gap: 15px;  /* Space between grid items */
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    display: grid;
+    grid-template-rows: auto auto;
+}
+
+label {
+    font-size: 14px;
+    color: #333333;
+}
+
+input[type="text"], input[type="password"] {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+}
+
+.login-button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.login-button:hover {
+    background-color: #218838;
+}
+
+.sign-up {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.sign-up a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.sign-up a:hover {
+    text-decoration: underline;
+}

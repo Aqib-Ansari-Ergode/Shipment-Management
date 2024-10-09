@@ -17,9 +17,9 @@ def create_connection(host_name, user_name, user_password, db_name):
             user=user_name,
             password=user_password,
             database=db_name,
-            pool_name='mypool',
-            pool_size=30,  # Adjust this based on your application's concurrency
-            autocommit=True,
+            # pool_name='mypool',
+            # pool_size=30,  # Adjust this based on your application's concurrency
+            # autocommit=True,
         )
 
             if connection.is_connected():
@@ -44,7 +44,7 @@ def reconnect_if_needed():
 
 def execute_query(query):
     global connection
-    reconnect_if_needed()  # Ensure the connection is alive
+    # reconnect_if_needed()  # Ensure the connection is alive
     try:
         cursor = connection.cursor()
         cursor.execute(query)
@@ -65,7 +65,7 @@ def fetch_query_results(query):
     Fetches the results of a query.
     """
     global connection
-    reconnect_if_needed()  # Ensure the connection is alive
+    # reconnect_if_needed()  # Ensure the connection is alive
 
     cursor = connection.cursor()
     try:
@@ -140,7 +140,7 @@ def get_delivered(start=False, end=False, venue=False, carrier=False, department
     delivered = fetch_query_results(query=select_employees_query+"limit 100")  # Use your own DB query function
     return delivered
 
-def get_data(start=False, end=False, venue=False, carrier=False, department=False):
+def get_data(start=False, end=False, venue=False, carrier=False, status=False,shipment_numbers=False,shipment_number=False):
     
     select_employees_query = '''SELECT 
         od.shipment_no, od.internal_order_id , od.sku, od.venue, 
@@ -183,12 +183,47 @@ def get_data(start=False, end=False, venue=False, carrier=False, department=Fals
             select_employees_query += ' and '
             select_employees_query += f"  otd.carrier_name = '{carrier}' "
 
-    # Department filtering
+    # Tags filtering
+    if shipment_numbers:
+        placeholders = ""
+        for i in range(len(shipment_numbers)):
+                if i >= (len(shipment_numbers)-1):
+                    placeholders += f"'{shipment_numbers[i]}'  "
+                else:
+                    placeholders += f"'{shipment_numbers[i]}' , "
+        if where1 == 0:
+            
 
+            select_employees_query += " where "
+            select_employees_query += f" od.shipment_no IN ({placeholders})"
+            where1 = 1
+        else:
+            select_employees_query += ' and '
+            select_employees_query += f"  od.shipment_no IN ({placeholders})"
+
+    if shipment_number:
+        if where1 == 0:
+            select_employees_query += " where "
+            select_employees_query += f" od.shipment_no = '{shipment_number}'"
+            where1 = 1
+        else:
+            select_employees_query += ' and '
+            select_employees_query += f"  od.shipment_no = '{shipment_number}'"
+
+    if status:
+        if where1 == 0:
+            select_employees_query += " where "
+            select_employees_query += f" od.status = '{status}'"
+            where1 = 1
+        else:
+            select_employees_query += ' and '
+            select_employees_query += f" od.status = '{status}'"
 
     # select_employees_query += "LIMIT 5;"
     
     data = fetch_query_results(query=select_employees_query+''' and om.ship_country NOT IN ('USA' , 'United States',  'usa','U.S.A.','UNITED STATES','USA','US') order by od.internal_order_id desc limit 100  ''')  # Use your own DB query function
+    print(select_employees_query)
+    # print(data)
     return data
 
 

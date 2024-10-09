@@ -1,0 +1,2577 @@
+{
+    "C1654954": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "PA - In transit",
+                "2024-10-09 11:52:51",
+                "Admin"
+            ],
+            [
+                "SHPWH - Returning",
+                "2024-10-09 11:54:20",
+                "Admin"
+            ],
+            [
+                "SHPWH - In Transit",
+                "2024-10-09 11:55:27",
+                "Admin"
+            ],
+            [
+                "SHPWH - Loss",
+                "2024-10-09 11:57:31",
+                "Admin"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1649742": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "PA - Delivered",
+                "2024-10-09 11:52:51",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:54:20",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:55:27",
+                "Admin"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1638763": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "PA - Delivered",
+                "2024-10-09 11:52:51",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:54:20",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:55:27",
+                "Admin"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1637398": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "PA - Delivered",
+                "2024-10-09 11:52:51",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:54:20",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:55:27",
+                "Admin"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1684629": {
+        "current_status": "PA - In transit",
+        "log": [
+            [
+                "PA - Delivered",
+                "2024-10-09 11:52:51",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:54:20",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:55:27",
+                "Admin"
+            ],
+            [
+                "Parcel Received and Processing",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Parcel Received and Processing",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Parcel Received and Processing",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Parcel Received and Processing",
+                "2024-10-09 13:23:12",
+                "sql"
+            ],
+            [
+                "PA - In transit",
+                "2024-10-09 13:30:33",
+                "Admin"
+            ]
+        ]
+    },
+    "C1687809": {
+        "current_status": "PA - In transit",
+        "log": [
+            [
+                "PA - Delivered",
+                "2024-10-09 11:52:51",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:54:20",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:55:27",
+                "Admin"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:23:12",
+                "sql"
+            ],
+            [
+                "PA - In transit",
+                "2024-10-09 13:30:33",
+                "Admin"
+            ]
+        ]
+    },
+    "C1643577": {
+        "current_status": "PA - In transit",
+        "log": [
+            [
+                "PA - Delivered",
+                "2024-10-09 11:52:51",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:54:20",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:55:27",
+                "Admin"
+            ],
+            [
+                "PA - In transit",
+                "2024-10-09 13:30:33",
+                "Admin"
+            ]
+        ]
+    },
+    "C1687990": {
+        "current_status": "PA - In transit",
+        "log": [
+            [
+                "PA - Delivered",
+                "2024-10-09 11:52:51",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:54:20",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:55:27",
+                "Admin"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:23:12",
+                "sql"
+            ],
+            [
+                "PA - In transit",
+                "2024-10-09 13:30:33",
+                "Admin"
+            ]
+        ]
+    },
+    "Z285637": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "PA - Delivered",
+                "2024-10-09 11:52:51",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:54:20",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:55:27",
+                "Admin"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1678706": {
+        "current_status": "PA - In transit",
+        "log": [
+            [
+                "PA - Delivered",
+                "2024-10-09 11:52:51",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:54:20",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:55:27",
+                "Admin"
+            ],
+            [
+                "PA - In transit",
+                "2024-10-09 13:30:33",
+                "Admin"
+            ]
+        ]
+    },
+    "C1687106": {
+        "current_status": "PA - In transit",
+        "log": [
+            [
+                "PA - Delivered",
+                "2024-10-09 11:52:51",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:54:20",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:55:27",
+                "Admin"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Received",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Received",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Received",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ],
+            [
+                "Received",
+                "2024-10-09 13:23:12",
+                "sql"
+            ],
+            [
+                "PA - In transit",
+                "2024-10-09 13:30:33",
+                "Admin"
+            ]
+        ]
+    },
+    "C1686951": {
+        "current_status": "PA - In transit",
+        "log": [
+            [
+                "PA - Delivered",
+                "2024-10-09 11:52:51",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:54:20",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:55:27",
+                "Admin"
+            ],
+            [
+                "In transit to APRISA tracking#:  BE000017892001",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "In transit to APRISA tracking#:  BE000017892001",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "In transit to APRISA tracking#:  BE000017892001",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "In transit to APRISA tracking#:  BE000017892001",
+                "2024-10-09 13:23:12",
+                "sql"
+            ],
+            [
+                "PA - In transit",
+                "2024-10-09 13:30:33",
+                "Admin"
+            ]
+        ]
+    },
+    "C1643505": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "PA - Delivered",
+                "2024-10-09 11:52:51",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:54:20",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:55:27",
+                "Admin"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1663573": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "PA - Delivered",
+                "2024-10-09 11:52:51",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:54:20",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:55:27",
+                "Admin"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1644941": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "PA - Delivered",
+                "2024-10-09 11:52:51",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:54:20",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:55:27",
+                "Admin"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1641925": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "PA - Delivered",
+                "2024-10-09 11:52:51",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:54:20",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:55:27",
+                "Admin"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1642329": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "PA - Delivered",
+                "2024-10-09 11:52:51",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:54:20",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:55:27",
+                "Admin"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1643825": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "PA - Delivered",
+                "2024-10-09 11:52:51",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:54:20",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:55:27",
+                "Admin"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1647384": {
+        "current_status": "PA - In transit",
+        "log": [
+            [
+                "PA - Delivered",
+                "2024-10-09 11:52:51",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:54:20",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:55:27",
+                "Admin"
+            ],
+            [
+                "Delayed in Transit beyond our control",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delayed in Transit beyond our control",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delayed in Transit beyond our control",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delayed in Transit beyond our control",
+                "2024-10-09 13:23:12",
+                "sql"
+            ],
+            [
+                "PA - In transit",
+                "2024-10-09 13:30:33",
+                "Admin"
+            ]
+        ]
+    },
+    "C1643349": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "PA - Delivered",
+                "2024-10-09 11:52:51",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:54:20",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:55:27",
+                "Admin"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "Z285825": {
+        "current_status": "PA - In transit",
+        "log": [
+            [
+                "PA - Delivered",
+                "2024-10-09 11:52:51",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:54:20",
+                "Admin"
+            ],
+            [
+                "PA - Delivered",
+                "2024-10-09 11:55:27",
+                "Admin"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:23:12",
+                "sql"
+            ],
+            [
+                "PA - In transit",
+                "2024-10-09 13:30:33",
+                "Admin"
+            ]
+        ]
+    },
+    "C1635342": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1656586": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1689276": {
+        "current_status": "PA - In transit",
+        "log": [
+            [
+                "In transit to APRISA tracking#:  BE000017824001",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "In transit to APRISA tracking#:  BE000017824001",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "In transit to APRISA tracking#:  BE000017824001",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ],
+            [
+                "In transit to APRISA tracking#:  BE000017824001",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1644366": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1684905": {
+        "current_status": "PA - In transit",
+        "log": [
+            [
+                "In Transit",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1647097": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1689854": {
+        "current_status": "PA - In transit",
+        "log": [
+            [
+                "In Transit",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1652823": {
+        "current_status": "PA - In transit",
+        "log": [
+            [
+                "NA",
+                "NA",
+                "NA"
+            ]
+        ]
+    },
+    "C1686542": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1688371": {
+        "current_status": "PA - In transit",
+        "log": [
+            [
+                "Shipment in Transit to the ePost Global Processing Center",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Shipment in Transit to the ePost Global Processing Center",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Shipment in Transit to the ePost Global Processing Center",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Shipment in Transit to the ePost Global Processing Center",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "Z276470": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1644753": {
+        "current_status": "PA - In transit",
+        "log": [
+            [
+                "NA",
+                "NA",
+                "NA"
+            ]
+        ]
+    },
+    "C1638211": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1650025": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1634810": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1676638": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1686082": {
+        "current_status": "PA - In transit",
+        "log": [
+            [
+                "In Transit",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1688852": {
+        "current_status": "PA - In transit",
+        "log": [
+            [
+                "In transit to APRISA tracking#:  BE000017818001",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "In transit to APRISA tracking#:  BE000017818001",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "In transit to APRISA tracking#:  BE000017818001",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "In transit to APRISA tracking#:  BE000017818001",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1684080": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1651412": {
+        "current_status": "PA - In transit",
+        "log": [
+            [
+                "NA",
+                "NA",
+                "NA"
+            ]
+        ]
+    },
+    "C1650272": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1687976": {
+        "current_status": "PA - In transit",
+        "log": [
+            [
+                "In Transit",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1686721": {
+        "current_status": "PA - In transit",
+        "log": [
+            [
+                "Shipment in Transit to the ePost Global Processing Center",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Shipment in Transit to the ePost Global Processing Center",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Shipment in Transit to the ePost Global Processing Center",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Shipment in Transit to the ePost Global Processing Center",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1647436": {
+        "current_status": "PA - In transit",
+        "log": [
+            [
+                "Delayed in Transit beyond our control",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delayed in Transit beyond our control",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delayed in Transit beyond our control",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delayed in Transit beyond our control",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1653358": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1648094": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "Z284753": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1640219": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1636559": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1633037": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1641825": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1634064": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1702975": {
+        "current_status": "PA - In transit",
+        "log": [
+            [
+                "NA",
+                "NA",
+                "NA"
+            ]
+        ]
+    },
+    "C1650538": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1651270": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1650453": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1650452": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1685974": {
+        "current_status": "PA - In transit",
+        "log": [
+            [
+                "In Transit",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1635629": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1685414": {
+        "current_status": "PA - In transit",
+        "log": [
+            [
+                "In Transit",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1708409": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1692245": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1688687": {
+        "current_status": "PA - In transit",
+        "log": [
+            [
+                "In Transit",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1635822": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1662167": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1688253": {
+        "current_status": "PA - In transit",
+        "log": [
+            [
+                "Shipment in Transit to the ePost Global Processing Center",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Shipment in Transit to the ePost Global Processing Center",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Shipment in Transit to the ePost Global Processing Center",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ],
+            [
+                "Shipment in Transit to the ePost Global Processing Center",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1683453": {
+        "current_status": "PA - In transit",
+        "log": [
+            [
+                "In transit to APRISA tracking#:  BE000017709001",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "In transit to APRISA tracking#:  BE000017709001",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "In transit to APRISA tracking#:  BE000017709001",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ],
+            [
+                "In transit to APRISA tracking#:  BE000017709001",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1691488": {
+        "current_status": "PA - In transit",
+        "log": [
+            [
+                "In Transit",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1642995": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1690963": {
+        "current_status": "PA - In transit",
+        "log": [
+            [
+                "In Transit",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Shipment Received, Package Acceptance Pending",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Shipment Received, Package Acceptance Pending",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Shipment Received, Package Acceptance Pending",
+                "2024-10-09 13:23:12",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1683404": {
+        "current_status": "PA - In transit",
+        "log": [
+            [
+                "In transit to APRISA tracking#:  BE000017716001",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "In transit to APRISA tracking#:  BE000017716001",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "In transit to APRISA tracking#:  BE000017716001",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "In transit to APRISA tracking#:  BE000017716001",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1649728": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1663692": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1647692": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1635066": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1652233": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1686190": {
+        "current_status": "PA - In transit",
+        "log": [
+            [
+                "In Transit",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ],
+            [
+                "In Transit",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1656265": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    },
+    "C1643941": {
+        "current_status": "PA - Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-09 13:08:45",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:10:41",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:12:12",
+                "sql"
+            ],
+            [
+                "Delivered",
+                "2024-10-09 13:23:12",
+                "sql"
+            ]
+        ]
+    }
+}

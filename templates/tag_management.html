@@ -117,7 +117,7 @@
                     <select id="dropdown1" name="status">
                         <option {% if status_sel == 'False' %} selected {% endif %}>Status</option>
                         <option value="PA" {% if status_sel == 'PA' %} selected {% endif %}>Process Aux Hold (PA)</option>
-                        <option value="SHPWH" {% if status_sel == 'SHPWH' %} selected {% endif %}>Ship from Warehouse (SHPWH)</option>
+                        <option value="SHPFW" {% if status_sel == 'SHPFW' %} selected {% endif %}>Ship from Warehouse (SHPWH)</option>
                     </select>
                 </div>
     
@@ -135,6 +135,8 @@
                                 {% endif %}
                             </div>
                             <div class="custom-options">
+                                <label><input type="checkbox" name="tag" value="PA - Delivered" {% if 'PA - Delivered' in tag_sel %} checked {% endif %}> PA - Delivered</label>
+                                <label><input type="checkbox" name="tag" value="PA - In transit" {% if 'PA - In transit' in tag_sel %} checked {% endif %}> PA - In transit</label>
                                 <label><input type="checkbox" name="tag" value="PA - Not Delivered" {% if 'PA - Not Delivered' in tag_sel %} checked {% endif %}> PA - Not Delivered</label>
                                 <label><input type="checkbox" name="tag" value="PA - In Process" {% if 'PA - In Process' in tag_sel %} checked {% endif %}> PA - In Process</label>
                                 <label><input type="checkbox" name="tag" value="PA - Not Found" {% if 'PA - Not Found' in tag_sel %} checked {% endif %}> PA - Not Found</label>
@@ -259,6 +261,8 @@
                     <td>
                         <select name="{{ row[0] }}" class="form-select" {% if shipment_data.get(row[0]) == "SHPWH - Loss" %}    style="background-color: rgb(255, 42, 42);color: rgb(36, 36, 36);"{% endif %} {% if shipment_data.get(row[0]) == "SHPWH - Delivered" %}    style="background-color: rgb(0, 255, 8);color: rgb(36, 36, 36);"{% endif %}>
                            
+                            <option value="PA - Delivered" {% if shipment_data.get(row[0]) == "PA - Delivered" %}selected{% endif %}>PA - Delivered</option>
+                            <option value="PA - In transit" {% if shipment_data.get(row[0]) == "PA - In transit" %}selected{% endif %}>PA - In transit</option>
                             <option value="PA - Not Delivered" {% if shipment_data.get(row[0]) == "PA - Not Delivered" %}selected{% endif %}>PA - Not Delivered</option>
                             <option value="PA - In Process" {% if shipment_data.get(row[0]) == "PA - In Process" %}selected{% endif %}>PA - In Process</option>
                             <option value="PA - Not Found" {% if shipment_data.get(row[0]) == "PA - Not Found" %}selected{% endif %}>PA - Not Found</option>
@@ -269,23 +273,26 @@
                             <option value="SHPWH - Returning" {% if shipment_data.get(row[0]) == "SHPWH - Returning" %}selected{% endif %}>SHPWH - Returning</option>
                             <option value="SHPWH - Returned" {% if shipment_data.get(row[0]) == "SHPWH - Returned" %}selected{% endif %}>SHPWH - Returned</option>
                             <option value="SHPWH - Loss" {% if shipment_data.get(row[0]) == "SHPWH - Loss" %}selected style="background-color: rgb(255, 42, 42);color: rgb(36, 36, 36);"{% endif %}>SHPWH - Loss</option>
-                        </select>
+                        </select><br>
                         <!-- <a href="#" class="openPopup" shipmentnumber="{{row[0]}}" data-log="<div style='color:grey;'><br><br> <ul>Date : {{ row[5] }}</ul> <br><ul>Current Status: {{row[5] }}</ul> <br> <ul>Scheduled Delivery date{{ row[8]}}</ul>" style="text-decoration: none; color: #3758c5;">Show Logs</a> -->
                             <!-- <a href="#" class="openPopup" shipmentnumber="{{row[0]}}" data-log="<div style='color:grey;'>{%for i,j in log_dates.items()%} {% if i == row[0] %} <ul><li>current_status : {{ j.current_status }}</li>br  <li>inprocess : {{ j.log.inprocess}}</li>br <li>Delivered : {{j.log.delivered}}</li></ul> {% endif%} {% endfor %}</div>" style="text-decoration: none; color: #3758c5;">Show Logs</a> -->
-                            <a href="#" class="openPopup" shipmentnumber="{{row[0]}}" data-log="<table>
-                            {% for i,j in log_dates.items()%} 
-                            {%if i == row[0] %}  
-                            <tr style='background-color= #abbfff'>
-                                <th>status</th><th>date-time</th><th>user</th>
-                            </tr>
-                            {% for a,b in j.log.items()%} 
-                            <tr>
-                                <td>{{ a }}</td>
-                                <td>{{ b[0] }}</td>
-                                <td>{{ b[1] }}</td>
-                            </tr>
-                                {% endfor %}
-                            {% endif %}{%endfor%}</table> " style="text-decoration: none; color: #3758c5;">Show Logs</a>
+                            <a href="#" class="openPopup" shipmentnumber="{{row[0]}}" data-log="
+                                {% for i, j in log_dates.items() %}
+                                {% if i == row[0] %}
+                                    <tr style='background-color: #abbfff'>
+                                        <th>Status</th><th>Date-Time</th><th>User</th>
+                                    </tr>
+                                    {% for log_entry in j.log %}
+                                        <tr>
+                                            <td>{{ log_entry[0] }}</td>
+                                            <td>{{ log_entry[1] }}</td>
+                                            <td>{{ log_entry[2] }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                            
+                             " style="text-decoration: none; color: #3758c5;">Show Logs</a>
                   
                         </td>
                 </tr>
@@ -303,8 +310,12 @@
                 <h2 style="margin: 0px 0px; padding: 20px 20px; background-color: rgb(142, 197, 255);" id="popupTitle">
                     Logs of shipment-number
                 </h2>
-                <ul id="logContent" >
+                <ul  style="height: 80%; overflow-y: auto; border: 1px solid #ddd;justify-content: center; align-items: center; font-size: large;" >
                     <!-- Logs will be inserted here dynamically -->
+                     <table id="logContent" style=" width: 97%; border-collapse: collapse;">
+
+
+                     </table>
                 </ul>
             </div>
         </div>

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, send_file, url_for, session,jsonify
+from flask import Flask, render_template, request, redirect, send_file, url_for, session,jsonify,flash
 from datetime import datetime
 import SQL_functions as sqlf
 import pandas as pd
@@ -9,6 +9,20 @@ import json
 app = Flask(__name__)
 
 app.secret_key = 'your_secret_key'
+
+def delete_all_files(folder_path):
+    # Check if the folder exists
+    if os.path.exists(folder_path) and os.path.isdir(folder_path):
+        # Iterate over all files in the folder
+        for filename in os.listdir(folder_path):
+            file_path = os.path.join(folder_path, filename)
+            # Check if it's a file
+            if os.path.isfile(file_path):
+                os.remove(file_path)  # Delete the file
+                print(f"Deleted: {file_path}")
+    else:
+        print("The specified folder does not exist or is not a directory.")
+
 
 def clear_session():
     session.clear()
@@ -35,6 +49,8 @@ def sanitize_session_values():
 
 @app.route('/')
 def index():
+    delete_all_files('files')
+    delete_all_files('tags_files')
     clear_session()
     session["user"] = 'Admin'
     current_date = datetime.now().strftime("%Y-%m-%d")
@@ -54,6 +70,26 @@ def index():
     return render_template('index.html', current_date=session['current_date'], aux_hold_cases=aux_hold_cases,
                            warehouse_cases=warehouse_cases, venues=venues, carriers=carriers)
 
+users = {
+    "testuser": "password123"  # Username: Password
+}
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        remember = request.form.get('remember')
+
+        # Validate username and password
+        if username in users and users[username] == password:
+            session['username'] = username
+            flash('Login successful!', 'success')
+            return redirect(url_for('dashboard'))  # Redirect to dashboard or another page
+        else:
+            flash('Invalid username or password', 'danger')
+
+    return render_template('login.html')
 
 @app.route('/get_delivered', methods=['POST'])
 def handle_get_delivered():
@@ -101,6 +137,8 @@ def handle_get_delivered():
                                warehouse_cases=warehouse_cases, venues=venues,
                                start_date=session['start_date'], end_date=session['end_date'],
                                venue_sel=session['venue'], carriers=carriers, carrier_sel=session['carrier'])
+
+
 
 
 @app.route('/get_delivered_details')
@@ -194,7 +232,6 @@ def add_tag():
     except Exception as e:
         return f"Error occurred while adding tag: {str(e)}"
 
-import json
 
 @app.route('/add_tag_manual', methods=['GET', 'POST'])
 def add_tag_manual():
@@ -214,8 +251,11 @@ def add_tag_manual():
         log_dates = {}
 
     # Load the JSON file containing shipment status data
-    with open('shipments.json') as json_file:
-        shipment_data = json.load(json_file)
+    shipment_data = {}
+    for i in log_dates:
+        shipment_data[i] = log_dates[i]["current_status"]
+        
+    
     current_page = int(request.args.get('page', 1))
     records_per_page = 25
     if request.method == 'POST':
@@ -226,6 +266,7 @@ def add_tag_manual():
         session['tag_sel'] = request.form.getlist('tag')
         session['venue_sel'] = request.form.get('venue')
         session['carrier_sel'] = request.form.get('carrier')
+        session['shipment_number'] = request.form.get('shipment_number')
         
         print(f"Start Date: {session['start_date_sel']}")
         print(f"End Date: {session['end_date_sel']}")
@@ -233,18 +274,34 @@ def add_tag_manual():
         print(f"Dropdown 2: {session['tag_sel']}")
         print(f"Dropdown 3: {session['venue_sel']}")
         print(f"Dropdown 4: {session['carrier_sel']}")
+        print(f"Shipment Number : {session['shipment_number']}")
+        
+
         venue_sele = session["venue_sel"]
         carrier_sele = session['carrier_sel'] 
         if session['venue_sel'] == 'Venues':
             venue_sele = False
         if session['carrier_sel'] == 'Carriers':
             carrier_sele = False
+        if session['status_sel'] == 'Status':
+            session['status_sel'] = False
         # Implement logic to handle the tag (like adding it to the database)
-        data = sqlf.get_data(start=session['start_date_sel'],
+        shipment_numbers = [key for key, value in shipment_data.items() if value in session['tag_sel']]
+        print(shipment_numbers)
+        if 'shipment_number' in session:
+            if session["shipment_number"] == False or session['shipment_number'] == "":
+                data = sqlf.get_data(start=session['start_date_sel'],
                                   end=session['end_date_sel'],
                                   venue=venue_sele,
-                                  carrier=carrier_sele)
-
+                                  carrier=carrier_sele,shipment_numbers=shipment_numbers,status=session['status_sel'])
+                # for i in data[0]:
+                    # print(i)
+                print(data[0][7])
+            else:
+                data = sqlf.get_data(start=False,
+                                  end=False,
+                                  venue=False,
+                                  carrier=False,shipment_numbers=False,shipment_number = session['shipment_number'])
         columns = ['Shipment Number', 'Internal Order ID', 'SKU', 'Venue', 'Order ID',
                    'Purchase Date','status','Our Status' ,'Current Status', 'Status Update Date', 'Scheduled Delivery Date']
         total_records = len(data)
@@ -253,8 +310,11 @@ def add_tag_manual():
         df_data = [list(row) for row in data]
         df_data = pd.DataFrame(data, columns = ['Shipment Number', 'Internal Order ID', 'SKU', 'Venue', 'Order ID',
                    'Purchase Date','status' ,'Current Status', 'Status Update Date', 'Scheduled Delivery Date'])
+        
 
-        file_name = f"{session['start_date_sel'] or 'begin-to'}_{session['end_date_sel'] or session['current_date']}_{session['venue_sel'] or 'all-venues'}_{session['carrier_sel'] or 'all-carriers'}_{session['status_sel'] or "all-status"}_{session['tag_sel'] or 'all-tags'}.csv"
+        shipment_df = pd.DataFrame(list(shipment_data.items()), columns=['Shipment Number', 'Tag'])
+        df_data = df_data.merge(shipment_df, on='Shipment Number', how='left')
+        file_name = f"{session['start_date_sel'] or 'begin-to'}_{session['end_date_sel'] or session['current_date']}_{venue_sele or 'all-venues'}_{carrier_sele or 'all-carriers'}_{session['status_sel'] or "all-status"}_{session['tag_sel'] or 'all-tags'}.csv"
         session['file_name_tagged'] = file_name
         df_data.to_csv(f"tags_files/{file_name}", index=False)
 
@@ -270,7 +330,7 @@ def add_tag_manual():
     print('carrier_sel' in session)
     # print('venue_sel' in session)
     if 'venue_sel' in session and 'start_date_sel' in session and 'end_date_sel' in session and "carrier_sel" in session:
-        if "venue_sel" in session or 'start_date_sel' in session or 'end_date_sel' in session or 'carrier_sel' in session:
+       
             
             if session['venue_sel'] == 'Venues':
                 session['venue_sel'] = False
@@ -285,10 +345,12 @@ def add_tag_manual():
             print(session['start_date_sel'])
             print(session['end_date_sel'])
             print(session['carrier_sel'])
+            shipment_numbers = [key for key, value in shipment_data.items() if value in session['tag_sel']]
+            print(shipment_numbers)
             data = sqlf.get_data(start=session['start_date_sel'],
                                         end=session['end_date_sel'],
                                         venue=session['venue_sel'],
-                                        carrier=session['carrier_sel'])
+                                        carrier=session['carrier_sel'],shipment_numbers=shipment_numbers,status=session['status_sel'])
                 # print(data)
             columns = ['Shipment Number', 'Internal Order ID', 'SKU', 'Venue', 'Order ID',
                         'Purchase Date',"status", "Our Status",'Current Status', 'Status Update Date', 'Scheduled Delivery Date']
@@ -301,58 +363,21 @@ def add_tag_manual():
             df_data = [list(row) for row in data]
             df_data = pd.DataFrame(data, columns = ['Shipment Number', 'Internal Order ID', 'SKU', 'Venue', 'Order ID',
                     'Purchase Date','status' ,'Current Status', 'Status Update Date', 'Scheduled Delivery Date'])
-
+            shipment_df = pd.DataFrame(list(shipment_data.items()), columns=['Shipment Number', 'Tag'])
+            df_data = df_data.merge(shipment_df, on='Shipment Number', how='left')
             file_name = f"{session['start_date_sel'] or 'begin-to'}_{session['end_date_sel'] or session['current_date']}_{session['venue_sel'] or 'all-venues'}_{session['carrier_sel'] or 'all-carriers'}_{session['status_sel'] or "all-status"}_{session['tag_sel'] or 'all-tags'}.csv"
             session['file_name_tagged'] = file_name
-            df_data.to_csv(f"tags_files/{file_name}", index=False)
+            # df_data.to_csv(f"tags_files/{file_name}", index=False)
 
             return render_template('tag_management.html', venues=venues, carriers=carriers,shipment_data=shipment_data,data=table_data_paginated,columns=columns,current_page=current_page,total_pages=total_pages,downl=True,log_dates=log_dates)
     return render_template('tag_management.html', venues=venues, carriers=carriers,shipment_data=shipment_data,downl = False,log_dates=log_dates)
 
-def load_data():
-    try:
-        with open('shipments.json', 'r') as file:
-            return json.load(file)
-    except FileNotFoundError:
-        return {}
-
-# Save data to a JSON file
-def save_data(data):
-    with open('shipments.json', 'w') as file:
-        json.dump(data, file, indent=4)
-
-# @app.route('/update_tag', methods=['POST'])
-# def update_tag():
-#     # Load the existing data
-#     data = load_data()
-
-#     # Get the form data (assuming each key is something like 'status_<shipment_number>')
-#     form_data = request.form
-
-#     # Iterate over form data and update the data dict based on shipment numbers
-#     for key, value in form_data.items():
-#           # Assume fields with 'status_' prefix
-#             # Extract shipment number from the form field name
-#             shipment_number = key
-#             # Update the data with the new status
-#             data[shipment_number] = value
-
-#     # Save the updated data back to the JSON file
-#     save_data(data)
-
-#     return redirect(url_for('add_tag_manual'))
 
 
-from datetime import datetime
-import json
-import os
 
 @app.route('/update_tag', methods=['POST'])
 def update_tag():
-    # Load the existing data
-    data = load_data()
-
-    # Path to the log file
+    
     log_file_path = 'log_dates.json'
 
     # Get the form data (assuming each key is the shipment number)
@@ -374,22 +399,22 @@ def update_tag():
     # Iterate over form data and update the data dict based on shipment numbers
     for shipment_number, new_status in form_data.items():
         # Get the current status from the existing data
-        current_status = data.get(shipment_number)
+        current_status = log_dates[shipment_number]['current_status']
 
         # Log the change only if the status is actually different
-        if current_status != new_status:
+        if current_status != new_status :
             # Update the data with the new status
-            data[shipment_number] = new_status
+            log_dates[shipment_number]['current_status'] = new_status
 
             # Get or create the shipment entry in log_dates
             shipment_log = log_dates.get(shipment_number, {
                 "current_status": current_status or "unknown",
-                "log": {}
+                "log": []
             })
 
-            # Update the shipment's log with the new status and current date-time
+            # Update the shipment's log with the new status, current date-time, and user
             current_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            shipment_log["log"][new_status] = [current_date ,session["user"]]
+            shipment_log["log"].append([new_status, current_date, current_user])
             shipment_log["current_status"] = new_status
 
             # Store the updated log back into log_dates
@@ -399,8 +424,7 @@ def update_tag():
     with open(log_file_path, 'w') as log_file:
         json.dump(log_dates, log_file, indent=4)
 
-    # Save the updated data back to the JSON file
-    save_data(data)
+    
 
     return redirect(url_for('add_tag_manual'))
 
@@ -455,4 +479,4 @@ def download_file_taged():
 
 if __name__ == '__main__':
     
-    app.run(debug=True, port=8080)
+    app.run(debug=True)
