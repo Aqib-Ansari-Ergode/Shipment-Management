@@ -221,7 +221,7 @@ def get_data(start=False, end=False, venue=False, carrier=False, status=False,sh
 
     # select_employees_query += "LIMIT 5;"
     
-    data = fetch_query_results(query=select_employees_query+''' and om.ship_country NOT IN ('USA' , 'United States',  'usa','U.S.A.','UNITED STATES','USA','US') order by od.internal_order_id desc limit 100  ''')  # Use your own DB query function
+    data = fetch_query_results(query=select_employees_query+''' and om.ship_country NOT IN ('USA' , 'United States',  'usa','U.S.A.','UNITED STATES','USA','US') order by od.internal_order_id desc limit 10  ''')  # Use your own DB query function
     print(select_employees_query)
     # print(data)
     return data

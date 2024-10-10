@@ -375,16 +375,72 @@ def add_tag_manual():
 
 
 
+# @app.route('/update_tag', methods=['POST'])
+# def update_tag():
+    
+#     log_file_path = 'log_dates.json'
+
+#     # Get the form data (assuming each key is the shipment number)
+#     form_data = request.form
+
+#     # Get the current user from session
+#     current_user = session.get("user", "Unknown User")
+
+#     # Load existing logs if available
+#     if os.path.exists(log_file_path):
+#         with open(log_file_path, 'r') as log_file:
+#             try:
+#                 log_dates = json.load(log_file)
+#             except json.JSONDecodeError:
+#                 log_dates = {}
+#     else:
+#         log_dates = {}
+
+#     # Iterate over form data and update the data dict based on shipment numbers
+#     for shipment_number, new_status in form_data.items():
+#         # Get the current status from the existing data
+#         if shipment_number not in log_dates.items():
+#             shipment_log = log_dates.get(shipment_number, {
+#                 "current_status": new_status or "unknown",
+#                 "log": [new_status,datetime.now().strftime("%Y-%m-%d %H:%M:%S"),current_user]
+#             })
+#             log_dates[shipment_number] = shipment_log
+#         else:
+#             current_status = log_dates[shipment_number]['current_status']
+
+#             # Log the change only if the status is actually different
+#             if current_status != new_status :
+#                 # Update the data with the new status
+#                 log_dates[shipment_number]['current_status'] = new_status
+
+#                 # Get or create the shipment entry in log_dates
+#                 shipment_log = log_dates.get(shipment_number, {
+#                     "current_status": current_status or "unknown",
+#                     "log": []
+#                 })
+
+#                 # Update the shipment's log with the new status, current date-time, and user
+#                 current_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+#                 shipment_log["log"].append([new_status, current_date, current_user])
+#                 shipment_log["current_status"] = new_status
+
+#                 # Store the updated log back into log_dates
+#                 log_dates[shipment_number] = shipment_log
+
+#     # Write the updated log_dates to the JSON log file
+#     with open(log_file_path, 'w') as log_file:
+#         json.dump(log_dates, log_file, indent=4)
+
+    
+
+#     return redirect(url_for('add_tag_manual'))
+
 @app.route('/update_tag', methods=['POST'])
 def update_tag():
-    
     log_file_path = 'log_dates.json'
-
-    # Get the form data (assuming each key is the shipment number)
     form_data = request.form
-
-    # Get the current user from session
     current_user = session.get("user", "Unknown User")
+    current_page = form_data.get('current_page', 1)
 
     # Load existing logs if available
     if os.path.exists(log_file_path):
@@ -396,38 +452,30 @@ def update_tag():
     else:
         log_dates = {}
 
-    # Iterate over form data and update the data dict based on shipment numbers
+    # Update logs based on form data
     for shipment_number, new_status in form_data.items():
-        # Get the current status from the existing data
-        current_status = log_dates[shipment_number]['current_status']
+        if shipment_number == 'current_page':
+            continue
 
-        # Log the change only if the status is actually different
-        if current_status != new_status :
-            # Update the data with the new status
-            log_dates[shipment_number]['current_status'] = new_status
-
-            # Get or create the shipment entry in log_dates
-            shipment_log = log_dates.get(shipment_number, {
-                "current_status": current_status or "unknown",
-                "log": []
-            })
-
-            # Update the shipment's log with the new status, current date-time, and user
-            current_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            shipment_log["log"].append([new_status, current_date, current_user])
-            shipment_log["current_status"] = new_status
-
-            # Store the updated log back into log_dates
+        if shipment_number not in log_dates:
+            shipment_log = {
+                "current_status": new_status or "unknown",
+                "log": [[new_status, datetime.now().strftime("%Y-%m-%d %H:%M:%S"), current_user]]
+            }
             log_dates[shipment_number] = shipment_log
+        else:
+            current_status = log_dates[shipment_number]['current_status']
+            if current_status != new_status:
+                log_dates[shipment_number]['current_status'] = new_status
+                current_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                log_dates[shipment_number]["log"].append([new_status, current_date, current_user])
 
-    # Write the updated log_dates to the JSON log file
+    # Write updated logs to the JSON file
     with open(log_file_path, 'w') as log_file:
         json.dump(log_dates, log_file, indent=4)
 
-    
-
-    return redirect(url_for('add_tag_manual'))
-
+    # Redirect to the same page where the user submitted the form
+    return redirect(url_for('add_tag_manual', page=current_page))
 
 
 @app.route('/next_page', methods=['GET'])

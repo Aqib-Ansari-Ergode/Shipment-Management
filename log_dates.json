@@ -1,381 +1,91 @@
 {
-    "C1684629": {
-        "current_status": "PA - Delivered",
-        "log": [
-            [
-                "PA - Delivered",
-                "2024-10-09 13:33:56",
-                "Admin"
-            ],
-            [
-                "PA - Delivered",
-                "2024-10-09 13:35:20",
-                "Admin"
-            ],
-            [
-                "PA - Delivered",
-                "2024-10-09 13:35:33",
-                "Admin"
-            ]
-        ]
-    },
-    "C1687809": {
-        "current_status": "PA - Delivered",
-        "log": [
-            [
-                "PA - Delivered",
-                "2024-10-09 13:33:56",
-                "Admin"
-            ],
-            [
-                "PA - Delivered",
-                "2024-10-09 13:35:20",
-                "Admin"
-            ],
-            [
-                "PA - Delivered",
-                "2024-10-09 13:35:33",
-                "Admin"
-            ]
-        ]
-    },
-    "C1643577": {
-        "current_status": "PA - Delivered",
-        "log": [
-            [
-                "PA - Delivered",
-                "2024-10-09 13:33:56",
-                "Admin"
-            ],
-            [
-                "PA - Delivered",
-                "2024-10-09 13:35:20",
-                "Admin"
-            ],
-            [
-                "PA - Delivered",
-                "2024-10-09 13:35:33",
-                "Admin"
-            ]
-        ]
-    },
-    "C1687990": {
-        "current_status": "SHPWH - Loss",
-        "log": [
-            [
-                "PA - Delivered",
-                "2024-10-09 13:33:56",
-                "Admin"
-            ],
-            [
-                "PA - Delivered",
-                "2024-10-09 13:35:20",
-                "Admin"
-            ],
-            [
-                "PA - Delivered",
-                "2024-10-09 13:35:33",
-                "Admin"
-            ],
-            [
-                "SHPWH - Loss",
-                "2024-10-09 13:36:27",
-                "Admin"
-            ]
-        ]
-    },
-    "C1678706": {
-        "current_status": "PA - Delivered",
-        "log": [
-            [
-                "PA - Delivered",
-                "2024-10-09 13:33:56",
-                "Admin"
-            ],
-            [
-                "PA - Delivered",
-                "2024-10-09 13:35:20",
-                "Admin"
-            ],
-            [
-                "PA - Delivered",
-                "2024-10-09 13:35:33",
-                "Admin"
-            ]
-        ]
-    },
-    "C1687106": {
-        "current_status": "PA - Delivered",
-        "log": [
-            [
-                "PA - Delivered",
-                "2024-10-09 13:33:56",
-                "Admin"
-            ],
-            [
-                "PA - Delivered",
-                "2024-10-09 13:35:20",
-                "Admin"
-            ],
-            [
-                "PA - Delivered",
-                "2024-10-09 13:35:33",
-                "Admin"
-            ]
-        ]
-    },
-    "C1686951": {
-        "current_status": "PA - Delivered",
-        "log": [
-            [
-                "PA - Delivered",
-                "2024-10-09 13:33:56",
-                "Admin"
-            ],
-            [
-                "PA - Delivered",
-                "2024-10-09 13:35:20",
-                "Admin"
-            ],
-            [
-                "PA - Delivered",
-                "2024-10-09 13:35:33",
-                "Admin"
-            ]
-        ]
-    },
-    "C1647384": {
-        "current_status": "PA - Delivered",
-        "log": [
-            [
-                "PA - Delivered",
-                "2024-10-09 13:33:56",
-                "Admin"
-            ],
-            [
-                "PA - Delivered",
-                "2024-10-09 13:35:20",
-                "Admin"
-            ],
-            [
-                "PA - Delivered",
-                "2024-10-09 13:35:33",
-                "Admin"
-            ]
-        ]
-    },
-    "Z285825": {
-        "current_status": "PA - Delivered",
-        "log": [
-            [
-                "PA - Delivered",
-                "2024-10-09 13:33:56",
-                "Admin"
-            ],
-            [
-                "PA - Delivered",
-                "2024-10-09 13:35:20",
-                "Admin"
-            ],
-            [
-                "PA - Delivered",
-                "2024-10-09 13:35:33",
-                "Admin"
-            ]
-        ]
-    },
     "C1654954": {
-        "current_status": "SHPWH - Loss",
+        "current_status": "Delivered",
         "log": [
             [
-                "SHPWH - Returned",
-                "2024-10-09 13:35:20",
-                "Admin"
-            ],
-            [
-                "SHPWH - Loss",
-                "2024-10-09 13:35:33",
-                "Admin"
-            ],
-            [
-                "SHPWH - In Transit",
-                "2024-10-09 13:36:04",
-                "Admin"
-            ],
-            [
-                "PA - In transit",
-                "2024-10-09 13:40:35",
-                "Admin"
-            ],
-            [
-                "SHPWH - Loss",
-                "2024-10-09 13:40:49",
-                "Admin"
+                "Delivered",
+                "2024-10-10 10:47:04",
+                "sql"
             ]
         ]
     },
     "C1649742": {
-        "current_status": "PA - Delivered",
+        "current_status": "Delivered",
         "log": [
             [
-                "PA - Delivered",
-                "2024-10-09 13:35:20",
-                "Admin"
-            ],
-            [
-                "PA - Delivered",
-                "2024-10-09 13:35:33",
-                "Admin"
+                "Delivered",
+                "2024-10-10 10:47:04",
+                "sql"
             ]
         ]
     },
     "C1638763": {
-        "current_status": "PA - Delivered",
+        "current_status": "Delivered",
         "log": [
             [
-                "PA - Delivered",
-                "2024-10-09 13:35:20",
-                "Admin"
-            ],
-            [
-                "PA - Delivered",
-                "2024-10-09 13:35:33",
-                "Admin"
+                "Delivered",
+                "2024-10-10 10:47:04",
+                "sql"
             ]
         ]
     },
     "C1637398": {
-        "current_status": "PA - Delivered",
+        "current_status": "Delivered",
         "log": [
             [
-                "PA - Delivered",
-                "2024-10-09 13:35:20",
-                "Admin"
-            ],
+                "Delivered",
+                "2024-10-10 10:47:04",
+                "sql"
+            ]
+        ]
+    },
+    "C1684629": {
+        "current_status": "Parcel Received and Processing",
+        "log": [
             [
-                "PA - Delivered",
-                "2024-10-09 13:35:33",
-                "Admin"
+                "Parcel Received and Processing",
+                "2024-10-10 10:47:04",
+                "sql"
+            ]
+        ]
+    },
+    "C1687809": {
+        "current_status": "Delivered",
+        "log": [
+            [
+                "Delivered",
+                "2024-10-10 10:47:04",
+                "sql"
+            ]
+        ]
+    },
+    "C1643577": {
+        "current_status": "NA",
+        "log": [
+            [
+                null,
+                "2024-10-10 10:47:04",
+                "sql"
+            ]
+        ]
+    },
+    "C1687990": {
+        "current_status": "In Transit",
+        "log": [
+            [
+                "In Transit",
+                "2024-10-10 10:47:04",
+                "sql"
             ]
         ]
     },
     "Z285637": {
-        "current_status": "PA - Delivered",
+        "current_status": "Delivered",
         "log": [
             [
-                "PA - Delivered",
-                "2024-10-09 13:35:20",
-                "Admin"
-            ],
-            [
-                "PA - Delivered",
-                "2024-10-09 13:35:33",
-                "Admin"
-            ]
-        ]
-    },
-    "C1643505": {
-        "current_status": "PA - Delivered",
-        "log": [
-            [
-                "PA - Delivered",
-                "2024-10-09 13:35:20",
-                "Admin"
-            ],
-            [
-                "PA - Delivered",
-                "2024-10-09 13:35:33",
-                "Admin"
-            ]
-        ]
-    },
-    "C1663573": {
-        "current_status": "PA - Delivered",
-        "log": [
-            [
-                "PA - Delivered",
-                "2024-10-09 13:35:20",
-                "Admin"
-            ],
-            [
-                "PA - Delivered",
-                "2024-10-09 13:35:33",
-                "Admin"
-            ]
-        ]
-    },
-    "C1644941": {
-        "current_status": "PA - Delivered",
-        "log": [
-            [
-                "PA - Delivered",
-                "2024-10-09 13:35:20",
-                "Admin"
-            ],
-            [
-                "PA - Delivered",
-                "2024-10-09 13:35:33",
-                "Admin"
-            ]
-        ]
-    },
-    "C1641925": {
-        "current_status": "PA - Delivered",
-        "log": [
-            [
-                "PA - Delivered",
-                "2024-10-09 13:35:20",
-                "Admin"
-            ],
-            [
-                "PA - Delivered",
-                "2024-10-09 13:35:33",
-                "Admin"
-            ]
-        ]
-    },
-    "C1642329": {
-        "current_status": "PA - Delivered",
-        "log": [
-            [
-                "PA - Delivered",
-                "2024-10-09 13:35:20",
-                "Admin"
-            ],
-            [
-                "PA - Delivered",
-                "2024-10-09 13:35:33",
-                "Admin"
-            ]
-        ]
-    },
-    "C1643825": {
-        "current_status": "PA - Delivered",
-        "log": [
-            [
-                "PA - Delivered",
-                "2024-10-09 13:35:20",
-                "Admin"
-            ],
-            [
-                "PA - Delivered",
-                "2024-10-09 13:35:33",
-                "Admin"
-            ]
-        ]
-    },
-    "C1643349": {
-        "current_status": "PA - Delivered",
-        "log": [
-            [
-                "PA - Delivered",
-                "2024-10-09 13:35:20",
-                "Admin"
-            ],
-            [
-                "PA - Delivered",
-                "2024-10-09 13:35:33",
-                "Admin"
+                "Delivered",
+                "2024-10-10 10:47:05",
+                "sql"
             ]
         ]
     }

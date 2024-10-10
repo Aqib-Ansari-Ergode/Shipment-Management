@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ergode Form and Table</title>
+    <title>Manage Tags</title>
     <!-- <link rel="stylesheet" href="static/add_tag.css"> -->
     <link rel="stylesheet" href="static/updated_add_tag.css">
      
@@ -226,6 +226,7 @@
         </div>
         
         <form action="/update_tag" id="dropdown-form" method="post">
+            <input type="hidden" name="current_page" value="{{ current_page }}">
             <table>
             <thead style="font-size: 14px;">
                 <tr>
