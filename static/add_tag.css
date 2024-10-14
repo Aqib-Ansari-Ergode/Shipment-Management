@@ -1,238 +1,84 @@
-Resetting default browser styles
-* {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Header styling */
-header {
-    background-color: #1a73e8;
-    padding: 2rem;
-    text-align: center;
-    color: white;
-    height: 10%;
-}
-
-header h1 {
-    font-size: 2rem;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-/* Form styling */
-.form-container {
-    margin: 2rem auto;
-    width: 97%;
-    padding: 1rem;
-    margin: 1.5%;
-    background-color: #bbddff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
+/* General Styles */
 .form-container form {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;  /* Add some space between dropdowns and the button */
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas:
+        "start1 start1 date1 date2"
+        "drop1 drop2 row2 button1"
+        "form_bulk  pagination pagination pagination";
 }
 
-/* .form-container label {
-    /* display: none; Hide labels to match the look of the image */
-/* } */
-
-.form-container select, 
-.form-container button {
-    flex: 1;
-    padding: 0.5rem;
-    margin: 0.5rem 0;
+/* Adjust alignment and spacing for inputs */
+.form-container input,
+.form-container select {
+    padding: 0.75rem;
+    border-radius: 5px;
     border: 1px solid #ced4da;
+    font-size: 1rem;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Button consistency */
+.form-container button {
+    padding: 0.7rem 1.5rem;
     border-radius: 5px;
     font-size: 1rem;
-    max-width: 200px; /* Optional: limit dropdown width */
-}
-
-.form-container button {
-    background-color: #70aeff;
-    color: rgb(59, 59, 59);
-    cursor: pointer;
-    font:bolder;
-    max-width: 100px;
-    transition: background-color 0.4s ease;
+    margin-right: 10px;
+    width: 130px;
+    background-color: #007bff;
+    color: white;
 }
 
 .form-container button:hover {
-    background-color: #1eff83;
-    transform: scale(1.05); /* Adjust size of the button */
+    background-color: #0056b3;
 }
 
-/* Table styling */
-.table-container {
-    margin: 1rem auto; /* Reduce the margin for the container */
-    width: 100%; /* Ensure it takes the full width of the page */
-    overflow-x: auto;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 12px; /* Reduce font size for better fit */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduce shadow for better fit */
-}
-
-table th, table td {
-    /* Reduce padding for better row fit */
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-    
-}
-
-table th {
-    padding: 0.5rem;
-    background-color: #75b1ff;
-    color: rgb(63, 63, 63);
-}
-
-table td {
-    padding: 0.2rem;
-    background-color: #f8f9fa;
-    border-right: 1px solid #ddd;
-}
-
-table select {
-    padding: 0.2rem; /* Reduce padding for select inputs */
-    border-radius: 5px;
-    border: 1px solid #ced4da;
-}
-
-/* Hover effects */
-table tr:hover {
-    background-color: #f1f3f4;
-}
-
-.date {
-    display: flex;
-    text-align: center;
-    width: max-content;
-    margin-left: 30%;
-}
-.date_label {
-    font-size: small;
-}
-
-.filter-input {
-    width: 35px;
-    height: auto;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #CCC;
-    background-color: #FFF;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    font-size: 16px;
-}
-
+/* Custom Select Dropdown */
 .custom-select-wrapper {
-    position: relative;
-    display: inline-block;
-    width: 200px;
-}
-
-.custom-select {
-    position: relative;
-    background-color: #dadada;
-    border: 1px solid #dadada;
-    cursor: pointer;
-    border-radius: 10px;
+    width: 100%;
 }
 
 .custom-select-trigger {
-    padding: 10px;
-    background-color: #ffffff;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    height: 35px; /* Fixed height */
-    line-height: 20px; /* Ensure text stays centered */
-    display: flex;
-    align-items: center;
-    border-radius: 5px; /* Center text vertically */
-}
-
-.custom-options {
-    padding: 2px;
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
+    padding: 0.75rem;
     background-color: #fff;
-    border: 1px solid #ccc;
-    max-height: 200px;
-    overflow-y: auto;
-    z-index: 999;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
 }
 
-.custom-options label {
-    display: block;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.custom-select.open .custom-options {
-    display: block;
-}
-
-
-.pagination {
+/* Upload Button Alignment */
+.item-upload {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
 }
 
-.pagination-list {
-    list-style-type: none;
-    display: flex;
-    padding: 0;
-    margin: 0;
+.item-upload button {
+    margin-left: 1rem;
+    padding: 0.6rem 1.2rem;
+    background-color: #28a745;
+    color: white;
 }
 
-.pagination-item {
-    margin: 0 5px;
+.item-upload button:hover {
+    background-color: #218838;
 }
 
+/* Pagination */
 .pagination-item a {
-    display: inline-block;
-    padding: 8px 12px;
-    color: #000;
-    text-decoration: none;
-    border: 1px solid #ddd;
-}
-
-.pagination-item a:hover {
-    background-color: #ddd;
+    padding: 8px 16px;
+    color: #333;
+    border-radius: 5px;
 }
 
 .pagination-item.active a {
-    background-color: green;
+    background-color: #28a745;
     color: white;
-    border: 1px solid green;
 }
 
-.pagination-item a.disabled {
-    pointer-events: none;
-    color: #ccc;
-    border: 1px solid #ccc;
-}
-
-.pagination-item a.disabled:hover {
-    background-color: transparent;
-}
-
-.form-select option {
-    background-color: white; /* Menu background color */
-    color: black; /* Menu text color */
+.pagination-item.disabled a {
+    cursor: not-allowed;
+    opacity: 0.6;
 }
 

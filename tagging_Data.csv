@@ -1,0 +1,91 @@
+shipment_no,log,current_status
+C1654954,"[['SHPFW - Delivered', '2024-10-10 12:26:04', 'sql'], ['SHPFW - Aqib_test_new', '2024-10-11 14:02:04', 'Bulk (file)'], ['SHPFW - Returned', '2024-10-11 14:24:30', 'Admin'], ['SHPFW - Loss', '2024-10-11 14:24:55', 'Admin']]",SHPFW - Loss
+C1649742,"[['SHPFW - Delivered', '2024-10-10 12:26:04', 'sql'], ['SHPFW - new_status', '2024-10-11 14:02:04', 'Bulk (file)'], ['PA - In Transit', '2024-10-11 14:24:30', 'Admin']]",PA - In Transit
+C1638763,"[['SHPFW - Delivered', '2024-10-10 12:26:04', 'sql']]",SHPFW - Delivered
+C1637398,"[['SHPFW - Delivered', '2024-10-10 12:26:04', 'sql'], ['SHPFW - new_status', '2024-10-11 14:02:04', 'Bulk (file)'], ['PA - In Transit', '2024-10-11 14:24:30', 'Admin']]",PA - In Transit
+C1684629,"[['SHPFW - In Transit', '2024-10-10 12:26:04', 'sql'], ['SHPFW - Aqib_test_new', '2024-10-11 14:02:04', 'Bulk (file)'], ['PA - In Transit', '2024-10-11 14:24:30', 'Admin']]",PA - In Transit
+C1687809,"[['SHPFW - Delivered', '2024-10-10 12:26:04', 'sql']]",SHPFW - Delivered
+C1643577,"[['NA', 'NA', 'NA']]",PA - In Transit
+C1687990,"[['SHPFW - In Transit', '2024-10-10 12:26:04', 'sql']]",SHPFW - In Transit
+Z285637,"[['SHPFW - Delivered', '2024-10-10 12:26:04', 'sql']]",SHPFW - Delivered
+C1678706,"[['NA', 'NA', 'NA']]",PA - In Transit
+C1687106,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql'], ['SHPFW - Aqib_test_new', '2024-10-11 14:02:04', 'Bulk (file)'], ['PA - In Transit', '2024-10-11 14:24:30', 'Admin']]",PA - In Transit
+C1686951,"[['NA', 'NA', 'NA']]",PA - In Transit
+C1643505,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1663573,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1644941,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1641925,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1642329,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1643825,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1647384,"[['SHPFW - In Transit', '2024-10-10 14:25:11', 'sql']]",SHPFW - In Transit
+C1643349,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+Z285825,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1635342,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1656586,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1689276,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1644366,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1684905,"[['SHPFW - In Transit', '2024-10-10 14:25:11', 'sql']]",SHPFW - In Transit
+C1647097,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1689854,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1652823,"[['NA', 'NA', 'NA']]",PA - In Transit
+C1686542,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1688371,"[['SHPFW - In Transit', '2024-10-10 14:25:11', 'sql']]",SHPFW - In Transit
+Z276470,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1644753,"[['NA', 'NA', 'NA']]",PA - In Transit
+C1638211,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1650025,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1634810,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1676638,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1686082,"[['NA', 'NA', 'NA']]",PA - In Transit
+C1688852,"[['SHPFW - In Transit', '2024-10-10 14:25:11', 'sql']]",SHPFW - In Transit
+C1684080,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1651412,"[['NA', 'NA', 'NA']]",PA - In Transit
+C1650272,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1687976,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1686721,"[['PA - In Transit', '2024-10-10 14:25:11', 'sql']]",PA - In Transit
+C1647436,"[['SHPFW - In Transit', '2024-10-10 14:25:11', 'sql']]",SHPFW - In Transit
+C1653358,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1648094,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+Z284753,"[['NA', 'NA', 'NA']]",PA - In Transit
+C1640219,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1636559,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1633037,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1641825,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1634064,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1702975,"[['NA', 'NA', 'NA']]",PA - In Transit
+C1650538,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1651270,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1650453,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1650452,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1685974,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1635629,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1685414,"[['SHPFW - In Transit', '2024-10-10 14:25:11', 'sql']]",SHPFW - In Transit
+C1708409,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1692245,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1688687,"[['SHPFW - In Transit', '2024-10-10 14:25:11', 'sql']]",SHPFW - In Transit
+C1635822,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1662167,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1688253,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1683453,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1691488,"[['NA', 'NA', 'NA']]",PA - In Transit
+C1642995,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1690963,"[['NA', 'NA', 'NA']]",PA - In Transit
+C1767093,"[['PA - In Transit', '2024-10-10 14:25:11', 'sql']]",PA - In Transit
+C1683404,"[['SHPFW - In Transit', '2024-10-10 14:25:11', 'sql']]",SHPFW - In Transit
+C1649728,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1663692,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1647692,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1635066,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1652233,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1686190,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1656265,"[['SHPFW - Delivered', '2024-10-10 14:25:11', 'sql']]",SHPFW - Delivered
+C1739452,"[['SHPFW - In Transit', '2024-10-11 16:02:56', 'Admin']]",SHPFW - In Transit
+C1739463,"[['SHPFW - In Transit', '2024-10-11 16:02:56', 'Admin']]",SHPFW - In Transit
+C1739466,"[['PA - In Transit', '2024-10-11 16:02:56', 'Admin']]",PA - In Transit
+C1739467,"[['PA - In Transit', '2024-10-11 16:02:56', 'Admin']]",PA - In Transit
+C1739482,"[['PA - Not Delivered', '2024-10-11 16:02:56', 'Admin']]",PA - Not Delivered
+N1607901,"[['PA - In Process', '2024-10-11 16:02:56', 'Admin']]",PA - In Process
+N1607908,"[['PA - Not Found', '2024-10-11 16:02:56', 'Admin']]",PA - Not Found
+C1739484,"[['SHPFW - Loss', '2024-10-11 16:02:56', 'Admin']]",SHPFW - Loss
+N1607911,"[['PA - In Transit', '2024-10-11 16:02:56', 'Admin']]",PA - In Transit
+N1607913,"[['SHPFW - Loss', '2024-10-11 16:02:56', 'Admin']]",SHPFW - Loss

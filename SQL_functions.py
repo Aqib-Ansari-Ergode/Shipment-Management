@@ -17,9 +17,9 @@ def create_connection(host_name, user_name, user_password, db_name):
             user=user_name,
             password=user_password,
             database=db_name,
-            # pool_name='mypool',
-            # pool_size=30,  # Adjust this based on your application's concurrency
-            # autocommit=True,
+            pool_name='mypool',
+            pool_size=3,  # Adjust this based on your application's concurrency
+            autocommit=True,
         )
 
             if connection.is_connected():
@@ -221,7 +221,7 @@ def get_data(start=False, end=False, venue=False, carrier=False, status=False,sh
 
     # select_employees_query += "LIMIT 5;"
     
-    data = fetch_query_results(query=select_employees_query+''' and om.ship_country NOT IN ('USA' , 'United States',  'usa','U.S.A.','UNITED STATES','USA','US') order by od.internal_order_id desc limit 10  ''')  # Use your own DB query function
+    data = fetch_query_results(query=select_employees_query+''' and om.ship_country NOT IN ('USA' , 'United States',  'usa','U.S.A.','UNITED STATES','USA','US') order by od.internal_order_id desc limit 100  ''')  # Use your own DB query function
     print(select_employees_query)
     # print(data)
     return data
@@ -251,6 +251,175 @@ def get_carriers():
             carrier_list.append(j)
     # print(venues_list)
     return carrier_list
+"""  otd.added_date AS added_date,
+  
+  od.venue AS Venue,
+  od.action AS Action,
+  od.status AS Status,
+  om.ship_zip AS Zip_Code,
+  om.ship_city AS Buyer_City,
+  om.ship_country AS Buyer_Country,
+  om.purchase_date AS Order_date,
+  om.order_id AS Order_ID,
+  od.internal_order_id AS Internal_Order_ID,"""
+
+def get_Data2(start=False, end=False, venue=False, carrier=False, status=False,shipment_numbers=False,shipment_number=False):
+    
+    select_employees_query = '''SELECT
+    od.shipment_no AS Shipment_No,
+    DATE(od.promised_delivery_date) AS Promised_Delivery_date,
+    od.venue AS Venue,
+    CONCAT( om.ship_city, ', ' , om.ship_state, ' ,',  om.ship_zip, ', ' , om.ship_country ) as Address,
+    od.status AS Status,
+    DATE(om.purchase_date) AS Order_date,
+    DATE(otd.added_date) AS added_date,
+    om.order_id AS Order_ID,
+    od.internal_order_id AS Internal_Order_ID,
+
+
+  GROUP_CONCAT(otd.tracking_id ORDER BY otd.order_detail_id ASC SEPARATOR ', ') AS tracking_ids,
+  GROUP_CONCAT(otd.carrier_name ORDER BY otd.order_detail_id ASC SEPARATOR ', ') AS carrier_names,
+
+
+  SUBSTRING_INDEX(
+    GROUP_CONCAT(
+      CASE WHEN otd.is_auxhold_tracking = 1
+           THEN otd.current_status
+           ELSE NULL
+      END ORDER BY otd.order_detail_id ASC SEPARATOR ', '
+    ), ', ', 1
+  ) AS Auxhold_tracking_status,
+
+
+  SUBSTRING_INDEX(
+    GROUP_CONCAT(
+      CASE WHEN otd.is_auxhold_tracking = 0
+           THEN otd.current_status
+           ELSE NULL
+      END ORDER BY otd.order_detail_id ASC SEPARATOR ', '
+    ), ', ', 1
+  ) AS Customer_tracking_status,
+
+
+  IFNULL(
+    SUBSTRING_INDEX(
+      GROUP_CONCAT(
+        CASE WHEN otd.is_auxhold_tracking = 1
+             THEN otd.status_update_date
+             ELSE NULL
+        END ORDER BY otd.order_detail_id ASC SEPARATOR ', '
+      ), ', ', 1
+    ), 'No Update'
+  ) AS Auxhold_tracking_Last_update,
+
+  IFNULL(
+    SUBSTRING_INDEX(
+      GROUP_CONCAT(
+        CASE WHEN otd.is_auxhold_tracking = 0
+             THEN otd.status_update_date
+             ELSE NULL
+        END ORDER BY otd.order_detail_id ASC SEPARATOR ', '
+      ), ', ', 1
+    ), 'No Update'
+  ) AS Customer_tracking_last_update
+
+FROM
+  order_tracking_details as otd
+LEFT JOIN order_details as od ON otd.order_detail_id = od.order_detail_id
+LEFT JOIN order_mast as om ON od.order_mast_id = om.order_mast_id
+
+
+ 
+
+        '''
+#     WHERE
+#   om.purchase_date >  '2024-09-30'
+    where1 = 0
+    if shipment_number:
+        select_employees_query += f" and shipment_no = '{shipment_number}'  GROUP BY otd.order_detail_id, om.order_id   order by om.purchase_date desc limit 1000 ; "
+        data = fetch_query_results(query=select_employees_query)
+        return data
+        
+    # Date filtering
+    if start and end :
+        if where1==0:
+            select_employees_query += "where "
+            where1 = 1
+            select_employees_query += f"  om.purchase_date BETWEEN '{start}' AND '{end}' "
+        else:
+            select_employees_query += " and "
+            select_employees_query += f"  om.purchase_date BETWEEN '{start}' AND '{end}' "
+
+    # Venue filtering
+    if venue:
+        if where1 == 0:
+            select_employees_query += " where"
+            select_employees_query += f"  od.venue = '{venue}' "
+            where1 = 1
+        else:
+            select_employees_query+=' and '
+            select_employees_query+=f" od.venue = '{venue}'"
+
+    # Carrier filtering
+    if carrier:
+        if where1 == 0:
+            select_employees_query += ' where '
+            select_employees_query += f"  otd.carrier_name = '{carrier}' "
+            where1 = 1
+        else:
+            select_employees_query += ' and '
+            select_employees_query += f"  otd.carrier_name = '{carrier}' "
+
+    # Tags filtering
+    if shipment_numbers:
+        placeholders = ""
+        for i in range(len(shipment_numbers)):
+                if i >= (len(shipment_numbers)-1):
+                    placeholders += f"'{shipment_numbers[i]}'  "
+                else:
+                    placeholders += f"'{shipment_numbers[i]}' , "
+        if where1 == 0:
+            
+
+            select_employees_query += " where "
+            select_employees_query += f" od.shipment_no IN ({placeholders})"
+            where1 = 1
+        else:
+            select_employees_query += ' and '
+            select_employees_query += f"  od.shipment_no IN ({placeholders})"
+
+    if shipment_number:
+        if where1 == 0:
+            select_employees_query += " where "
+            select_employees_query += f" od.shipment_no = '{shipment_number}'"
+            where1 = 1
+        else:
+            select_employees_query += ' and '
+            select_employees_query += f"  od.shipment_no = '{shipment_number}'"
+
+    if status:
+        if where1 == 0:
+            select_employees_query += " where "
+            select_employees_query += f" od.status = '{status}'"
+            where1 = 1
+        else:
+            select_employees_query += ' and '
+            select_employees_query += f" od.status = '{status}'"
+
+    # select_employees_query += "LIMIT 5;"
+    
+    data = fetch_query_results(query=select_employees_query+''' 
+                               
+                               GROUP BY
+                                otd.order_detail_id, om.order_id  
+                               order by om.purchase_date desc
+                               limit 1000
+                                ;  ''')  # Use your own DB query function
+    print(select_employees_query)
+    #  om.ship_country NOT IN ('USA' , 'United States',  'usa','U.S.A.','UNITED STATES','USA','US')
+    # print(data)
+    
+    return data
 
 # print(get_carriers())
 # Close the connection
@@ -262,12 +431,14 @@ def close_Mysql_con():
 # close_Mysql_con()
 
 if __name__=="__main__":
-    deli = get_delivered(start='2024-08-01',end='2024-09-30',venue='GM-Spain',carrier='USPS',columns=True)
-    data = []
-    for i in deli:
-        arr = []
-        for j in i:
-            arr.append(j)
-        data.append(arr)
-    df = pd.DataFrame(columns=['Internal Order ID','SKU','Venue','Order ID','Purchase Date','Current Status','Status Update Date','Scheduled Delivery Date'],data=data)
-    df.to_csv('test_USPS.csv',index=False)
+    # deli = get_delivered(start='2024-08-01',end='2024-09-30',venue='GM-Spain',carrier='USPS',columns=True)
+    # data = []
+    # for i in deli:
+    #     arr = []
+    #     for j in i:
+    #         arr.append(j)
+    #     data.append(arr)
+    # df = pd.DataFrame(columns=['Internal Order ID','SKU','Venue','Order ID','Purchase Date','Current Status','Status Update Date','Scheduled Delivery Date'],data=data)
+    # df.to_csv('test_USPS.csv',index=False)
+    data = get_Data2(shipment_number='C1770314')
+    print(data)

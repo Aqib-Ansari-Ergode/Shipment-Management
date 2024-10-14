@@ -3,112 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom Multi-Select Dropdown</title>
-<style>
-.custom-select-wrapper {
-    position: relative;
-    display: inline-block;
-    width: 200px;
-}
-
-.custom-select {
-    position: relative;
-    background-color: #ffffff;
-    border: 1px solid #ffffff;
-    cursor: pointer;
-    border-radius: 10px;
-}
-
-.custom-select-trigger {
-    padding: 10px;
-    background-color: #d4d4d4;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    height: 20px; /* Fixed height */
-    line-height: 20px; /* Ensure text stays centered */
-    display: flex;
-    align-items: center;
-    border-radius: 5px; /* Center text vertically */
-}
-
-.custom-options {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    max-height: 200px;
-    overflow-y: auto;
-    z-index: 999;
-}
-
-.custom-options label {
-    display: block;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.custom-select.open .custom-options {
-    display: block;
-}
-
-
-</style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Upload File</title>
 </head>
 <body>
-    <h2>Select Multiple Items</h2>
-    <form>
-        <div class="custom-select-wrapper">
-            <div class="custom-select">
-                <div class="custom-select-trigger">Select options</div>
-                <div class="custom-options">
-                    <label>
-                        <input type="checkbox" value="Option 1"> Option 1
-                    </label>
-                    <label>
-                        <input type="checkbox" value="Option 2"> Option 2
-                    </label>
-                    <label>
-                        <input type="checkbox" value="Option 3"> Option 3
-                    </label>
-                    <label>
-                        <input type="checkbox" value="Option 4"> Option 4
-                    </label>
-                </div>
-            </div>
-        </div>
-        
-        
-        <button type="submit">Submit</button>
+    <h1>Upload a File</h1>
+    <form action="{{ url_for('handle_upload') }}" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".csv, .xlsx, .xls, .tsv" required>
+        <button type="submit">Upload</button>
     </form>
-<script>
-   document.querySelector('.custom-select-trigger').addEventListener('click', function() {
-    document.querySelector('.custom-select').classList.toggle('open');
-});
-
-document.querySelectorAll('.custom-options label').forEach(function(option) {
-    option.addEventListener('click', function(event) {
-        event.stopPropagation(); // Prevent dropdown from closing
-        let selectedOptions = [];
-        document.querySelectorAll('.custom-options input:checked').forEach(function(checkbox) {
-            selectedOptions.push(checkbox.value);
-        });
-        
-        // Join selected options, show them as a string, but restrict height
-        let displayText = selectedOptions.join(', ');
-        
-        if (selectedOptions.length === 0) {
-            document.querySelector('.custom-select-trigger').textContent = 'Select options';
-        } else {
-            document.querySelector('.custom-select-trigger').textContent = displayText;
-        }
-    });
-});
-
-</script>
-    
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
 </body>
 </html>

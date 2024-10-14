@@ -131,7 +131,7 @@
                                         {{ tags }}
                                     {% endfor %}
                                 {% else %}
-                                    Select options
+                                    Select Tags
                                 {% endif %}
                             </div>
                             <div class="custom-options">
@@ -184,51 +184,90 @@
                 <div class="item7">
                     <button type="submit"><b>Submit</b></button>
                     <a href="{{ url_for('download_file_taged') }}"  class="btn btn-success download-btn" {% if downl %}style="text-decoration: none;text-align: center;height: 40px;"{% else %} style="text-decoration: none;pointer-events: none; cursor: not-allowed; text-align: center;height: 40px;" {% endif %}>Download 
-                        <img src="/static/download.png" alt="Download" width="18px" height="18px">
+                        
                     </a>
                 </div>
             </form>
+            {% if data %}
+        
+         
+
+        <form action="{{ url_for('handle_upload') }}" method="post" enctype="multipart/form-data" style="width: 100%;display: flex; margin-top: 10px;" >
+            <div class="item-upload" style="width: 100%;">
+                <label for="file-upload" class="file-upload-label">Upload Tagging File:</label>
+                <input type="file" id="file-upload" name="file" class="file-upload-input" accept=".csv, .xlsx, .xls, .tsv" required style="width: 37%;">
+                <button type="submit" class="btn btn-success download-btn"  style="width: 80px; margin-left: 5px; margin-bottom: 0;margin-top: 0%; padding: 10px; background-color: #28a745; border: 0px ; border-radius: 7px;color: #ffffff; ">Upload</button>
+            </div>
+            <div class="pagination" style="float: right; margin: 10px;">
+                <ul class="pagination-list">
+                    <!-- Previous Page Button -->
+                    <li class="pagination-item {% if current_page == 1 %}disabled{% endif %}">
+                        <a href="{% if current_page > 1 %}{{ url_for('add_tag_manual', page=current_page - 1) }}{% else %}#{% endif %}"
+                           class="{% if current_page == 1 %}disabled{% endif %}">
+                            &laquo;
+                        </a>
+                    </li>
+            
+                    <!-- Page Numbers -->
+                    {% if total_pages > 10 %}
+        {% set start_page = current_page - 3 %}
+        {% set end_page = current_page + 3 %}
+        
+        {% if start_page <= 0 %}
+            {% set start_page = 1 %}
+        {% endif %}
+        
+        {% if end_page > total_pages %}
+            {% set end_page = total_pages %}
+        {% endif %}
+        
+        {% for page in range(start_page, end_page + 1) %}
+            <li class="pagination-item {% if page == current_page %}active{% endif %}">
+                <a href="{{ url_for('add_tag_manual', page=page) }}">{{ page }}</a>
+            </li>
+        {% endfor %}
+    {% else %}
+        {% for page in range(1, total_pages + 1) %}
+            <li class="pagination-item {% if page == current_page %}active{% endif %}">
+                <a href="{{ url_for('add_tag_manual', page=page) }}">{{ page }}</a>
+            </li>
+        {% endfor %}
+    {% endif %}
+    
+                    
+                    <!-- Next Page Button -->
+                    <li class="pagination-item {% if current_page == total_pages %}disabled{% endif %}">
+                        <a href="{% if current_page < total_pages %}{{ url_for('add_tag_manual', page=current_page + 1) }}{% else %}#{% endif %}"
+                           class="{% if current_page == total_pages %}disabled{% endif %}">
+                            &raquo;
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            </form>
+
+      
+        
+            
         </div>
+            {% endif %}
+        
+        
     </div>
     
 
     <!-- Table Section -->
 
     {% if data %}
+    
     <div class="table-container" style="width: 97%; border-radius: 5px;">
+        <div class="update-msg"></div>
         
-        
-        <div class="pagination" style="float: right; margin: 10px;">
-            <ul class="pagination-list">
-                <!-- Previous Page Button -->
-                <li class="pagination-item {% if current_page == 1 %}disabled{% endif %}">
-                    <a href="{% if current_page > 1 %}{{ url_for('add_tag_manual', page=current_page - 1) }}{% else %}#{% endif %}"
-                       class="{% if current_page == 1 %}disabled{% endif %}">
-                        &laquo;
-                    </a>
-                </li>
-        
-                <!-- Page Numbers -->
-                {% for page in range(1, total_pages + 1) %}
-                    <li class="pagination-item {% if page == current_page %}active{% endif %}">
-                        <a href="{{ url_for('add_tag_manual', page=page) }}">{{ page }}</a>
-                    </li>
-                {% endfor %}
-        
-                <!-- Next Page Button -->
-                <li class="pagination-item {% if current_page == total_pages %}disabled{% endif %}">
-                    <a href="{% if current_page < total_pages %}{{ url_for('add_tag_manual', page=current_page + 1) }}{% else %}#{% endif %}"
-                       class="{% if current_page == total_pages %}disabled{% endif %}">
-                        &raquo;
-                    </a>
-                </li>
-            </ul>
-        </div>
         
         <form action="/update_tag" id="dropdown-form" method="post">
             <input type="hidden" name="current_page" value="{{ current_page }}">
             <table>
-            <thead style="font-size: 14px;">
+            <thead style="font-size: 16px;">
                 <tr>
                     {% for i in columns %}
                     <th>{{ i }}</th>
@@ -240,40 +279,55 @@
                 {% for row in data %}
                 <tr>
                     <td>{{ row[0] if row[0] is not none else '  --'}}</td> <!-- Shipment Number -->
-                    <td>{{ row[1] if row[1] is not none else '  --'}}</td> <!-- Internal Order ID -->
-                    <td>{{ row[2] if row[2] is not none else '  --'}}</td> <!-- SKU -->
-                    <td>{{ row[3] if row[3] is not none else '  --'}}</td> <!-- Venue -->
-                    <td>{{ row[4] if row[4] is not none else '  --'}}</td> <!-- Order ID -->
-                    <td>{{ row[5] if row[5] is not none else '  --'}}</td> <!-- Purchase Date -->
-                    
-                    <td>{{ row[6] if row[6] is not none else '  --'}}</td> <!-- Current Status -->
+                    <td>{{ row[1] if row[1] is not none else '  --'}}</td> <!-- pdd -->
+                    <td>{{ row[2] if row[2] is not none else '  --'}}</td> <!-- Venue -->
+                    <td>{{ row[3] if row[3] is not none else '  --'}}</td> <!-- Address -->
+                    <td>{{ row[4] if row[4] is not none else '  --'}}</td> <!-- Status -->
                     <td>
-                        {% if 'SHPFW' in row[6] %}
-                            SHPWH
-                        {% elif 'PA' in row[6] %}
+                        {% if 'SHPFW' in [row[4]] %}
+                            SHPFW
+                        {% elif 'PA' in [row[4]] %}
                             PA
                         {% else %}
                             Not Processed
                         {% endif %}
                     </td>
+                    <td>{{ row[5] if row[5] is not none else '  --'}}</td> <!-- Purchase Date -->
+                    
+                    <td>{{ row[6] if row[6] is not none else '  --'}}</td> <!-- Current Status -->
+                   
                     <td>{{ row[7] if row[7] is not none else '  --'}}</td> <!-- Status Update Date -->
-                    <td>{{ row[8] if row[8] is not none else '  --'}}</td> <!-- Scheduled Delivery Date -->
+                    <td >{{ row[8] if row[8] is not none else '  --'}}</td> <!-- Scheduled Delivery Date -->
                     <td>{{ row[9] if row[9] is not none else '  --'}}</td> <!-- Scheduled Delivery Date -->
+                    <td>{{ row[10] if row[10] is not none else '  --'}}</td> <!-- Status Update Date -->
+                    <td>{{ row[11] if row[11] is not none else '  --'}}</td> <!-- Scheduled Delivery Date -->
+                    <td>{{ row[12] if row[12] is not none else '  --'}}</td> <!-- Scheduled Delivery Date -->
+                    <td>{{ row[13] if row[13] is not none else '  --'}}</td> <!-- Status Update Date -->
+                    <td>{{ row[14] if row[14] is not none else '  --'}}</td><!-- Scheduled Delivery Date-->
+                    <!-- <td>{{ row[15] if row[15] is not none else '  --'}}</td> Scheduled Delivery Date -->
+                    <!-- <td>{{ row[16] if row[16] is not none else '  --'}}</td> Scheduled Delivery Date -->
                     <td>
-                        <select name="{{ row[0] }}" class="form-select" {% if shipment_data.get(row[0]) == "SHPWH - Loss" %}    style="background-color: rgb(255, 42, 42);color: rgb(36, 36, 36);"{% endif %} {% if shipment_data.get(row[0]) == "SHPWH - Delivered" %}    style="background-color: rgb(0, 255, 8);color: rgb(36, 36, 36);"{% endif %}>
+                        <select name="{{ row[0] }}" 
+                        class="form-select" 
+                        {% if shipment_data.get(row[0]) == "PA - In Process" %}selected style="background-color: rgb(248, 255, 100);color: rgb(36, 36, 36);"{% endif %} 
+                        {% if shipment_data.get(row[0]) == "PA - In Transit" %}selected style="background-color: rgb(196, 196, 196);color: rgb(36, 36, 36);"{% endif %} 
+                        {% if shipment_data.get(row[0]) == "SHPFW - Loss" %}    style="background-color: rgb(255, 42, 42);color: rgb(36, 36, 36);"{% endif %} 
+                        {% if shipment_data.get(row[0]) == "SHPFW - Delivered" %}    style="background-color: rgb(0, 255, 8);color: rgb(36, 36, 36);"{% endif %}
+                        >
                            
-                            <option value="PA - Delivered" {% if shipment_data.get(row[0]) == "PA - Delivered" %}selected{% endif %}>PA - Delivered</option>
-                            <option value="PA - In transit" {% if shipment_data.get(row[0]) == "PA - In transit" %}selected{% endif %}>PA - In transit</option>
+                            <!-- <option value="PA - Delivered" {% if shipment_data.get(row[0]) == "Delivered" %}selected{% endif %}>PA - Delivered</option> -->
+                            <option value="PA - In Transit" {% if shipment_data.get(row[0]) == "PA - In Transit" %}selected {% if shipment_data.get(row[0]) == "PA - In Transit" %}selected style="background-color: rgb(196, 196, 196);color: rgb(36, 36, 36);"{% endif %} 
+                            {% endif %}>PA - In Transit</option>
                             <option value="PA - Not Delivered" {% if shipment_data.get(row[0]) == "PA - Not Delivered" %}selected{% endif %}>PA - Not Delivered</option>
-                            <option value="PA - In Process" {% if shipment_data.get(row[0]) == "PA - In Process" %}selected{% endif %}>PA - In Process</option>
+                            <option value="PA - In Process" {% if shipment_data.get(row[0]) == "PA - In Process" %}selected style="background-color: rgb(248, 255, 100);color: rgb(36, 36, 36);"{% endif %}>PA - In Process</option>
                             <option value="PA - Not Found" {% if shipment_data.get(row[0]) == "PA - Not Found" %}selected{% endif %}>PA - Not Found</option>
                             <option value="PA - Query" {% if shipment_data.get(row[0]) == "PA - Query" %}selected{% endif %}>PA - Query</option>
-                            <option value="SHPWH - Delivered" {% if shipment_data.get(row[0]) == "SHPWH - Delivered" %}selected style="background-color: rgb(0, 255, 8);color: rgb(36, 36, 36);"{% endif %}>SHPWH - Delivered</option>
-                            <option value="SHPWH - Stuck in Transit" {% if shipment_data.get(row[0]) == "SHPWH - Stuck in Transit" %}selected{% endif %}>SHPWH - Stuck in Transit</option>
-                            <option value="SHPWH - In Transit" {% if shipment_data.get(row[0]) == "SHPWH - In Transit" %}selected{% endif %}>SHPWH - In Transit</option>
-                            <option value="SHPWH - Returning" {% if shipment_data.get(row[0]) == "SHPWH - Returning" %}selected{% endif %}>SHPWH - Returning</option>
-                            <option value="SHPWH - Returned" {% if shipment_data.get(row[0]) == "SHPWH - Returned" %}selected{% endif %}>SHPWH - Returned</option>
-                            <option value="SHPWH - Loss" {% if shipment_data.get(row[0]) == "SHPWH - Loss" %}selected style="background-color: rgb(255, 42, 42);color: rgb(36, 36, 36);"{% endif %}>SHPWH - Loss</option>
+                            <option value="SHPFW - Delivered" {% if shipment_data.get(row[0]) == "SHPFW - Delivered" %}selected style="background-color: rgb(0, 255, 8);color: rgb(36, 36, 36);"{% endif %}>SHPFW - Delivered</option>
+                            <option value="SHPFW - Stuck in Transit" {% if shipment_data.get(row[0]) == "SHPFW - Stuck in Transit" %}selected{% endif %}>SHPFW - Stuck in Transit</option>
+                            <option value="SHPFW - In Transit" {% if shipment_data.get(row[0]) == "SHPFW - In Transit" %}selected{% endif %}>SHPFW - In Transit</option>
+                            <option value="SHPFW - Returning" {% if shipment_data.get(row[0]) == "SHPFW - Returning" %}selected{% endif %}>SHPFW - Returning</option>
+                            <option value="SHPFW - Returned" {% if shipment_data.get(row[0]) == "SHPFW - Returned" %}selected{% endif %}>SHPFW - Returned</option>
+                            <option value="SHPFW - Loss" {% if shipment_data.get(row[0]) == "SHPFW - Loss" %}selected style="background-color: rgb(255, 42, 42);color: rgb(36, 36, 36);"{% endif %}>SHPFW - Loss</option>
                         </select><br>
                         <!-- <a href="#" class="openPopup" shipmentnumber="{{row[0]}}" data-log="<div style='color:grey;'><br><br> <ul>Date : {{ row[5] }}</ul> <br><ul>Current Status: {{row[5] }}</ul> <br> <ul>Scheduled Delivery date{{ row[8]}}</ul>" style="text-decoration: none; color: #3758c5;">Show Logs</a> -->
                             <!-- <a href="#" class="openPopup" shipmentnumber="{{row[0]}}" data-log="<div style='color:grey;'>{%for i,j in log_dates.items()%} {% if i == row[0] %} <ul><li>current_status : {{ j.current_status }}</li>br  <li>inprocess : {{ j.log.inprocess}}</li>br <li>Delivered : {{j.log.delivered}}</li></ul> {% endif%} {% endfor %}</div>" style="text-decoration: none; color: #3758c5;">Show Logs</a> -->
@@ -301,7 +355,7 @@
             </tbody>
             
         </table>
-        <button type="submit" style="height: 40px;width: 80px; border-radius: 20px; margin: 2%; float: right; background: #3758c5;border: 0px; color: aliceblue;">Update</button>
+        <button type="submit" style="position: fixed;bottom: 10px;left: 10px; cursor: pointer; height: 40px;width: 80px; border-radius: 20px; margin: 2%; float: right; background: #3758c5;border: 0px; color: aliceblue;">Update</button>
 
     </form>
     <div id="popup" class="popup">
@@ -376,5 +430,17 @@ window.addEventListener('click', function(event) {
 
 
      </script>
+
+     
+
+<script>
+    // Handle form submission using JavaScript
+    document.getElementById('dropdown-form').addEventListener('submit', function(event) {
+        // Write the message before the form submission proceeds
+        document.querySelector('.update-msg').innerText = 'Updated successfully!';
+
+        // Let the form continue submitting
+    });
+</script>
 </body>
 </html>

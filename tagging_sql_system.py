@@ -57,7 +57,7 @@ def Update_sql_tag():
         if current_status_x != last:
                 if type(merged_df.at[i,'log']) == list:
                     # print("2 - \n",merged_df)
-                
+                    
                         merged_df.at[i,'log'].append([current_status_x,datetime.now().strftime("%Y-%m-%d %H:%M:%S"),'sql'])
                         merged_df.at[i,'current_status_y'] = current_status_x
                 
