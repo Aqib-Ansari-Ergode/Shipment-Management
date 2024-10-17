@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Tags</title>
     <!-- <link rel="stylesheet" href="static/add_tag.css"> -->
+    <!-- <link rel="stylesheet" href="static/updated_add_tag.css"> -->
     <link rel="stylesheet" href="static/updated_add_tag.css">
      
 </head>
@@ -195,33 +196,67 @@
         <form action="{{ url_for('handle_upload') }}" method="post" enctype="multipart/form-data" style="width: 100%;display: flex; margin-top: 10px;" >
             <div class="item-upload" style="width: 100%;">
                 <label for="file-upload" class="file-upload-label">Upload Tagging File:</label>
-                <input type="file" id="file-upload" name="file" class="file-upload-input" accept=".csv, .xlsx, .xls, .tsv" required style="width: 37%;">
+                <input type="file" id="file-upload" name="file" class="file-upload-input" accept=".csv, .xlsx, .xls, .tsv" required style="width: 300px;">
                 <button type="submit" class="btn btn-success download-btn"  style="width: 80px; margin-left: 5px; margin-bottom: 0;margin-top: 0%; padding: 10px; background-color: #28a745; border: 0px ; border-radius: 7px;color: #ffffff; ">Upload</button>
             </div>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <div id="alerts" style="display: flex; justify-content: center; align-items: center;">
+              {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert" style=" white-space: nowrap; justify-content: center; align-items: center; padding: 5px 15px;  margin-right: 30px; background-color: #a4b5c9;border-radius: 7px; height: 30px; width: auto; border: 2px solid black; opacity: 0.8;">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
             <div class="pagination" style="float: right; margin: 10px;">
                 <ul class="pagination-list">
                     <!-- Previous Page Button -->
                     <li class="pagination-item {% if current_page == 1 %}disabled{% endif %}">
-                        <a href="{% if current_page > 1 %}{{ url_for('add_tag_manual', page=current_page - 1) }}{% else %}#{% endif %}"
+                        {% if current_page < 1 %}
+                        {% set current_page = 1 %}
+                        <a href="{% if current_page > 1 %}{{ url_for('add_tag_manual', page=current_page - 10) }}{% else %}#{% endif %}"
                            class="{% if current_page == 1 %}disabled{% endif %}">
                             &laquo;
+                        </a>
+                        {% else %}
+                        <a href="{% if current_page > 1 %}{{ url_for('add_tag_manual', page=current_page - 10) }}{% else %}#{% endif %}"
+                            class="{% if current_page == 1 %}disabled{% endif %}">
+                             &laquo;
+                         </a>
+                        {% endif %}
+                    </li>
+                    <li class="pagination-item {% if current_page == 1 %}disabled{% endif %}">
+                        <a href="{% if current_page > 1 %}{{ url_for('add_tag_manual', page=current_page - 1) }}{% else %}#{% endif %}"
+                           class="{% if current_page == 1 %}disabled{% endif %}">
+                           <
                         </a>
                     </li>
             
                     <!-- Page Numbers -->
                     {% if total_pages > 10 %}
-        {% set start_page = current_page - 3 %}
-        {% set end_page = current_page + 3 %}
+        {% set start_page = current_page  - 2%}
+        {% set end_page = current_page + 2 %}
         
         {% if start_page <= 0 %}
             {% set start_page = 1 %}
         {% endif %}
-        
+        {% if current_page < 3 %}
+                    {% if current_page == 2 %}
+                    {% set end_page = current_page + 3 %}
+                    {% else %}
+                    {% set end_page = current_page + 4 %}
+                    {% endif %}
+        {% endif %}
         {% if end_page > total_pages %}
             {% set end_page = total_pages %}
         {% endif %}
         
         {% for page in range(start_page, end_page + 1) %}
+        
             <li class="pagination-item {% if page == current_page %}active{% endif %}">
                 <a href="{{ url_for('add_tag_manual', page=page) }}">{{ page }}</a>
             </li>
@@ -234,13 +269,23 @@
         {% endfor %}
     {% endif %}
     
-                    
+   
                     <!-- Next Page Button -->
                     <li class="pagination-item {% if current_page == total_pages %}disabled{% endif %}">
                         <a href="{% if current_page < total_pages %}{{ url_for('add_tag_manual', page=current_page + 1) }}{% else %}#{% endif %}"
                            class="{% if current_page == total_pages %}disabled{% endif %}">
+                           >
+                        </a>
+                    </li>
+                    <li class="pagination-item {% if current_page == total_pages %}disabled{% endif %}">
+
+                        <a href="{% if current_page < total_pages %}{{ url_for('add_tag_manual', page=current_page+10) }}{% else %}#{% endif %}"
+                           class="{% if current_page > total_pages-10 %}disabled{% endif %}">
                             &raquo;
                         </a>
+                     
+                        
+
                     </li>
                 </ul>
             </div>
@@ -261,6 +306,8 @@
     {% if data %}
     
     <div class="table-container" style="width: 97%; border-radius: 5px;">
+        
+        
         <div class="update-msg"></div>
         
         
@@ -304,8 +351,9 @@
                     <td>{{ row[12] if row[12] is not none else '  --'}}</td> <!-- Scheduled Delivery Date -->
                     <td>{{ row[13] if row[13] is not none else '  --'}}</td> <!-- Status Update Date -->
                     <td>{{ row[14] if row[14] is not none else '  --'}}</td><!-- Scheduled Delivery Date-->
-                    <!-- <td>{{ row[15] if row[15] is not none else '  --'}}</td> Scheduled Delivery Date -->
-                    <!-- <td>{{ row[16] if row[16] is not none else '  --'}}</td> Scheduled Delivery Date -->
+                    <td>{{ row[15] if row[15] is not none else '  --'}}</td> 
+                    <td>{{ row[16] if row[16] is not none else '  --'}}</td> 
+                    <td>{{ row[16] if row[16] is not none else '  --'}}</td> 
                     <td>
                         <select name="{{ row[0] }}" 
                         class="form-select" 
@@ -431,16 +479,7 @@ window.addEventListener('click', function(event) {
 
      </script>
 
-     
 
-<script>
-    // Handle form submission using JavaScript
-    document.getElementById('dropdown-form').addEventListener('submit', function(event) {
-        // Write the message before the form submission proceeds
-        document.querySelector('.update-msg').innerText = 'Updated successfully!';
 
-        // Let the form continue submitting
-    });
-</script>
 </body>
 </html>

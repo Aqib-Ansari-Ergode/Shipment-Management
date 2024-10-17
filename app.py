@@ -54,7 +54,7 @@ tag_file_download = pd.DataFrame(data=[],columns = ['Ship no',
                     'PDD', 'Venue',
                    'Address',"Status","Our Status",
                      'Order Date', 'Added Date','Order Id',
-                     "Internal Order Id",'Tracking_ids',"Carrier",
+                     "Internal Order Id",'Tracking to Customer','Auxhold tracking','carrier_company_name','auxhold_carrier_name',
                      "Aux Status","Customer Status",
                      "Aux Last Update","Customer Last Update"])
 
@@ -322,7 +322,7 @@ def add_tag_manual():
                     'PDD', 'Venue',
                    'Address',"Status","Our Status",
                      'Order Date', 'Added Date','Order Id',
-                     "Internal Order Id",'Tracking_ids',"Carrier",
+                     "Internal Order Id",'Tracking to Customer','Auxhold tracking','carrier_company_name','auxhold_carrier_name',
                      "Aux Status","Customer Status",
                      "Aux Last Update","Customer Last Update"]
         total_records = len(data)
@@ -333,7 +333,7 @@ def add_tag_manual():
                     'PDD', 'Venue',
                    'Address',"Status",
                      'Order Date','Added Date', 'Order Id',
-                     "Internal Order Id",'Tracking_ids',"Carrier",
+                     "Internal Order Id",'Tracking to Customer','Auxhold tracking','carrier_company_name','auxhold_carrier_name',
                      "Aux Status","Customer Status",
                      "Aux Last Update","Customer Last Update"])
         
@@ -347,7 +347,7 @@ def add_tag_manual():
         
         # df_data.to_csv(f"tags_files/{file_name}", index=False)
         
-        return render_template('tag_management.html',
+        return render_template('tag2.html',
                                data=table_data_paginated, venues=venues,
                                columns=columns, carriers=carriers, venue_sel=session['venue_sel'],
                                carrier_sel=session['carrier_sel'], 
@@ -389,7 +389,7 @@ def add_tag_manual():
                     'PDD', 'Venue',
                    'Address',"Status","Our Status",
                      'Order Date','Added Date', 'Order Id',
-                     "Internal Order Id",'Tracking_ids',"Carrier",
+                     "Internal Order Id"'Tracking to Customer','Auxhold tracking','carrier_company_name','auxhold_carrier_name',
                      "Aux Status","Customer Status",
                      "Aux Last Update","Customer Last Update"]
             total_records = len(data)
@@ -403,7 +403,7 @@ def add_tag_manual():
                     'PDD', 'Venue',
                    'Address',"Status",
                      'Order Date','Added Date', 'Order Id',
-                     "Internal Order Id",'Tracking_ids',"Carrier",
+                     "Internal Order Id",'Tracking to Customer','Auxhold tracking','carrier_company_name','auxhold_carrier_name',
                      "Aux Status","Customer Status",
                      "Aux Last Update","Customer Last Update"])
             shipment_df = pd.DataFrame(list(shipment_data.items()), columns=['Ship no', 'Tag'])
@@ -415,9 +415,9 @@ def add_tag_manual():
             tag_file_download = df_data
             # df_data.to_csv(f"tags_files/{file_name}", index=False)
 
-            return render_template('tag_management.html', venues=venues, carriers=carriers,shipment_data=shipment_data,data=table_data_paginated,columns=columns,current_page=current_page,total_pages=total_pages,downl=True,log_dates=log_dates)
+            return render_template('tag2.html', venues=venues, carriers=carriers,shipment_data=shipment_data,data=table_data_paginated,columns=columns,current_page=current_page,total_pages=total_pages,downl=True,log_dates=log_dates)
             
-    return render_template('tag_management.html', venues=venues, carriers=carriers,shipment_data=shipment_data,downl = False,log_dates=log_dates)
+    return render_template('tag2.html', venues=venues, carriers=carriers,shipment_data=shipment_data,downl = False,log_dates=log_dates)
 
 
 
@@ -441,6 +441,7 @@ def update_tag():
 
     # Update logs based on form data
     for shipment_number, new_status in form_data.items():
+       
         if shipment_number == 'current_page':
             continue
 

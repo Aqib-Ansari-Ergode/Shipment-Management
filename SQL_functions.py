@@ -276,9 +276,12 @@ def get_Data2(start=False, end=False, venue=False, carrier=False, status=False,s
     om.order_id AS Order_ID,
     od.internal_order_id AS Internal_Order_ID,
 
-
-  GROUP_CONCAT(otd.tracking_id ORDER BY otd.order_detail_id ASC SEPARATOR ', ') AS tracking_ids,
-  GROUP_CONCAT(otd.carrier_name ORDER BY otd.order_detail_id ASC SEPARATOR ', ') AS carrier_names,
+od.tracking_id AS 'Tracking to Customer',
+  od.auxhold_tracking AS 'Auxhold tracking',
+  od.carrier_company_name AS carrier_company_name,
+  od.auxhold_carrier_name AS auxhold_carrier_name,
+  od.status_update_date AS 'SHPFW date',
+  
 
 
   SUBSTRING_INDEX(
@@ -328,13 +331,16 @@ FROM
 LEFT JOIN order_details as od ON otd.order_detail_id = od.order_detail_id
 LEFT JOIN order_mast as om ON od.order_mast_id = om.order_mast_id
 
-
+WHERE
+  om.purchase_date >  '2024-10-10'
  
 
         '''
 #     WHERE
 #   om.purchase_date >  '2024-09-30'
-    where1 = 0
+# GROUP_CONCAT(otd.tracking_id ORDER BY otd.order_detail_id ASC SEPARATOR ', ') AS tracking_ids,
+#   GROUP_CONCAT(otd.carrier_name ORDER BY otd.order_detail_id ASC SEPARATOR ', ') AS carrier_names,
+    where1 = 1
     if shipment_number:
         select_employees_query += f" and shipment_no = '{shipment_number}'  GROUP BY otd.order_detail_id, om.order_id   order by om.purchase_date desc limit 1000 ; "
         data = fetch_query_results(query=select_employees_query)
@@ -413,7 +419,7 @@ LEFT JOIN order_mast as om ON od.order_mast_id = om.order_mast_id
                                GROUP BY
                                 otd.order_detail_id, om.order_id  
                                order by om.purchase_date desc
-                               limit 1000
+                               
                                 ;  ''')  # Use your own DB query function
     print(select_employees_query)
     #  om.ship_country NOT IN ('USA' , 'United States',  'usa','U.S.A.','UNITED STATES','USA','US')

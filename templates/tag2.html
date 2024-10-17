@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Tags</title>
+    <!-- <link rel="stylesheet" href="static/add_tag.css"> -->
+    <!-- <link rel="stylesheet" href="static/updated_add_tag.css"> -->
+    <link rel="stylesheet" href="static/re_add_tag.css">
+     
+</head>
+<body>
+    <script>
+        // JavaScript to handle date change events
+        function updateDateLabels() {
+            const startDateInput = document.getElementById('start-date');
+            const endDateInput = document.getElementById('end-date');
+            const startDateLabel = document.getElementById('start-date-label');
+            const endDateLabel = document.getElementById('end-date-label');
+
+            // Update label when a date is selected
+            startDateInput.addEventListener('change', function() {
+                if (startDateInput.value) {
+                    startDateLabel.innerHTML = `${startDateInput.value}`;
+                } else {
+                    startDateLabel.innerHTML = 'Start Date';
+                }
+            });
+
+            endDateInput.addEventListener('change', function() {
+                if (endDateInput.value) {
+                    endDateLabel.innerHTML = `to ${endDateInput.value}`;
+                } else {
+                    endDateLabel.innerHTML = 'End Date';
+                }
+            });
+        }
+
+        // Initialize when the DOM is fully loaded
+        window.onload = function() {
+            updateDateLabels();
+        };
+    </script>
+    <script>
+        document.getElementById('dropdown1').addEventListener('change', function () {
+            var dropdown2 = document.getElementById('dropdown2');
+            
+            // Reset all options in dropdown2
+            var options = dropdown2.options;
+            for (var i = 0; i < options.length; i++) {
+                options[i].style.display = ''; // Show all options by default
+            }
+    
+            // Get the selected value from dropdown1
+            var selectedValue = this.value;
+    
+            // If "Process Aux Hold (PA)" is selected, show only Option 1 in dropdown2
+            if (selectedValue === 'option1') {  // Assuming value 'option1' corresponds to PA
+                for (var i = 0; i < options.length; i++) {
+                    if (options[i].value === 'option2') {
+                        options[i].style.display = 'none';  // Hide Option 2
+                    }
+                }
+            } else {
+                // If any other option is selected, show only Option 2 in dropdown2
+                for (var i = 0; i < options.length; i++) {
+                    if (options[i].value === 'option1') {
+                        options[i].style.display = 'none';  // Hide Option 1
+                    }
+                }
+            }
+    
+            // Optional: Reset dropdown2 selection
+            dropdown2.selectedIndex = 0;
+        });
+    </script>
+    
+    <!-- Header Section -->
+    
+        <div style="background-color: rgb(193, 193, 255);height: 4em; align-items: center;display: flex;">
+            <img src="static/ergodeinc.png" alt="Epicode Logo" style="width: 100px; height: 30px; float: left;margin-left: 15px;">
+            <h1 style="display: flex; align-items: center;text-align: center; float:inline-start;margin-left: auto;margin-right: auto;">Manage Tags</h1>
+        </div>
+   
+
+    <!-- Form Section -->
+    <div class="form-container">
+        <form id="dropdown-form" action="/add_tag_manual" method="post">
+            <!-- First Row: Start Date, End Date, and Status -->
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="start-date" class="form-label">Start Date</label>
+                    <input type="date" class="form-control" name="start_date" id="start-date">
+                </div>
+                <div class="col-md-4">
+                    <label for="end-date" class="form-label">End Date</label>
+                    <input type="date" class="form-control" name="end_date" id="end-date">
+                </div>
+                <div class="col-md-4">
+                    <label for="status" class="form-label">Status</label>
+                    <select class="form-select" id="status" name="status">
+                        <option value="" selected>Status</option>
+                        <option value="PA">Process Aux Hold (PA)</option>
+                        <option value="SHPFW">Ship from Warehouse (SHPWH)</option>
+                    </select>
+                </div>
+            </div>
+    
+            <!-- Second Row: Select Tags, Venues, Carriers -->
+            <div class="row mt-3">
+                <div class="col-md-4">
+                    <label for="tags" class="form-label">Select Tags</label>
+                    <div class="custom-select-wrapper">
+                        <div class="custom-select">
+                            <div class="custom-select-trigger">Select Tags</div>
+                            <div class="custom-options">
+                                <label><input type="checkbox" name="tag" value="PA - Delivered"> PA - Delivered</label>
+                                <label><input type="checkbox" name="tag" value="PA - In transit"> PA - In transit</label>
+                                <label><input type="checkbox" name="tag" value="PA - Not Delivered"> PA - Not Delivered</label>
+                                <!-- Add more tag options as needed -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="venue" class="form-label">Venues</label>
+                    <select class="form-select" name="venue">
+                        <option selected>Venues</option>
+                        <!-- Add dynamic venue options -->
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="carrier" class="form-label">Carriers</label>
+                    <select class="form-select" name="carrier">
+                        <option selected>Carriers</option>
+                        <!-- Add dynamic carrier options -->
+                    </select>
+                </div>
+            </div>
+    
+            <!-- Third Row: Shipment Number, Submit Button, and Download Button -->
+            <div class="row mt-3">
+                <div class="col-md-4">
+                    <label for="shipment-number" class="form-label">Shipment Number</label>
+                    <input type="text" class="form-control" name="shipment_number" id="shipment-number" placeholder="Enter Shipment Number">
+                </div>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-primary mt-4">Submit</button>
+                </div>
+                <div class="col-md-4">
+                    <a href="{{ url_for('download_file_taged') }}" class="btn btn-success mt-4">Download</a>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+            {% if data %}
+        
+         
+
+        <form action="{{ url_for('handle_upload') }}" method="post" enctype="multipart/form-data" style="width: 100%;display: flex; margin-top: 10px;" >
+            <div class="item-upload" style="width: 100%;">
+                <label for="file-upload" class="file-upload-label">Upload Tagging File:</label>
+                <input type="file" id="file-upload" name="file" class="file-upload-input" accept=".csv, .xlsx, .xls, .tsv" required style="width: 300px;">
+                <button type="submit" class="btn btn-success download-btn"  style="width: 80px; margin-left: 5px; margin-bottom: 0;margin-top: 0%; padding: 10px; background-color: #28a745; border: 0px ; border-radius: 7px;color: #ffffff; ">Upload</button>
+            </div>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <div id="alerts" style="display: flex; justify-content: center; align-items: center;">
+              {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert" style=" white-space: nowrap; justify-content: center; align-items: center; padding: 5px 15px;  margin-right: 30px; background-color: #a4b5c9;border-radius: 7px; height: 30px; width: auto; border: 2px solid black; opacity: 0.8;">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+            <div class="pagination" style="float: right; margin: 10px;">
+                <ul class="pagination-list">
+                    <!-- Previous Page Button -->
+                    <li class="pagination-item {% if current_page == 1 %}disabled{% endif %}">
+                        {% if current_page < 1 %}
+                        {% set current_page = 1 %}
+                        <a href="{% if current_page > 1 %}{{ url_for('add_tag_manual', page=current_page - 10) }}{% else %}#{% endif %}"
+                           class="{% if current_page == 1 %}disabled{% endif %}">
+                            &laquo;
+                        </a>
+                        {% else %}
+                        <a href="{% if current_page > 1 %}{{ url_for('add_tag_manual', page=current_page - 10) }}{% else %}#{% endif %}"
+                            class="{% if current_page == 1 %}disabled{% endif %}">
+                             &laquo;
+                         </a>
+                        {% endif %}
+                    </li>
+                    <li class="pagination-item {% if current_page == 1 %}disabled{% endif %}">
+                        <a href="{% if current_page > 1 %}{{ url_for('add_tag_manual', page=current_page - 1) }}{% else %}#{% endif %}"
+                           class="{% if current_page == 1 %}disabled{% endif %}">
+                           <
+                        </a>
+                    </li>
+            
+                    <!-- Page Numbers -->
+                    {% if total_pages > 10 %}
+        {% set start_page = current_page  - 2%}
+        {% set end_page = current_page + 2 %}
+        
+        {% if start_page <= 0 %}
+            {% set start_page = 1 %}
+        {% endif %}
+        {% if current_page < 3 %}
+                    {% if current_page == 2 %}
+                    {% set end_page = current_page + 3 %}
+                    {% else %}
+                    {% set end_page = current_page + 4 %}
+                    {% endif %}
+        {% endif %}
+        {% if end_page > total_pages %}
+            {% set end_page = total_pages %}
+        {% endif %}
+        
+        {% for page in range(start_page, end_page + 1) %}
+        
+            <li class="pagination-item {% if page == current_page %}active{% endif %}">
+                <a href="{{ url_for('add_tag_manual', page=page) }}">{{ page }}</a>
+            </li>
+        {% endfor %}
+    {% else %}
+        {% for page in range(1, total_pages + 1) %}
+            <li class="pagination-item {% if page == current_page %}active{% endif %}">
+                <a href="{{ url_for('add_tag_manual', page=page) }}">{{ page }}</a>
+            </li>
+        {% endfor %}
+    {% endif %}
+    
+   
+                    <!-- Next Page Button -->
+                    <li class="pagination-item {% if current_page == total_pages %}disabled{% endif %}">
+                        <a href="{% if current_page < total_pages %}{{ url_for('add_tag_manual', page=current_page + 1) }}{% else %}#{% endif %}"
+                           class="{% if current_page == total_pages %}disabled{% endif %}">
+                           >
+                        </a>
+                    </li>
+                    <li class="pagination-item {% if current_page == total_pages %}disabled{% endif %}">
+                        <a href="{% if current_page < total_pages %}{{ url_for('add_tag_manual', page=current_page + 10) }}{% else %}#{% endif %}"
+                           class="{% if current_page == total_pages %}disabled{% endif %}">
+                            &raquo;
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            </form>
+
+      
+        
+            
+        </div>
+            {% endif %}
+        
+        
+    </div>
+    
+
+    <!-- Table Section -->
+
+    {% if data %}
+    
+    <div class="table-container" style="width: 97%; border-radius: 5px;">
+        
+        
+        <div class="update-msg"></div>
+        
+        
+        <form action="/update_tag" id="dropdown-form" method="post">
+            <input type="hidden" name="current_page" value="{{ current_page }}">
+            <table>
+            <thead style="font-size: 16px;">
+                <tr>
+                    {% for i in columns %}
+                    <th>{{ i }}</th>
+                    {% endfor %}
+                    <th>Tag</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                <tr>
+                    <td>{{ row[0] if row[0] is not none else '  --'}}</td> <!-- Shipment Number -->
+                    <td>{{ row[1] if row[1] is not none else '  --'}}</td> <!-- pdd -->
+                    <td>{{ row[2] if row[2] is not none else '  --'}}</td> <!-- Venue -->
+                    <td>{{ row[3] if row[3] is not none else '  --'}}</td> <!-- Address -->
+                    <td>{{ row[4] if row[4] is not none else '  --'}}</td> <!-- Status -->
+                    <td>
+                        {% if 'SHPFW' in [row[4]] %}
+                            SHPFW
+                        {% elif 'PA' in [row[4]] %}
+                            PA
+                        {% else %}
+                            Not Processed
+                        {% endif %}
+                    </td>
+                    <td>{{ row[5] if row[5] is not none else '  --'}}</td> <!-- Purchase Date -->
+                    
+                    <td>{{ row[6] if row[6] is not none else '  --'}}</td> <!-- Current Status -->
+                   
+                    <td>{{ row[7] if row[7] is not none else '  --'}}</td> <!-- Status Update Date -->
+                    <td >{{ row[8] if row[8] is not none else '  --'}}</td> <!-- Scheduled Delivery Date -->
+                    <td>{{ row[9] if row[9] is not none else '  --'}}</td> <!-- Scheduled Delivery Date -->
+                    <td>{{ row[10] if row[10] is not none else '  --'}}</td> <!-- Status Update Date -->
+                    <td>{{ row[11] if row[11] is not none else '  --'}}</td> <!-- Scheduled Delivery Date -->
+                    <td>{{ row[12] if row[12] is not none else '  --'}}</td> <!-- Scheduled Delivery Date -->
+                    <td>{{ row[13] if row[13] is not none else '  --'}}</td> <!-- Status Update Date -->
+                    <td>{{ row[14] if row[14] is not none else '  --'}}</td><!-- Scheduled Delivery Date-->
+                    <td>{{ row[15] if row[15] is not none else '  --'}}</td> 
+                     <td>{{ row[16] if row[16] is not none else '  --'}} 
+                    <td>
+                        <select name="{{ row[0] }}" 
+                        class="form-select" 
+                        {% if shipment_data.get(row[0]) == "PA - In Process" %}selected style="background-color: rgb(248, 255, 100);color: rgb(36, 36, 36);"{% endif %} 
+                        {% if shipment_data.get(row[0]) == "PA - In Transit" %}selected style="background-color: rgb(196, 196, 196);color: rgb(36, 36, 36);"{% endif %} 
+                        {% if shipment_data.get(row[0]) == "SHPFW - Loss" %}    style="background-color: rgb(255, 42, 42);color: rgb(36, 36, 36);"{% endif %} 
+                        {% if shipment_data.get(row[0]) == "SHPFW - Delivered" %}    style="background-color: rgb(0, 255, 8);color: rgb(36, 36, 36);"{% endif %}
+                        >
+                           
+                            <!-- <option value="PA - Delivered" {% if shipment_data.get(row[0]) == "Delivered" %}selected{% endif %}>PA - Delivered</option> -->
+                            <option value="PA - In Transit" {% if shipment_data.get(row[0]) == "PA - In Transit" %}selected {% if shipment_data.get(row[0]) == "PA - In Transit" %}selected style="background-color: rgb(196, 196, 196);color: rgb(36, 36, 36);"{% endif %} 
+                            {% endif %}>PA - In Transit</option>
+                            <option value="PA - Not Delivered" {% if shipment_data.get(row[0]) == "PA - Not Delivered" %}selected{% endif %}>PA - Not Delivered</option>
+                            <option value="PA - In Process" {% if shipment_data.get(row[0]) == "PA - In Process" %}selected style="background-color: rgb(248, 255, 100);color: rgb(36, 36, 36);"{% endif %}>PA - In Process</option>
+                            <option value="PA - Not Found" {% if shipment_data.get(row[0]) == "PA - Not Found" %}selected{% endif %}>PA - Not Found</option>
+                            <option value="PA - Query" {% if shipment_data.get(row[0]) == "PA - Query" %}selected{% endif %}>PA - Query</option>
+                            <option value="SHPFW - Delivered" {% if shipment_data.get(row[0]) == "SHPFW - Delivered" %}selected style="background-color: rgb(0, 255, 8);color: rgb(36, 36, 36);"{% endif %}>SHPFW - Delivered</option>
+                            <option value="SHPFW - Stuck in Transit" {% if shipment_data.get(row[0]) == "SHPFW - Stuck in Transit" %}selected{% endif %}>SHPFW - Stuck in Transit</option>
+                            <option value="SHPFW - In Transit" {% if shipment_data.get(row[0]) == "SHPFW - In Transit" %}selected{% endif %}>SHPFW - In Transit</option>
+                            <option value="SHPFW - Returning" {% if shipment_data.get(row[0]) == "SHPFW - Returning" %}selected{% endif %}>SHPFW - Returning</option>
+                            <option value="SHPFW - Returned" {% if shipment_data.get(row[0]) == "SHPFW - Returned" %}selected{% endif %}>SHPFW - Returned</option>
+                            <option value="SHPFW - Loss" {% if shipment_data.get(row[0]) == "SHPFW - Loss" %}selected style="background-color: rgb(255, 42, 42);color: rgb(36, 36, 36);"{% endif %}>SHPFW - Loss</option>
+                        </select><br>
+                        <!-- <a href="#" class="openPopup" shipmentnumber="{{row[0]}}" data-log="<div style='color:grey;'><br><br> <ul>Date : {{ row[5] }}</ul> <br><ul>Current Status: {{row[5] }}</ul> <br> <ul>Scheduled Delivery date{{ row[8]}}</ul>" style="text-decoration: none; color: #3758c5;">Show Logs</a> -->
+                            <!-- <a href="#" class="openPopup" shipmentnumber="{{row[0]}}" data-log="<div style='color:grey;'>{%for i,j in log_dates.items()%} {% if i == row[0] %} <ul><li>current_status : {{ j.current_status }}</li>br  <li>inprocess : {{ j.log.inprocess}}</li>br <li>Delivered : {{j.log.delivered}}</li></ul> {% endif%} {% endfor %}</div>" style="text-decoration: none; color: #3758c5;">Show Logs</a> -->
+                            <a href="#" class="openPopup" shipmentnumber="{{row[0]}}" data-log="
+                                {% for i, j in log_dates.items() %}
+                                {% if i == row[0] %}
+                                    <tr style='background-color: #abbfff'>
+                                        <th>Status</th><th>Date-Time</th><th>User</th>
+                                    </tr>
+                                    {% for log_entry in j.log %}
+                                        <tr>
+                                            <td>{{ log_entry[0] }}</td>
+                                            <td>{{ log_entry[1] }}</td>
+                                            <td>{{ log_entry[2] }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                            
+                             " style="text-decoration: none; color: #3758c5;">Show Logs</a>
+                  
+                        </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            
+        </table>
+        <button type="submit" style="position: fixed;bottom: 10px;left: 10px; cursor: pointer; height: 40px;width: 80px; border-radius: 20px; margin: 2%; float: right; background: #3758c5;border: 0px; color: aliceblue;">Update</button>
+
+    </form>
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <div class="box-pop" style="border: 2px solid black; border-radius: 5px; margin: 2px 2px;">
+                <span class="close" id="closePopup" style="margin: 10px 10px;">&times;</span>
+                <h2 style="margin: 0px 0px; padding: 20px 20px; background-color: rgb(142, 197, 255);" id="popupTitle">
+                    Logs of shipment-number
+                </h2>
+                <ul  style="height: 80%; overflow-y: auto; border: 1px solid #ddd;justify-content: center; align-items: center; font-size: large;" >
+                    <!-- Logs will be inserted here dynamically -->
+                     <table id="logContent" style=" width: 97%; border-collapse: collapse;">
+
+
+                     </table>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <script>
+       document.querySelector('.custom-select-trigger').addEventListener('click', function() {
+         document.querySelector('.custom-select').classList.toggle('open');
+     });
+     
+     document.querySelectorAll('.custom-options label').forEach(function(option) {
+         option.addEventListener('click', function(event) {
+             event.stopPropagation(); // Prevent dropdown from closing
+             let selectedOptions = [];
+             document.querySelectorAll('.custom-options input:checked').forEach(function(checkbox) {
+                 selectedOptions.push(checkbox.value);
+             });
+             
+             // Join selected options, show them as a string, but restrict height
+             let displayText = selectedOptions.join(', ');
+             
+             if (selectedOptions.length === 0) {
+                 document.querySelector('.custom-select-trigger').textContent = 'Select options';
+             } else {
+                 document.querySelector('.custom-select-trigger').textContent = displayText;
+             }
+         });
+     });
+     </script>
+     <script>
+      document.querySelectorAll('.openPopup').forEach(function(element) {
+    element.addEventListener('click', function(event) {
+        event.preventDefault();
+
+        // Get the log data from the data attribute
+        const logData = this.getAttribute('data-log');
+
+        // Find the log content container and set its content
+        const logContent = document.getElementById('logContent');
+        logContent.innerHTML = `${logData}`;
+
+        // Display the popup
+        document.getElementById('popup').style.display = 'flex';
+    });
+});
+
+document.getElementById('closePopup').addEventListener('click', function() {
+    document.getElementById('popup').style.display = 'none';
+});
+
+// Close the popup when clicking outside the content area
+window.addEventListener('click', function(event) {
+    if (event.target === document.getElementById('popup')) {
+        document.getElementById('popup').style.display = 'none';
+    }
+});
+
+
+     </script>
+
+
+
+</body>
+</html>

@@ -54,7 +54,7 @@ tag_file_download = pd.DataFrame(data=[],columns = ['Ship no',
                     'PDD', 'Venue',
                    'Address',"Status","Our Status",
                      'Order Date', 'Added Date','Order Id',
-                     "Internal Order Id",'Tracking_ids',"Carrier",
+                     "Internal Order Id",'Customer Tracking','Auxhold tracking','Customer Carrier','Auxhold Carrier','SHPFW date',
                      "Aux Status","Customer Status",
                      "Aux Last Update","Customer Last Update"])
 
@@ -322,7 +322,7 @@ def add_tag_manual():
                     'PDD', 'Venue',
                    'Address',"Status","Our Status",
                      'Order Date', 'Added Date','Order Id',
-                     "Internal Order Id",'Tracking_ids',"Carrier",
+                     "Internal Order Id",'Customer Tracking','Auxhold tracking','Customer Carrier','Auxhold Carrier','SHPFW date',
                      "Aux Status","Customer Status",
                      "Aux Last Update","Customer Last Update"]
         total_records = len(data)
@@ -333,7 +333,7 @@ def add_tag_manual():
                     'PDD', 'Venue',
                    'Address',"Status",
                      'Order Date','Added Date', 'Order Id',
-                     "Internal Order Id",'Tracking_ids',"Carrier",
+                     "Internal Order Id",'Customer Tracking','Auxhold tracking','Customer Carrier','Auxhold Carrier','SHPFW date',
                      "Aux Status","Customer Status",
                      "Aux Last Update","Customer Last Update"])
         
@@ -389,7 +389,7 @@ def add_tag_manual():
                     'PDD', 'Venue',
                    'Address',"Status","Our Status",
                      'Order Date','Added Date', 'Order Id',
-                     "Internal Order Id",'Tracking_ids',"Carrier",
+                     "Internal Order Id",'Customer Tracking','Auxhold tracking','Customer Carrier','Auxhold Carrier','SHPFW date',
                      "Aux Status","Customer Status",
                      "Aux Last Update","Customer Last Update"]
             total_records = len(data)
@@ -403,7 +403,7 @@ def add_tag_manual():
                     'PDD', 'Venue',
                    'Address',"Status",
                      'Order Date','Added Date', 'Order Id',
-                     "Internal Order Id",'Tracking_ids',"Carrier",
+                     "Internal Order Id",'Customer Tracking','Auxhold tracking','Customer Carrier','Auxhold Carrier','SHPFW date',
                      "Aux Status","Customer Status",
                      "Aux Last Update","Customer Last Update"])
             shipment_df = pd.DataFrame(list(shipment_data.items()), columns=['Ship no', 'Tag'])
@@ -438,9 +438,10 @@ def update_tag():
                 log_dates = {}
     else:
         log_dates = {}
-
+    flash('Tags Updated Successfully!', 'success')
     # Update logs based on form data
     for shipment_number, new_status in form_data.items():
+        
         if shipment_number == 'current_page':
             continue
 

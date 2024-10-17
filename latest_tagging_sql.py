@@ -21,8 +21,7 @@ def Update_sql_tag():
     data_sql_clip = []
     columns = ['shipment_no', 
                     'Promised Delivery Date', 'Venue',
-                   'Zip Code,','Buyers City' ,
-                   'Buyers Country',"status",
+                   'Address',"status",
                      'Order Date','Added Date', 'Order Id',
                      "Internal Order Id",'Tracking_ids',"Carrier",
                      "Aux Status","current_status",
