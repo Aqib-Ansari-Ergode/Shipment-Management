@@ -1,11 +1,17 @@
 import mysql.connector
 from mysql.connector import Error
 import pandas as pd
-
+from dotenv import load_dotenv
+import os
 # Connection global variable to allow reuse
 connection = None
+load_dotenv()
 
-def create_connection(host_name, user_name, user_password, db_name):
+DB_HOST = os.getenv("DB_HOST")
+DB_NAME = os.getenv("DB_NAME")
+DB_USER = os.getenv("DB_USER")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
+def create_connection(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD):
     """
     Creates a connection to the MySQL database and returns the connection object.
     """
@@ -13,10 +19,10 @@ def create_connection(host_name, user_name, user_password, db_name):
     try:
         if connection is None or not connection.is_connected():
             connection = mysql.connector.connect(
-            host=host_name,
-            user=user_name,
-            password=user_password,
-            database=db_name,
+            host=DB_HOST,
+            user=DB_USER,
+            password=DB_PASSWORD,
+            database=DB_NAME,
             pool_name='mypool',
             pool_size=3,  # Adjust this based on your application's concurrency
             autocommit=True,
@@ -34,15 +40,16 @@ def reconnect_if_needed():
     global connection
     if connection is None or not connection.is_connected():
         print("Reconnecting to MySQL DB...")
-        connection = create_connection("54.187.97.21", "aqib_ro", "mka@efew8743ICNMmcskCS", "ergodeap_media")
+        connection = create_connection(DB_HOST=DB_HOST, DB_NAME=DB_NAME, DB_USER=DB_USER, DB_PASSWORD=DB_PASSWORD)
     else:
         try:
             connection.ping(reconnect=True, attempts=3, delay=5)
         except Error as e:
             print(f"Reconnection attempt failed: {e}")
-            connection = create_connection("54.187.97.21", "aqib_ro", "mka@efew8743ICNMmcskCS", "ergodeap_media")
-
+            connection = create_connection(DB_HOST=DB_HOST, DB_NAME=DB_NAME, DB_USER=DB_USER, DB_PASSWORD=DB_PASSWORD)
+    
 def execute_query(query):
+    reconnect_if_needed()
     global connection
     # reconnect_if_needed()  # Ensure the connection is alive
     try:
@@ -65,6 +72,7 @@ def fetch_query_results(query):
     Fetches the results of a query.
     """
     global connection
+    reconnect_if_needed()
     # reconnect_if_needed()  # Ensure the connection is alive
 
     cursor = connection.cursor()
@@ -77,8 +85,8 @@ def fetch_query_results(query):
         return None
 
 # Connect to MySQL database
-connection = create_connection("media-master.ergodeapps.com", "aqib_ro", "mka@efew8743ICNMmcskCS", "ergodeap_media")
-
+connection = create_connection(DB_HOST=DB_HOST, DB_NAME=DB_NAME, DB_USER=DB_USER, DB_PASSWORD=DB_PASSWORD)
+    
 # # Example of creating a table
 # create_table_query = """
 # CREATE TABLE IF NOT EXISTS employees (

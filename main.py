@@ -5,11 +5,41 @@ import pandas as pd
 import os
 import csv
 import json
-import openpyxl
+# import openpyxl
+import logging
+from logging.handlers import RotatingFileHandler
 
 app = Flask(__name__)
 
 app.secret_key = 'your_secret_key'
+
+
+from functools import wraps
+
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'username' not in session:
+            # flash('Please log in to access this page.', 'warning')
+            return redirect(url_for('login'))
+        return f(*args, **kwargs)
+    return decorated_function
+
+
+def setup_logging():
+    handler = RotatingFileHandler(
+        "logs/app.log", maxBytes=100000, backupCount=3  # Rotate after 100 KB, keep 3 backups
+    )
+    formatter = logging.Formatter(
+        "%(asctime)s - %(levelname)s - %(message)s - [in %(pathname)s:%(lineno)d]"
+    )
+    handler.setFormatter(formatter)
+    handler.setLevel(logging.INFO)  # Change to DEBUG for more detailed logs
+
+    app.logger.addHandler(handler)
+    app.logger.setLevel(logging.INFO)  # Set root logger level
+
+setup_logging()
 
 def delete_all_files(folder_path):
     # Check if the folder exists
@@ -26,6 +56,7 @@ def delete_all_files(folder_path):
 
 
 def clear_session():
+    app.logger.warning(f"clearing session username from {request.remote_addr}")
     session.clear()
     session['post_done'] = False
     session['start_date'] = False
@@ -60,12 +91,14 @@ tag_file_download = pd.DataFrame(data=[],columns = ['Ship no',
 
 
 @app.route('/')
+@login_required
 def index():
     delete_all_files('files')
     delete_all_files('tags_files')
-    clear_session()
+    # clear_session()
     global venues, carriers
     session["user"] = 'Admin'
+    app.logger.info(f"User '{session['user']}' accessed the dashboard.")
     current_date = datetime.now().strftime("%Y-%m-%d")
     
     session['current_date'] = current_date
@@ -83,27 +116,31 @@ def index():
                            warehouse_cases=warehouse_cases, venues=venues, carriers=carriers)
 
 users = {
-    "testuser": "password123"  # Username: Password
+    "testuser@gmail.com": "Apassword123A"  # Username: Password
 }
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    if 'username' in session:
+        # If user is already logged in, redirect to dashboard
+        return redirect(url_for('index'))
+
     if request.method == 'POST':
-        username = request.form['username']
+        username = request.form['email']  # Using email as username
         password = request.form['password']
-        remember = request.form.get('remember')
 
         # Validate username and password
         if username in users and users[username] == password:
-            session['username'] = username
-            flash('Login successful!', 'success')
-            return redirect(url_for('dashboard'))  # Redirect to dashboard or another page
+            session['username'] = username  # Store user in session
+            # flash('Login successful!', 'success')
+            return redirect(url_for('index'))  # Redirect to dashboard
         else:
             flash('Invalid username or password', 'danger')
 
     return render_template('login.html')
 
 @app.route('/get_delivered', methods=['POST'])
+@login_required
 def handle_get_delivered():
     current_date = datetime.now().strftime("%Y-%m-%d")
     global venues,carriers
@@ -131,6 +168,7 @@ def handle_get_delivered():
         if session['carrier'] == 'Filter by Carrier':
             session['carrier'] = False
          # Handle aux_hold_cases as per the retrieved values
+        app.logger.info(f"User '{session['user']}' requested POST Method for delivered for values = {session['start_date'],session['end_date'],session['venue'],session['carrier'],session['post_done']}.")
         aux_hold_cases = [{'delivered': list(sqlf.get_delivered(start=session['start_date'],
                                                             end=session['end_date'],
                                                             venue=session['venue'],
@@ -153,6 +191,7 @@ def handle_get_delivered():
 
 
 @app.route('/get_delivered_details')
+@login_required
 def get_delivered_details():
     sanitize_session_values()
 
@@ -197,6 +236,7 @@ def get_delivered_details():
     table_data_paginated = table_data[start_index:end_index]
 
     # Render the paginated data in the template
+    
     return render_template('Delivered.html',
                            table_data=table_data_paginated,
                            file_name=file_name,
@@ -208,6 +248,7 @@ FILE_DIRECTORY = './files/'
 
 
 @app.route('/download')
+@login_required
 def download_file():
     try:
         # Ensure session has file_name
@@ -227,6 +268,7 @@ def download_file():
 
 
 @app.route('/add_tag', methods=['POST'])
+@login_required
 def add_tag():
     csv_file = 'tags_with_order_ids.csv'
 
@@ -246,7 +288,9 @@ def add_tag():
 
 
 @app.route('/add_tag_manual', methods=['GET', 'POST'])
+@login_required
 def add_tag_manual():
+    app.logger.info(f"User '{session['user']}' accessed the update Tags.")
     global data_tag
     global venues,carriers
     global tag_file_download
@@ -423,6 +467,7 @@ def add_tag_manual():
 
 
 @app.route('/update_tag', methods=['POST'])
+@login_required
 def update_tag():
     log_file_path = 'log_dates.json'
     form_data = request.form
@@ -468,6 +513,7 @@ def update_tag():
 
 
 @app.route('/next_page', methods=['GET'])
+@login_required
 def next_page():
     # Get the total number of pages (assuming you have table_data length available)
     total_records = session["len_delivered_data"]  # Adjust based on your actual data retrieval logic
@@ -483,6 +529,7 @@ def next_page():
     return redirect(url_for('get_delivered_details'))
 
 @app.route('/prev_page', methods=['GET'])
+@login_required
 def prev_page():
     # Decrement the page number in the session but ensure it doesn't go below 1
     if 'page_no' in session and session['page_no'] > 1:
@@ -495,6 +542,7 @@ def prev_page():
 
 
 @app.route('/download_file_taged')
+@login_required
 def download_file_taged():
     try:
         FILE_DIRECTORY = 'tags_files'
@@ -527,6 +575,7 @@ def allowed_file(filename):
 
 import bulk_tagging
 @app.route('/handle_upload', methods=['POST'])
+@login_required
 def handle_upload():
     if 'file' not in request.files:
         flash('No file part')
@@ -550,4 +599,4 @@ def handle_upload():
 
 if __name__ == '__main__':
     
-    app.run(debug=True)
+    app.run(debug=True,host='0.0.0.0')

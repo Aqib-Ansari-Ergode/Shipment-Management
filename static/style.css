@@ -1,0 +1,288 @@
+/* General body styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Header styles */
+  .navbar {
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar-brand img {
+    height: 40px;
+  }
+  
+  .navbar-nav .nav-item .nav-link {
+    color: #333;
+    font-weight: 500;
+  }
+  
+  /* Main container styles */
+  .container {
+    margin-top: 20px;
+    padding: 20px;
+    max-width: 1700px; /* Increased width */
+    background-color: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+
+  .d-flex {
+    display: flex;
+    justify-content: flex-start; /* Align them to the left, not spaced out */
+    align-items: flex-start; /* Align items to the top */
+}
+  
+  /* Card styles */
+  .card {
+    flex: 1;
+    min-width: 300px; /* Ensure a minimum width for each card */
+    max-width: 350px;   /*  Control max width of the cards */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .card-header {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .card-body p {
+    font-size: 1rem;
+    margin-bottom: 0.2rem; /* Adjust this value to reduce spacing between paragraphs */
+    line-height: 1.1; /* Optional: Reduces the space between lines inside a paragraph */
+
+  }
+  
+  /* Button styles */
+  .btn {
+    border-radius: 6px;
+    padding: 8px 15px;
+  }
+  
+  /* Custom colors for card headers */
+  .card-header.bg-success {
+    background-color: #28a745 !important;
+    color: white;
+  }
+  
+  .card-header.bg-info {
+    background-color: #17a2b8 !important;
+    color: white;
+  }
+  
+  .card-header.bg-warning {
+    background-color: #ffc107 !important;
+    color: #212529;
+  }
+  
+  /* Button in search form */
+  .form-group {
+    flex: 1;
+  }
+  
+/* Adjust the button styling */
+.btn-primary.h-50 {
+    height: auto;
+    width: auto; /* Adjust the width to the content */
+    padding: 8px 20px; /* Add padding to make the button taller */
+    align-self: center; /* Vertically centers the button */
+}
+
+  /* Milestone Map Styling */
+.milestone-map {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+  margin-top: 20px;
+}
+
+.milestone {
+  text-align: center;
+  position: relative;
+  flex: 1;
+}
+
+.milestone-icon {
+  width: 50px;
+  height: 50px;
+  border: 3px solid #ddd;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  margin: 0 auto;
+  background-color: #fff;
+  position: relative;
+  z-index: 1;
+}
+
+.milestone-icon i {
+  color: #aaa;
+}
+
+.milestone-label {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Completed milestones */
+.milestone-icon.completed {
+  border-color: #28a745;
+}
+
+.milestone-icon.completed i {
+  color: #28a745;
+}
+
+/* Connecting lines */
+.milestone:before {
+  content: '';
+  width: 100%;
+  height: 5px;
+  background-color: #ddd;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: 0;
+}
+
+.milestone:first-child:before {
+  display: none;
+}
+
+.milestone.completed:before {
+  background-color: #28a745;
+}
+
+
+  .search-card {
+    flex: 3; /* Take more space compared to the alert card, but not too much */
+    max-width: 700px; /* Set a max width to prevent it from taking up too much space */
+    margin-right: 20px; /* Add some space between the search and alert boxes */
+}
+
+  .alert-card {
+    flex: 1; /* Keep the flex property for sizing in relation to the search box */
+    width: 300px; /* Set a specific width, increase this as needed */
+    height: 178px; /* Set a specific height, adjust this based on your requirement */
+    max-width: none; /* Remove max-width limitation */
+    max-height: none; /* Remove max-height limitation */
+    margin-left: 20px; /* Add space between the search and alert box */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for better visibility */
+    overflow: auto;
+}
+
+/* Style the alert text */
+.alert-card .card-body p {
+  font-weight: bold;
+  list-style-type: disc;
+  margin-left: 20px;
+  color: red;
+  white-space: pre-wrap; /* Ensure long text wraps to the next line */
+}
+
+.blink {
+  animation: blink-animation 1.5s steps(5, start) infinite;
+  -webkit-animation: blink-animation 1.5s steps(5, start) infinite;
+}
+
+/* Blink animation keyframes */
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+
+/* Change background color and text color of alert header */
+.alert-header {
+  background-color: #ff6347; /* Change to your desired background color */
+  color: #ffffff; /* Change the text color */
+  font-weight: bold; /* Optional: Make the text bold */
+}
+
+  .tracking-progress {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin-top: 20px;
+  }
+  
+  .tracking-progress::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background-color: #dcdcdc;
+    z-index: 0;
+  }
+  
+  .milestone {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+  
+  .milestone .icon-container {
+    background-color: #e0e0e0;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 8px;
+    color: #fff;
+  }
+  
+  .milestone.completed .icon-container {
+    background-color: #4a90e2; /* Completed step color */
+  }
+  
+  .milestone.completed i {
+    color: #fff;
+  }
+  
+  .milestone i {
+    font-size: 24px;
+  }
+  
+  .milestone .label {
+    font-size: 12px;
+    color: #333;
+  }
+  
+  /* Add a custom class for grid gap adjustment if needed */
+.row.custom-spacing {
+    gap: 1.5rem; /* Adjust horizontal gap between columns */
+  }
+  
+  /* Alternatively, control margin on individual cards */
+  .card {
+    margin-right: 15px; /* Adds horizontal space */
+    margin-bottom: 20px; /* Adds vertical space */
+  }
+  
+  /* Example: Use Bootstrap classes for padding/margins where needed */
+  .col-md-3 {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  #orders-container {
+    display: none;
+}
+
+

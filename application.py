@@ -1,201 +1,167 @@
-from flask import Flask, render_template,request,redirect,send_file,url_for,session
+from flask import Flask, render_template, request, redirect, send_file, url_for, session, jsonify, flash, g
 from datetime import datetime
 import SQL_functions as sqlf
 import pandas as pd
 import os
 import csv
+import json
+import openpyxl
+import logging
+from logging.handlers import RotatingFileHandler
 
-application = Flask(__name__)
+app = Flask(__name__)
+app.secret_key = 'your_secret_key'
+users = {
+    "testuser@gmail.com": "Apassword123A"  # Username: Password
+}
+from functools import wraps
 
-application.secret_key = 'your_secret_key' 
+def setup_logging():
+    handler = RotatingFileHandler(
+        "logs/app.log", maxBytes=100000, backupCount=3
+    )
+    formatter = logging.Formatter(
+        "%(asctime)s - %(levelname)s - %(message)s - [in %(pathname)s:%(lineno)d]"
+    )
+    handler.setFormatter(formatter)
+    handler.setLevel(logging.INFO)
+    app.logger.addHandler(handler)
+    app.logger.setLevel(logging.INFO)
 
-@application.route('/')
-def index():
+setup_logging()
+
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'username' not in session:
+            flash('Please log in to access this page.', 'warning')
+            return redirect(url_for('login'))
+        return f(*args, **kwargs)
+    return decorated_function
+
+def delete_all_files(folder_path):
+    try:
+        if os.path.exists(folder_path) and os.path.isdir(folder_path):
+            for filename in os.listdir(folder_path):
+                file_path = os.path.join(folder_path, filename)
+                if os.path.isfile(file_path):
+                    os.remove(file_path)
+                    app.logger.info(f"Deleted: {file_path}")
+        else:
+            app.logger.warning("The specified folder does not exist or is not a directory.")
+    except Exception as e:
+        app.logger.error(f"Error deleting files: {str(e)}")
+
+def clear_session():
+    app.logger.warning(f"Clearing session username from {request.remote_addr}")
     session.clear()
-    session['post_done'] = False
-    session['page_no'] = 1
-    current_date = datetime.now().strftime("%Y-%m-%d")  # Format the date as needed
-    venues = sqlf.get_venues()
-    carriers = sqlf.get_carriers()
-    # Dummy inventory data for Aux Hold Cases and Warehouse Cases
-    aux_hold_cases = [
-        { 'delivered':list(sqlf.get_delivered()[0])[0]},
-    ]
+    session.update({'post_done': False, 'start_date': False, 'end_date': False, 'venue': False, 
+                    'carrier': False, 'page_no': 1})
 
-    warehouse_cases = [
-        { 'quantity': 50, 'status': 'Ready to Ship'},
-        { 'quantity': 100, 'status': 'Ready to Ship'},
-        { 'quantity': 60, 'status': 'Packing'},
-        { 'quantity': 20, 'status': 'Packing'},
-        { 'quantity': 80, 'status': 'Ready to Ship'}
-    ]
+def sanitize_session_values():
+    session.setdefault('start_date', False)
+    session.setdefault('end_date', False)
+    session.setdefault('venue', False)
+    session.setdefault('carrier', False)
+    session.setdefault('page_no', 1)
 
-    return render_template('index.html', current_date=current_date, aux_hold_cases=aux_hold_cases, warehouse_cases=warehouse_cases, venues= venues,carriers=carriers)
+@app.route('/')
+@login_required
+def index():
+    try:
+        delete_all_files('files')
+        delete_all_files('tags_files')
+        clear_session()
+        session["user"] = 'Admin'
+        app.logger.info(f"User '{session['user']}' accessed the dashboard.")
 
-@application.route('/get_delivered', methods=['POST'])
+        session['current_date'] = datetime.now().strftime("%Y-%m-%d")
+        aux_hold_cases = [{'delivered': sql_query_handler(sqlf.get_delivered)}]
+        
+        warehouse_cases = [{'quantity': 50, 'status': 'Ready to Ship'}, ...]
+
+        return render_template('index.html', aux_hold_cases=aux_hold_cases,
+                               warehouse_cases=warehouse_cases, venues=get_venues(), carriers=get_carriers())
+    except Exception as e:
+        app.logger.error(f"Error in index route: {str(e)}")
+        return "An error occurred", 500
+
+def sql_query_handler(sql_func, *args, **kwargs):
+    try:
+        result = sql_func(*args, **kwargs)
+        app.logger.info(f"SQL query executed successfully: {sql_func.__name__}")
+        return result
+    except Exception as e:
+        app.logger.error(f"SQL query failed: {sql_func.__name__} - {str(e)}")
+        return []
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if 'username' in session:
+        return redirect(url_for('index'))
+
+    if request.method == 'POST':
+        username = request.form['email']
+        password = request.form['password']
+
+        if users.get(username) == password:
+            session['username'] = username
+            flash('Login successful!', 'success')
+            app.logger.info(f"User '{username}' logged in successfully.")
+            return redirect(url_for('index'))
+        else:
+            flash('Invalid username or password', 'danger')
+            app.logger.warning(f"Failed login attempt for username: {username}")
+
+    return render_template('login.html')
+
+@app.route('/get_delivered', methods=['POST'])
+@login_required
 def handle_get_delivered():
-    current_date = datetime.now().strftime("%Y-%m-%d")  # Format the date as needed
+    try:
+        sanitize_session_values()
+        session.update({
+            'start_date': request.form.get('start_date') or False,
+            'end_date': request.form.get('end_date') or False,
+            'venue': request.form.get('venue') or False,
+            'carrier': request.form.get('carrier') or False,
+            'post_done': True, 'page_no': 1
+        })
 
-    venues = sqlf.get_venues()
-    carriers = sqlf.get_carriers()
-    # Get form data
-    if request.method == 'post':
-        session['start_date']  = request.form.get('start_date')
-        session['end_date'] = request.form.get('end_date')
-        session['venue'] = request.form.get('venue')
-        session['carrier'] = request.form.get('carrier')
-        department = request.form.get('department')
-        session['post_done'] = True
-        print(session['start_date'] )
-        print(session['end_date'])
-        print(session['venue'])
-        print(session['carrier'])
-        session['page_no'] = 1
-        if session['venue'] == "False":
-            session['venue'] = False
-        if session['carrier'] == 'False':
-            session['carrier'] = False
+        aux_hold_cases = [{'delivered': sql_query_handler(sqlf.get_delivered,
+                              start=session['start_date'], end=session['end_date'],
+                              venue=session['venue'], carrier=session['carrier'])}]
 
-        print(session['start_date'] )
-        print(session['end_date'])
-        print(session['venue'])
-        print(session['carrier'])
-        # Call the function with the provided form data
-        # delivered_data = sqlf.get_delivered(start=start_date, end=end_date, venue=venue, carrier=carrier, department=department)
-        aux_hold_cases = [
-            { 'delivered':list(sqlf.get_delivered(start=session['start_date'] , 
-                                                end=session['end_date'],venue=session['venue'],
-                                                carrier=session['carrier']))[0][0]},
-        ]
-        print(aux_hold_cases)
-        # aux_hold_cases = [
-        #     { 'delivered':100},
-        # ]
-        warehouse_cases = [
-            { 'quantity': 50, 'status': 'Ready to Ship'},
-            { 'quantity': 100, 'status': 'Ready to Ship'},
-            { 'quantity': 60, 'status': 'Packing'},
-            { 'quantity': 20, 'status': 'Packing'},
-            { 'quantity': 80, 'status': 'Ready to Ship'}
-        ]
-    # Render a template or return the result
-    else:
-        session['post_done'] = False
-        session['start_date']  = False
-        session['end_date'] = False
-        session['venue'] =False
-        session['carrier'] = False
-        department = request.form.get('department')
-        print(session['start_date'] )
-        print(session['end_date'])
-        print(session['venue'])
-        print(session['carrier'])
-        session['page_no'] = 1
-        if session['venue'] == "False":
-            session['venue'] = False
-        if session['carrier'] == 'False':
-            session['carrier'] = False
+        return render_template('index.html', aux_hold_cases=aux_hold_cases,
+                               venues=get_venues(), carriers=get_carriers())
+    except Exception as e:
+        app.logger.error(f"Error in handle_get_delivered: {str(e)}")
+        return "An error occurred", 500
 
-        print(session['start_date'] )
-        print(session['end_date'])
-        print(session['venue'])
-        print(session['carrier'])
-        # Call the function with the provided form data
-        # delivered_data = sqlf.get_delivered(start=start_date, end=end_date, venue=venue, carrier=carrier, department=department)
-        aux_hold_cases = [
-            { 'delivered':list(sqlf.get_delivered(start=session['start_date'] , 
-                                                end=session['end_date'],venue=session['venue'],
-                                                carrier=session['carrier']))[0][0]},
-        ]
-        print(aux_hold_cases)
-        # aux_hold_cases = [
-        #     { 'delivered':100},
-        # ]
-        warehouse_cases = [
-            { 'quantity': 50, 'status': 'Ready to Ship'},
-            { 'quantity': 100, 'status': 'Ready to Ship'},
-            { 'quantity': 60, 'status': 'Packing'},
-            { 'quantity': 20, 'status': 'Packing'},
-            { 'quantity': 80, 'status': 'Ready to Ship'}
-        ]
-    # Render a template or return the result
-    return render_template('index.html', current_date=current_date,
-                            aux_hold_cases=aux_hold_cases, warehouse_cases=warehouse_cases,venues=venues,
-                           start_date=session['start_date'] ,
-                           end_date=session['end_date'],venue_sel=session['venue'],
-                           carriers= carriers,carrier_sel = session['carrier']) 
- # Replace with your template
+def get_venues():
+    return sql_query_handler(sqlf.get_venues)
 
-df = 0
-@application.route('/get_delivered_details')
-def get_delivered_details():
-    global df
-    # Sample data to be displayed in the table
-    # print(start_date)
-    # print(end_date)
-    # print(venue)
-    # print(carrier)
-    # print(page_no)
-
-    if session["post_done"]:
-        if session['start_date'] == "" or session['start_date'] == None:
-            session['start_date'] = False
-        if session['end_date'] == "" or session['end_date'] == None:
-            session['end_date'] = False
-        if session['venue'] == "" or session['venue'] == None:
-            session['venue'] = False
-        if session['carrier'] == "" or session['carrier'] == None:
-            session['carrier'] = False
-        if session['page_no'] == "" or session['page_no'] == None:
-            page_no = 1
-        print(session['start_date'])
-        print(session['end_date'])
-        print(session['venue'])
-        print(session['carrier'])
-        print(session['page_no'])
-        table_data = sqlf.get_delivered(start=session['start_date'] ,end=session['end_date'],venue=session['venue'],carrier=session['carrier'],columns=True)
-        
-    else:
-       
-        session['start_date'] = False
-        session['end_date'] = False
-        session['venue'] = False
-        session['carrier'] = False
-        page_no = 1
-        print(session['start_date'])
-        print(session['end_date'])
-        print(session['venue'])
-        print(session['carrier'])
-        print(session['page_no'])
-        table_data = sqlf.get_delivered(start=session['start_date'] ,end=session['end_date'],venue=session['venue'],carrier=session['carrier'],columns=True)
-        
-    data = []
-    for i in table_data:
-        arr = []
-        for j in i:
-            arr.append(j)
-        data.append(arr)
-    df = pd.DataFrame(columns=['Shipment Number','Internal Order ID','SKU','Venue','Order ID','Purchase Date','Current Status','Status Update Date','Scheduled Delivery Date'],data=data)
-    file_name = f"{session['start_date']}_{session['end_date']}_{session['venue']}_{session['carrier']}.csv"
-    session['file_name'] = file_name
-    table_data = table_data[25*(int(session['page_no'])-1):25*(int(session['page_no'])-1)+25]
-    # print(table_data)
-    df.to_csv(f"files/{session['file_name']}",index=False)
-    return render_template('Delivered.html', table_data=table_data,file_name = session['file_name'])
-
+def get_carriers():
+    return sql_query_handler(sqlf.get_carriers)
 FILE_DIRECTORY = './files/'
-@application.route('/download')
+@app.route('/download')
+@login_required
 def download_file():
-    global df
-    file_path = os.path.join("files", session['file_name'])
-    
-    print("File saved successfullt")
-    return send_file('tags_with_order_ids.csv', as_attachment=True)
-    #     return "File not found", 404
-    
+    try:
+        file_path = os.path.join(FILE_DIRECTORY, session.get('file_name', ''))
+        if os.path.exists(file_path):
+            return send_file(file_path, as_attachment=True)
+        else:
+            app.logger.warning(f"File '{file_path}' not found.")
+            return f"File '{session.get('file_name')}' not found", 404
+    except Exception as e:
+        app.logger.error(f"Error downloading file: {str(e)}")
+        return "An error occurred", 500
 
-@application.route('/add_tag', methods=['POST'])
-def add_tag():
+
+
+@app.route('/add_tag_manual', methods=['POST'])
+def add_tag_manual():
     # Get tags from the form submission (tags is a dictionary with order_id as keys)
     # form_data = request.form.items()
     # print(form_data)
@@ -204,7 +170,7 @@ def add_tag():
     # Define the file path for the CSV (you can choose your own path)
     csv_file = 'tags_with_order_ids.csv'
 
-    # Open the CSV file in applicationend mode, and write each tag with its corresponding order_id
+    # Open the CSV file in append mode, and write each tag with its corresponding order_id
     with open(csv_file, mode='a', newline='') as file:
         writer = csv.writer(file)
         # Write header if file is new (only needed the first time)
@@ -223,6 +189,6 @@ def clear_session():
     session.clear()
 
 if __name__ == '__main__':
-    application.run(debug=True,port=8080)
+    app.run(debug=True,port=8080)
     session.clear()
     
