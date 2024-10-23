@@ -1,0 +1,501 @@
+current_status,status_count
+Delivered,181841
+NULL,5165
+"Votre colis est livré dans votre boite aux lettres.",2984
+"Left JFK airport",1561
+"Out for Delivery",1460
+"In Transit",1064
+"Votre colis est livré.",955
+"Received at JFK HUB",797
+SHIPPED,604
+"Secure delivery (Enclosed porch)",541
+"Electronic information submitted by shipper",418
+"In Transit to ",413
+"DOCUMENTATION COMPLETE",331
+"Item processed",324
+"Data Received by US Carrier",316
+"Order received",291
+"Shipment Information Received",291
+"Shipment received at originating postal facility",266
+"Gateway transit in",254
+"Votre colis est livré à votre gardien.",249
+"In Transit to Canada Sort Facility",230
+"Item in transit",212
+"Departed Asendia facility",209
+"Shipment in Transit with Asendia to Processing",178
+"Shipment in Transit to the ePost Global Processing Center",178
+"Parcel processed at the depot",169
+"Arrival scan",168
+"Secure delivery (Back door)",147
+"Secure delivery (Parcel box)",133
+"Item arrived",129
+"Delayed in Transit beyond our control",129
+"Notice card left indicating where and when to pick up item",119
+"Arrived at sort facility",118
+"Clearance processing completed - Import",109
+"Shipment Received, Package Acceptance Pending",106
+"Arrived at Canada Sorting Facility",105
+"The instruction data for this shipment have been provided by the sender to DHL electronically",102
+"Your parcel has been abandoned",90
+"The recipient has picked up the shipment from the PACKSTATION",82
+"Item departed",81
+"Parcel processed at the hub",79
+"Departed UPS Facility",75
+"Votre Colissimo va bientôt nous être confié ! Il est en cours de préparation chez votre expéditeur.",72
+"Departed from Facility",72
+"In customs authorities",59
+"Arrived at Facility",56
+"Moving Through Network",55
+"The parcel has left the parcel center.",55
+"Votre colis est en transit sur nos plateformes logistiques.",54
+"Package delivered by local post office ",54
+"Shipment departed from country of origin",53
+"The shipment has been processed in the parcel center of origin",52
+"EN ROUTE BETWEEN BRANCH OFFICES",51
+"Shipment arrived at country of destination",48
+"Transport to delivery centre",47
+"Final Notice; Item will be returned to sender if not collected within 10 days",47
+"RECEIVED AT DP HUB",45
+"Processed in facility",45
+Accepted,44
+"Returned to Shipper from Sort Facility",44
+"Attempted Delivery",44
+"Expected delivery date updated",44
+"Loaded to movement / tour vehicle",43
+"Shipment address verification processed",41
+"Arrived at Destination Delivery Office",41
+"Gateway transit out",40
+"Votre colis est dans le site de livraison qui dessert votre adresse. Nous le préparons pour le mettre en livraison.",37
+"Votre Colissimo est en cours de traitement sur le site de tri local.",37
+"Secure delivery - To neighbour",37
+"Refunded to seller",36
+"Delivered to local carrier",36
+"DATA RECEIVED",35
+"Package is undeliverable to Customer",35
+"Object forwarded to",34
+"Redelivery Scheduled for Next Business Day",34
+"Held for consignee collection",32
+"Returned to Shipper",31
+"The item was successfully returned to the sender.",30
+"In Customs",29
+"Shipper created a label, UPS has not received the package yet. ",29
+"Handled by local carrier",28
+"The shipment has been processed in the destination parcel center",28
+"On Its Way to USPS",27
+"DEPOT EXIT",27
+"Returned to Destination Hub",26
+"Shipment Dispatched by US Carrier",25
+"Parcel Received and Processing",25
+"Returned (Refused item)",25
+"Delivery Recorded at the Delivery Office",25
+CANCELLED,24
+"IN FOREING ROUTE",24
+"Delivery attempt (addressee unknown)",24
+"Item Collected",24
+"Delivery - Proof of delivery",24
+"TENDERED TO LOCAL CARRIER",23
+"Processed by US Carrier",22
+"Delivery Attempted: No Access to Delivery Location",21
+"DELIVERY ATTEMPT FAILED",21
+"Held by Brazilian Customs",20
+"We were unable to deliver this parcel today unfortunately, this will be re-attempted within 24hours",20
+"Shipment dispatch completed",20
+"ARRIVED IN COUNTRY",20
+ORDERED,19
+"RETURNED TO LOCAL OFFICE",18
+"In Transit to Next Facility, Arriving Late",18
+"DELIVERY COMPLETE",17
+"Processing at UPS Facility",17
+"Out customs authorities",17
+"Order information received",17
+"Forwarded to customs inspection",16
+"The parcel has reached the parcel center.",16
+"Courier to Reattempt - Unable to get within Geofence",16
+"Movement / tour vehicle arrived",16
+"Awaiting Delivery",16
+"Departure transit facility",16
+ENTREGADO,15
+"The item is at customs",15
+Departed,15
+"The recipient has picked up the shipment from the retail outlet.",15
+"Misrouted in Transit",15
+"Parcel received at returns facility",14
+"Depature Scan: Enroute to USPS",14
+"Returned shipment has been received by processing center",14
+"Terminal receiving delay ",14
+"Item out for delivery",14
+"Shipment in transit to distribution center",14
+"RECEIVED AT DEPOT",14
+"Arrived at Post Office",13
+"Out of Customs",13
+"ORDER CREATED",12
+"Unloaded from movement / tour vehicle",12
+"Shipping Label Created, USPS Awaiting Item",12
+Received,12
+"Shipment Returned to Shipper",12
+"Undeliverable, address details incorrect",11
+"Item available for pickup at Post Office",11
+"Delivery failed",11
+"Sorted by US Carrier",11
+"Item re-routed due to processing error; Possible delay",11
+"Arrived at Canada Hub",10
+"Picked Up By Shipping Partner, USPS Awaiting Item",10
+Pre-Shipment,10
+"Package lost in transit",10
+"Delivered to post office box",10
+"Received for shipping",10
+"Shipment dispatched by Asendia",10
+"Customs Clearance",10
+"Parcel onboard courier vehicle for delivery",10
+"Dispatched by US Carrier",9
+"Object received in Brazil",9
+"Parcel arrived in destination country",9
+"Departed Shipping Partner Facility, USPS Awaiting Item",9
+"The courier hasn’t received this parcel, please allow 24hrs for the courier to receive it",9
+DELAYED,9
+"Arrived at transit facility",9
+"Returned to Customer",9
+"FINAL DELIVERY",8
+"ETA of delivery",8
+"LOST IN TRANSIT DURING DELIVERY",8
+"Return to sender warehouse",8
+"Sending cancelled",8
+"Local Collect collected from Post Office - No Fee Paid",8
+"PENDING DUE TO BAD ADDRESS",8
+"We have disposed of this parcel",8
+"Attempted Delivery Abroad",7
+"Insufficient Address",7
+"Votre colis ne peut être livré ce jour en raison d'une situation exceptionnelle indépendante de notre volonté. Il sera mis en livraison dans les prochains jours.",7
+"Pre-Shipment, USPS Awaiting Item",7
+"The parcel is stored in the parcel center.",7
+"Lost by last mile",7
+"Secure delivery (Car port)",7
+"Parcel unsafe to leave at address",6
+"We've not been able to deliver today, we'll try on the next working day",6
+"Parcel collected by carrier",6
+"Failed delivery, retry later",6
+"Nous sommes passés mais nous n'avons pu vous remettre votre colis. Il va être acheminé vers votre point de retrait.",6
+"Shipment at delivery station",6
+"Arrived Shipping Partner Facility, USPS Awaiting Item",6
+"Arrived at USPS Regional Facility",6
+"Departed from USA",6
+"Votre colis est livré à votre voisin. Son nom est indiqué sur l'avis déposé dans votre boîte aux lettres.",6
+"Parcel out for final mile carrier delivery",6
+"Undeliverable – Delivery Exception",6
+"Scanned parcel processing delay",6
+"Votre colis est sur son site de distribution. Nous le préparons pour le mettre en livraison.",6
+"Parcel returned to warehouse",6
+"Votre colis est disponible dans votre point de retrait pendant un délai de 15 jours calendaires. Ne tardez pas à aller le chercher ! Il vous sera remis sur présentation d'une pièce d'identité.",6
+"Parcel returned to the final mile carrier facility",6
+"Preparing for Delivery",6
+"The receiving business was closed and delivery has been rescheduled for the next business day.",5
+"Shipment Delayed",5
+"Taxes and duties paid to postman/postoffice",5
+"Package picked-up by agent at post office",5
+"Returned (incorrect address)",5
+"Parcel Processed at Carrier Terminal",5
+"Undeliverable - Return to Sender",5
+"Forwarded to",5
+"Loaded on Truck",5
+"Check-in Asendia facility",5
+"Received in Distribution Center/HUB",5
+"Parcel in transit with the final mile carrier",5
+"Bad delivery address",5
+"Arrived at USPS Facility",5
+"Arrived at delivery centre",5
+"Shipment Processed in Depot",5
+"The shipment has been loaded onto the delivery vehicle",5
+Drop-Off,5
+"RETURNED TO HE",5
+"Package processed",4
+"Batch Processed at Origin Hub",4
+"Shipment returned to Laredo,TX hub",4
+"Returned at Warehous",4
+"Signature Obtained",4
+"Shipment sent directly from parcel center to business customer",4
+"Votre colis est livré à son expéditeur à la suite d'un retour.",4
+"Transshipment completed",4
+"Unable to Deliver due to PO Box",4
+"Shipment Information Entered or Received",4
+"We're unable to deliver this parcel today. We will now deliver the next working day",4
+"Not delivered",4
+"Delivery Not Completed",4
+"Left securely in outbuilding",4
+"Parcel in transit",4
+Undeliverable,4
+"This parcel is on its way to the courier",4
+"Arrived at Terminal Location",4
+"Available at pick-up point",4
+"Item Collected - from SPS site",4
+"Shipment information sent to FedEx",4
+"Process incident or held by carrier",4
+"Return to Sender",4
+"Shipment Departed Origin Country",4
+"Exception hold-Return to shipper",3
+"Not received by last mile",3
+"The recipient has selected a Packstation as the new delivery address.",3
+"Item redirected to recipient's new address",3
+"Votre colis n'a pas pu vous être remis. Il sera mis en livraison demain (hors dimanche et jours fériés).",3
+"Mis routed",3
+"Delivery delayed to next business day",3
+"Voided Information Received ",3
+Pre-advice,3
+"Parcel departed origin country",3
+"Delivery Attempt",3
+"Customs cleared",3
+Redelivered,3
+"Collect for Pick Up",3
+"Votre colis est livré.?Colis retourné à l'expéditeur?",3
+"Restricted item cannot ship",3
+"Shipment received at terminal",3
+"CUSTOMS CLEARANCE/ON DESTINATION ROUTE",3
+"Customs Clearance Complete",3
+Alert,3
+"Payment object",3
+"This parcel is being redirected to the correct depot and will arrive in 24hrs",3
+"Shipment out for delivery",3
+"Held in Customs",3
+"This parcel has been dispatched from the hub",3
+"Parcel processed at origin facility",3
+"In facility",3
+"Held at  JFK Warehouse for Missing Information",3
+"In Transit, Arriving On Time",3
+"We've received this parcel at the hub and will be sorted to the customers delivery depot",3
+"Service dispatched by Asendia",3
+"Item on hold at customs, waiting for information from recipient",3
+"INCORRECT / INCOMPLETE ADDRESS",3
+"The address provided isn't correct so we can't deliver today, please provide the correct details",3
+"Shipping information approved by Australia Post",3
+"LOST CONSIGNMENT",3
+"Delivery exception",2
+"Divert to Parcel Shop OR Locker -  processed in UP",2
+"Attempted Delivery - Item being held, addressee being notified",2
+"Awaiting Pickup",2
+"Due to operating conditions, your package may be delayed. / Delivery will be delayed by one business day.",2
+"ORIGIN AIRLINE CARRIER DEPARTED/UPLIFT",2
+"Return to Warehouse",2
+"Arrived at UPS Facility",2
+"No Such Number",2
+"Parcel available for collection",2
+"Item Collected - from SPS site using E739",2
+"Parcel arrived at depot",2
+"Processed through Facility",2
+"Processed Through USPS Regional Facility",2
+"This parcel is being returned to the sender",2
+"Out For Delivery Today",2
+"Parcel processing at depot",2
+"Tendered for Delivery",2
+NOT_PERFORMED,2
+"Clearance in Progress",2
+"Item has been returned and is enroute to the Sender",2
+"Customs Clearance Processing Complete",2
+"On hold with local carrier",2
+"Customs Clearance Delay",2
+"Departed USPS Regional Facility",2
+"Votre colis est livré dans votre boite aux lettres.?Colis retourné à l'expéditeur?",2
+"Shipment Assigned to Driver",2
+"We have your package",2
+"Arrived at USPS Regional Origin Facility",2
+"Shipment Created",2
+"Parcel In-Transit",2
+"The package has been rescheduled for a future delivery date.",2
+"The item was reprocessed due to damage. DHL's customer services will contact the sender shortly.",2
+"Votre colis ne peut être livré ce jour. Il sera mis en livraison au plus tôt.",2
+Acceptance,2
+"Arrival at Post Office",2
+"Parcel lost in transit",2
+"The parcel is expected to be delivered during the day.",2
+"This parcel has been collected from the ParcelShop",2
+"Votre colis a subi un incident. Malheureusement, votre colis ne peut plus vous être acheminé. Nous vous invitons à contacter votre expéditeur ou son service clients. Si vous êtes l'expéditeur, vous po",2
+"Votre colis n'a pas pu vous être remis.",2
+"Cleared Customs",2
+"Label Created",2
+"The shipment could not be delivered, and the recipient has been notified.",2
+"Arrived in Destination Country",2
+"No Answer",2
+"Item sent to sender",2
+"OEC 3",2
+"The shipment is being brought to [PACKSTATION 491 Spandauer Damm 64 14059 Berlin].The earliest time when it can be picked up can be found on the notification card.",1
+"Verifying recipient's address; Possible delay",1
+Unclaimed,1
+"C2B Returned to Client",1
+"In transit to DAIParcelsDC tracking #:  CTEE679213",1
+"In transit to GLSEU tracking #:  984201764154",1
+"In Transit to Next Facility",1
+"In transit to GLSEU tracking #:  984202465258",1
+"Shipment returning in transit to origin",1
+"In transit to EVRi tracking #: H01SSA0021871951",1
+"In transit to GLSEU tracking #:  984201429787",1
+"Handed Over to Partner Carrier",1
+"We've incorrectly sorted this package which may cause a delay.",1
+"Delivery may be delayed due to extreme weather con",1
+"We couldn't deliver today due to bad weather. Tracking will be updated when the parcel is on its way",1
+"In transit to GLSEU tracking #:  984201440997",1
+"In transit to GLSEU tracking #:  984201699784",1
+"Package Damaged: Returned to Sender",1
+"RePacked  - The item was reprocessed due to damage. DHL's customer services will contact the sender shortly.",1
+"Votre colis est livré. Vous avez signalé un emballage modérément dégradé.",1
+"Shipment Misrouted",1
+"VALIDATION PROCESS PARCEL",1
+"In transit to GLSEU tracking #:  984201378900",1
+"In transit to GLSEU tracking #:  984201409321",1
+"Item accepted",1
+"In transit to GLS Canada tracking #: P28718933",1
+"In transit to DAIParcelsDC tracking #:  BRHJ002191",1
+"The shipment is being brought to [PACKSTATION 405 Stephanstr. 42 10559 Berlin].The earliest time when it can be picked up can be found on the notification card.",1
+MISSENT,1
+"Item being returned to sender. Incomplete address.",1
+"In transit to GLSEU tracking #:  984201655469",1
+"Inbound receipt at Sub Depot",1
+"In transit to GLSEU tracking #:  984201441048",1
+"In transit to GLSEU tracking #:  984201699678",1
+"Departed USPS Facility",1
+"Returned to Sender",1
+"Query - Closed",1
+"We are concluding our investigation and have sent an email to the receiver to confirm if the parcel was received or not. Once we hear back we will be able to close the investigation.",1
+"In transit to Interpost tracking #: LT1003070404",1
+"Arrived at PostNL – Item not allowed (X-ray) and rejected",1
+"In transit to GLSEU tracking #:  984201429770",1
+"Parcel picked up",1
+"In transit to USPS tracking #:  CY364732766US",1
+"Your parcel is running a little late, but should be there soon.",1
+"In transit to APRISA tracking#:  BE000017716001",1
+"We can't deliver today due to a road incident. We'll update tracking when your parcel is on its way",1
+"In transit to GLSEU tracking #:  984201655483",1
+"Return has been processed at the  depot and will be with the retailer shortly",1
+"In transit to GLSEU tracking #:  984201700107",1
+"Address Inaccessible",1
+"Returned at warehouse (ABC45003410)",1
+"La livraison de votre colis a été confirmée dans le cadre de l’instruction d’un dossier de réclamation.?",1
+"IN RETURN PROCESS TO HE DEPOT",1
+"In transit to GLSEU tracking #:  984201379044",1
+"In transit to GLSEU tracking #:  984201408768",1
+"In transit to Canada Post tracking #:  7100848343283111",1
+"Ignored event",1
+"In transit to GLSEU tracking #:  984201645187",1
+"Object damaged",1
+Arrived,1
+"Package transferred to post office",1
+"Your parcel is now with the next driver on its journey",1
+"In transit to APRISA tracking#:  BE000017709001",1
+"Received and ready for processing",1
+"In transit to GLSEU tracking #:  984201656206",1
+"Finalized-The claim/encounter has completed the adjudication cycle and no more action will be taken",1
+"In transit to GLSEU tracking #:  984201684476",1
+"Parcel order has been cancelled as requested.",1
+"Held at Delivery Depot/Delivery Office",1
+"Parcel has been scheduled for pickup on Friday, 19 Apr 2024.",1
+"In transit to GLSEU tracking #:  984201440751",1
+"Delivery attempted and card left - please arrange redelivery",1
+"In transit to GLSEU tracking #:  984201387803",1
+"In transit to DAIParcelsDC tracking #:  CTEE669122",1
+"In transit to GLSEU tracking #:  984201449938",1
+"Object posted",1
+"In transit to EVRi tracking #: H01SSA0022788284",1
+"Failed delivery attempt, returning to the warehouse. (Business Closed)",1
+"In transit to APRISA tracking#:  BE000017714001",1
+"Not Delivered - Business Closed",1
+"In transit to GLSEU tracking #:  984201667141",1
+"Votre colis a subi un incident. Malheureusement, il ne peut plus vous être acheminé. Nous vous invitons à contacter votre expéditeur ou son service clients. Si vous êtes l'expéditeur, vous pouvez cont",1
+"Re-shipped from Braeside (Vic) Warehouse",1
+"Available for Pickup",1
+"Returned at warehouse (ABC45004507)",1
+"In transit to GLSEU tracking #:  984201440812",1
+"Entered the Hermes network",1
+"In transit to EVRi tracking #: H01SSA0021607344",1
+"In transit to DAIParcelsDC tracking #:  CTEE666557",1
+"Une erreur s'est produite dans l'acheminement de votre colis. Nous mettons tout en œuvre pour qu'il reprenne son parcours.",1
+"Shipment received at postal delivery unit",1
+"Shipment Picked Up",1
+"In transit to GLSEU tracking #:  984201450064",1
+"Delayed in Dubai beyond our control",1
+"Failed delivery attempt, returning to the warehouse. (Wrong Address)",1
+"In transit to GLSEU tracking #:  984202464787",1
+"In transit to GLSEU tracking #:  984201449495",1
+"In transit to DAIParcelsDC tracking #:  MP8001517182",1
+"In transit to GLSEU tracking #:  984201764963",1
+"Parcel sent to returns facility",1
+"Ready for Collection",1
+"Inward MC - Automation Acceptance",1
+"The item is pre-advised",1
+"In transit to GLS Canada tracking #: P21167904",1
+"In transit to GLSEU tracking #:  984201429534",1
+"In transit to GLSEU tracking #:  984201440546",1
+"In transit to GLSEU tracking #:  984201450217",1
+"In transit to GLSEU tracking #:  984201450170",1
+"We have received the details for this parcel and expect it to reach the  network shortly",1
+"Pkg left with Agent for final delivery ",1
+"In transit to APRISA tracking#:  BE000017937001",1
+"Votre colis est disponible dans votre point de retrait pendant un délai de 15 jours calendaires. Ne tardez pas à aller le chercher ! Il vous sera remis sur présentation d'une pièce d'identité original",1
+"In transit to GLSEU tracking #:  984201441079",1
+"Your parcel is at the depot",1
+"In transit to GLSEU tracking #:  984201765038",1
+"Missed delivery - Will attempt delivery on next working day",1
+"In transit to GLSEU tracking #:  984201397321",1
+"In transit to GLSEU tracking #:  984201408836",1
+"In transit to GLSEU tracking #:  984201440850",1
+"Under Customs inspection",1
+"In transit to DAIParcelsDC tracking #:  CTEE681902",1
+"Your package is currently at the UPS Access Point™ and is scheduled to be tendered to UPS.",1
+"Parcel return to sender",1
+"In transit to APRISA tracking#:  BE000017888001",1
+"In transit to GLSEU tracking #:  984201655445",1
+"In transit via Post NL PACKTRACKED DIRECT tracking #:  LR183357135NL",1
+"Local Collect arrived at Post Office",1
+"Customer pickup",1
+"Collect for Pickup",1
+"In transit to GLSEU tracking #:  984201397550",1
+"In transit to DAIParcelsDC tracking #:  CTEE664148",1
+"In transit to Canada Post tracking #:  7100848343282930",1
+Outbound,1
+"Item released by customs",1
+"In transit to APRISA tracking#:  BE000017828001",1
+"This parcel has been delivered to the ParcelShop and is awaiting collection",1
+"In transit to GLSEU tracking #:  984201667004",1
+"Parcel redelivery has been requested",1
+"In transit to GLSEU tracking #:  984201699869",1
+"USPS in possession of item",1
+"The item being returned to the sender went out for delivery.",1
+"Action not taken by the client",1
+"In transit to APRISA tracking#:  BE000017659001",1
+"In transit to GLSEU tracking #:  984200534093",1
+"L'adresse indiquée sur votre colis est incomplète ou incorrecte. Nous procédons à sa correction afin de permettre le bon acheminement de votre colis.",1
+"In transit to GLSEU tracking #:  984201429596",1
+"Parcel has been scheduled for pickup on Thursday, 13 Jun 2024.",1
+"In transit to APRISA tracking#:  BE000017914001",1
+"Picked up at the terminal",1
+"Received by the local post office",1
+"In transit to APRISA tracking#:  BE000017818001",1
+"In transit to GLSEU tracking #:  984201656121",1
+"Parcel delayed 24hrs at the depot",1
+"The shipment is handed over in bulk, final acceptance of goods to be confirmed",1
+"Arrived at Hub",1
+"Customer information received",1
+"Votre colis n'a pas pu vous être livré en raison d'un problème d'adresse. Il va être retourné à l'expéditeur.",1
+"NEW TRACKING NUMBER ASSIGNED",1
+"In transit to GLSEU tracking #:  984201801873",1
+"In transit to GLSEU tracking #:  984200534116",1
+"In bonded area",1
+"In transit to GLSEU tracking #:  984201397376",1
+"In transit to TFORCE tracking #:  EPG0001446401",1
+"Parcel volume, length and weight checked on 15 Jun 2024",1
+"The item is at the PostNL sorting center",1
+"In transit to GLSEU tracking #:  984201721966",1
+"The shipment is being brought to [PACKSTATION 234 Wollankstr. 16 13187 Berlin].The earliest time when it can be picked up can be found on the notification card.",1
+"In transit to APRISA tracking#:  BE000017822001",1
+"We were unable to dispatch the trailer on time. This may cause a delay. / Delivery will be delayed by one business day.",1
+"In transit to APRISA tracking#:  BE000017824001",1
+"In transit to GLSEU tracking #:  984201700008",1
+"In transit via Post NL PACKTRACKED DIRECT tracking #:  LR184475496NL",1
+"In Transit from Origin Processing",1
+"Return to origin authorized by regulatory agency",1
+"The item is on transport to the country of destination",1
+"In transit to GLSEU tracking #:  984200534109",1
+"In transit to GLSEU tracking #:  984201397253",1
+"In transit to Canada Post tracking #:  7100848343282893",1
+"In transit to GLSEU tracking #:  984201450132",1
+"In transit to APRISA tracking#:  BE000017896001",1
+"Advise-Preferred Location/Neighbor",1
+"In transit to GLSEU tracking #:  984201656381",1
+"Shipment exception",1
+"Vous avez refusé votre colis car il était détérioré. Il va être retourné à l'expéditeur.",1

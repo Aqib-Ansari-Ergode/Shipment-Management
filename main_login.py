@@ -12,7 +12,9 @@ from logging.handlers import RotatingFileHandler
 app = Flask(__name__)
 
 app.secret_key = 'your_secret_key'
-
+users = {
+    "testuser@gmail.com": "Apassword123A"  # Username: Password
+}
 
 from functools import wraps
 
@@ -120,6 +122,7 @@ users = {
 }
 
 @app.route('/login', methods=['GET', 'POST'])
+@login_required
 def login():
     if 'username' in session:
         # If user is already logged in, redirect to dashboard
@@ -138,14 +141,6 @@ def login():
             flash('Invalid username or password', 'danger')
 
     return render_template('login.html')
-
-@app.route('/logout')
-def logout():
-    if 'username' in session:
-        app.logger.info(f"User '{session['username']}' logged out from {request.remote_addr}.")
-        session.pop('username', None)  # Remove the username from session
-    clear_session()  # Clear all session variables
-    return redirect(url_for('login')) 
 
 @app.route('/get_delivered', methods=['POST'])
 @login_required
@@ -607,4 +602,4 @@ def handle_upload():
 
 if __name__ == '__main__':
     
-    app.run(debug=True)
+    app.run(debug=True,host='0.0.0.0')

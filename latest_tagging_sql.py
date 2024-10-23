@@ -19,12 +19,19 @@ def load_data(filename):
 def Update_sql_tag():
     data_sql = sqlf.get_Data2()
     data_sql_clip = []
+    # columns = ['shipment_no', 
+    #                 'Promised Delivery Date', 'Venue',
+    #                'Address',"status",
+    #                  'Order Date','Added Date', 'Order Id',
+    #                  "Internal Order Id",'Tracking_ids',"Carrier",
+    #                  "Aux Status","current_status",
+    #                  "Aux Last Update","Customer Last Update"]
     columns = ['shipment_no', 
-                    'Promised Delivery Date', 'Venue',
-                   'Address',"status",
-                     'Order Date','Added Date', 'Order Id',
-                     "Internal Order Id",'Tracking_ids',"Carrier",
-                     "Aux Status","current_status",
+                    'PDD', 'Venue',
+                   'Address',"Status",
+                     'Order Date', 'Added Date','Order Id',
+                     "Internal Order Id",'status','Auxhold tracking','Customer Carrier','Auxhold Carrier','SHPFW date',
+                     "current_status","Customer Status",
                      "Aux Last Update","Customer Last Update"]
 
     df_sql = pd.DataFrame(data_sql, columns=columns)
